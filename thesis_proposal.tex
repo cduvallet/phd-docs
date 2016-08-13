@@ -1,0 +1,129 @@
+\documentclass[12pt]{report}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{enumerate}
+
+\title{Analyzing the Clinical Microbiome \\ Biological Engineering Thesis Proposal}
+\author{Claire Duvallet}
+\date{October 11, 2016}
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+Analyzing the microbiome is hard. Getting clinical insights from analyses is even harder. I'm gonna do some analyses to give us insight into an under-studied clinical microbial system, do some meta-analyses to get direly-needed biological consensus on gut microbiome and disease, and propose a new tool for analyzing 16S datasets.
+\end{abstract}
+
+\tableofcontents
+
+\chapter*{Overall objectives and specific aims}
+\subsection*{Overall objectives}
+My overall objective is to actually make use of the plethora of 16S data that is out there to give us clinical insights into this crazy field.
+
+\subsection*{Specific Aims}
+\begin{description}
+	\item[Aim 1] Characterize the under-studied microbiome of the upper gastrointestinal and respiratory tracts.
+		\begin{enumerate}[(a)]
+			\item  Determine whether and how much of the microbial communities in the lung, stomach, and throat are connected and shared.
+			\item Identify clinical modulators, such as swallowing dysfunction, reflux, and proton-pump inhibitor use, of this sharedness between body sites.
+		\end{enumerate}
+	\item[Aim 2] Perform a meta-analysis of published microbiome studies to:
+	\begin{enumerate}[(a)]
+		\item gain biological insights on general patterns of relationships between gut microbial communities and disease states;
+		\item discover consistent microbial signatures for specific diseases; and
+		\item determine best practices for performing clinical 16S microbiome studies.
+	\end{enumerate}
+	\item[Aim 3] Define biologically meaningful \textit{microbe sets} to perform enrichment analyses in clinical case-control microbiome studies.
+\end{description}
+
+\chapter*{Proposal}
+\section*{Background and significance}
+\textit{Three to five pages}
+
+\subsection*{The microbiome}
+The microbiome is a hot hot hot field and we know some stuff but we don't know a lot of stuff too.
+
+\subsection*{Microbiome of the upper gastrointestinal and respiratory tracts}
+We don't really know anything bc they weren't included in the HMP and clinicians are bad at big data womp womp.
+
+\subsection*{Aspiration, gastro-esophageal reflux disease, and pulmonary infections}
+It's all super complicated, yo. And also super connected wat who knew.
+
+\subsection*{Gut microbiome in disease}
+Lots of interest, not that many conclusions.
+
+\subsection*{Existing meta-analyses?}
+Haven't found much and haven't been great.
+
+\subsection*{Current practice in case-control microbiome studies}
+Eh there isn't really a current practice. Use QIIME and see what it tells you?
+Common methods: Alpha diversity, JSD, t-tests, etc
+Data processing: different methods (OTU calling, Latin name mapping) lead to drastically different results
+Data analysis: lots of multiple corrections to do
+
+\subsection*{Enrichment analysis}
+GSEA is commonly used in RNAseq data! Gene databases exist and have been curated into gene sets.
+No curated microbe sets. Some existing similar tools: SourceTracker, ImG, ...?
+
+\section*{Research design and methods}
+\textit{Six to eight pages}
+\subsection*{Aim 1}
+
+\subsubsection*{The dataset}
+From clinical collaborator, really cool dataset, etc
+
+\subsubsection{Defining shared microbes across sites}
+Come up with a metric based on correlation of abundances
+
+\subsubsection{Finding clinical modulators of these relationships}
+Aspiration, reflux severity, PPI usage.
+
+\subsection*{Aim 2}
+
+\subsubsection*{The datasets}
+Identified through literature search.
+Processed using an in-house pipeline that I've also contributed to.
+
+\subsubsection*{Finding general patterns of disease-microbe relationships}
+Process and analyze each dataset individually. Compare results.
+
+Look at: alpha diversity, beta diversity for H-Dis, significant genera.
+
+Also try to see how *disease types* are related - either by comparing their microbial signatures or something...
+
+\subsubsection*{Correcting for batch effects}
+Do stuff here
+
+\subsection*{Aim 3}
+
+\subsubsection*{Define microbe sets - a priori from biology}
+Using an undergrad and lots of lit searching.
+
+\subsubsection*{Define microbe sets - unsupervised, from results from Aim 2}
+And \#machinelearning stuff bam wow wow.
+
+\subsubsection*{Perform enrichment analysis on datasets in Aim 2}
+See if results jive with what we found from individual genus-based analyses, if we uncover new "signatures of general types of diseases", etc.
+
+\section*{Preliminary studies}
+\textit{Three to four pages}
+
+\subsection*{Aim 1}
+\subsubsection*{Microbiome community sharedness}
+Look what I can do ma.
+
+\subsubsection*{Modulators of sharedness}
+And here!
+
+\subsection*{Aim 2}
+\subsubsection*{Datasets}
+Check out what I got!
+\subsubsection*{Preliminary analyses}
+PCA, alpha diversity, comparing microbial signatures, consistency of significant OTUs.
+
+\section*{Conclusion}
+
+
+\end{document}
