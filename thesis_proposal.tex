@@ -1,9 +1,12 @@
-\documentclass[12pt]{report}
+\documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 
 \usepackage{enumerate}
+\usepackage{enumitem}
+\setlist{nolistsep}
 
 \title{Analyzing the Clinical Microbiome \\ Biological Engineering Thesis Proposal}
+
 \author{Claire Duvallet}
 \date{October 11, 2016}
 
@@ -11,54 +14,56 @@
 
 
 \maketitle
+\newpage
 
 \begin{abstract}
 Analyzing the microbiome is hard. Getting clinical insights from analyses is even harder. I'm gonna do some analyses to give us insight into an under-studied clinical microbial system, do some meta-analyses to get direly-needed biological consensus on gut microbiome and disease, and propose a new tool for analyzing 16S datasets.
 \end{abstract}
+\newpage
 
-\tableofcontents
+\section{Overall objectives and specific aims}
+\subsection{Overall objectives}
 
-\chapter*{Overall objectives and specific aims}
-\subsection*{Overall objectives}
-My overall objective is to expand 16S microbiome research along the diseases, batches, and groups of microbes axes.
+Many clinicians and scientists are interested in understanding how the human microbiome relates to health and disease, leading to a recent increase in case-control microbiome studies. However, we still do not have clear consensus about the relationship between the human microbiome and disease. Existing analyses often search for individual disease-associated microbes or genes by studying one patient cohort in one disease state. However, published studies from different patient cohorts often contain contradictory or inconsistent results, likely due to technical and analytical batch effects. In this thesis, I will increase our understanding of the microbiome's clinical relevance by expanding our analyses to span multiple diseases, different patient cohorts, and a variety of microbial markers. I will define baseline approaches to study the clinical microbiome in case-control studies. Then, I will apply these approaches to a comprehensive meta-analysis of existing studies. Finally, I will combine the results from these analyses with \textit{a priori} biological knowledge to define groups of microbes which can be used in enrichment analyses and provid clear biological interpretation. This work will improve our understanding of the clinical relevance of the human microbiome and provide best practices and new tools for analyzing future clinical microbiome studies.
 
-\subsection*{Specific Aims}
+\subsection{Specific Aims}
 \begin{description}
 	\item[Aim 1] Establish a baseline for 16S analyses by deeply characterizing one patient cohort in one disease state.
-		\begin{enumerate}[(a)]
-			\item  Apply current statistical and biological methods to identify microbial community characteristics associated with gastro-esophogeal reflux and aspiration.
+		\begin{enumerate}
+			\item  Apply standard methods to identify microbial community characteristics associated with gastro-esophogeal reflux disease and aspiration.
 			\item Characterize the under-studied lung and gastric microbiomes.
 			\begin{enumerate}
-			\item Determine how lung, gastric, and throat microbial communities are related and shared.
-			\item Identify clinical modulators of these microbial communities, such as diseases state or medication use.
+			\item Determine how lung, gastric, and throat microbial communities are related.
+			\item Identify clinical modulators of lung, gastric, and throat communities.
 			\end{enumerate}
 		\end{enumerate}
-	\item[Aim 2] Expand 16S analyses to multiple diseases and patient cohorts to elucidate microbial characteristics consistently associated with health and disease.
-	\begin{enumerate}[(a)]
-		\item Collect and process all existing case-control gut microbiome 16S datasets in the literature.
-		\item Identify general relationships in gut microbial communities within and across different categories of diseases
-		\item Discover consistent microbes associated with health and/or individual diseases
-		\item Determine best practices for analyzing case-control clinical 16S microbiome studies
+	\item[Aim 2] Expand analyses from Aim 1 to multiple diseases and patient cohorts to identify general microbial characteristics associated with health and disease.
+	\begin{enumerate}
+		\item Discover microbes consistently associated with health and/or individual diseases.
+		\item Identify microbial community signatures associated with physiologically-related diseases.
+		\item Determine best practices for analyzing case-control 16S microbiome studies.
 	\end{enumerate}
-	\item[Aim 3] Define \textit{microbe sets} to enable generalizable interpretations of case-control microbiome studies.
-	\begin{enumerate}[(a)]
-	\item Use \textit{a priori} knowledge about biological relationships between microbes to define biologically meaningful \textit{microbe sets}.
-	\item Use machine-learning techniques to extract disease-associated groups of microbes from datasets collected in Aim 2.
+	\item[Aim 3] Define \textit{microbe sets} for generalizable interpretations of case-control microbiome studies.
+	\begin{enumerate}
+	\item Use \textit{a priori} knowledge about microbes to define biologically-driven \textit{microbe sets}.
+	\item Use machine-learning techniques to extract disease-associated \textit{microbe sets} from datasets collected in Aim 2.
 	\item Use the defined \textit{microbe sets} to perform enrichment analyses on a broad spectrum of case-control microbiome studies.
 	\end{enumerate}
 \end{description}
+\newpage
 
-\chapter*{Proposal}
-\section*{Background and significance}
+\section{Background and significance}
 \textit{Three to five pages}
 
-\subsection*{The microbiome}
+\subsection{The microbiome}
 The microbiome is a hot hot hot field and we know some stuff but we don't know a lot of stuff too.
 
-\subsection*{Microbiome of the upper gastrointestinal and respiratory tracts}
-We don't really know anything bc they weren't included in the HMP and clinicians are bad at big data womp womp.
+\subsection{The aerodigestive tract}
+Clinically, gastric and lung disorders are known to be associated but the nature of the relationship is not fully understood. For example, gastro-esophageal reflux disease (GERD) is associated with many respiratory disorders like asthma and chronic pulmonary disease (REF) and aspirators are known to be at higher risk for respiratory infections. However, the exact mechanisms of these associations remains unclear. Researchers have hypothesized that the lungs and stomach may be physically connected, with gastric contents seeding the lungs and leading to disease, and that their microbiota may be involved in causing or exacerbating disease. However, the microbial communities in human lungs and stomachs are among the least studied, except in a few specific disease (CF REF, H. pylori REF). In fact, until recently medical literature stated that the lungs were sterile and free of bacteria (REF). Neither gastric nor lung sites were included in the Human Microbiome Project, leading to a dearth of studies and data on these important body sites.
 
-\subsection*{Aspiration, gastro-esophageal reflux disease, and pulmonary infections}
+\subsubsection{Microbiome of the lung, stomach, and throat/oral sites}
+
+\subsubsection*{Aspiration, gastro-esophageal reflux disease, and pulmonary infections}
 It's all super complicated, yo. And also super connected wat who knew.
 
 \subsection*{Gut microbiome in disease}
@@ -77,14 +82,21 @@ Data analysis: lots of multiple corrections to do
 GSEA is commonly used in RNAseq data! Gene databases exist and have been curated into gene sets.
 No curated microbe sets. Some existing similar tools: SourceTracker, ImG, ...?
 
-\section*{Research design and methods}
+\section{Research design and methods}
 \textit{Six to eight pages}
-\subsection*{Aim 1}
+\subsection{Aim 1}
+In Aim 1, I will apply existing analytical methods to deeply characterize the lung, gastric, and throat microbiota in a large patient cohort with aspiration and gastro-esophogeal reflux diseases. I will first determine whether and how much of the lung, gastric, and throat microbial communities are shared across the sites. Then, I will investigate potential clinical modulators of this 'sharedness' - modulators like aspiration disease, reflux severity, and use of proton-pump inhibitors. These analyses will provide a baseline understanding of the poorly studied gastric and lung microbiomes, and may point to potential mechanistic causes or possible interventions for a variety of aerodigestive diseases. Additionally, by deeply characterizating this rich dataset, I will establish best practices for future 16S analyses.
 
-\subsubsection*{The dataset}
+\subsubsection{The dataset}
+
+
 From clinical collaborator, really cool dataset, etc
 
 \subsubsection{Defining shared microbes across sites}
+First, we will investigate how much of the throat, gastric, and lung microbial communities are shared across sites. From an engineering perspective, the stomach, throat, and lung sites can be thought of as multiple compartments connected by the esophagus and windpipe. (FIGURE) The mass transport between these compartments is regulated by complex physiological mechanisms. Swallowing guides material from the mouth to the stomach, but may dysfunction and allow material to enter the lungs. The esophageal sphincter usually prevents material from leaving the stomach, but in some diseases is dysfunctional. Finally, complex homeostatic mechanisms clear the lungs of foreign bodies and create a very selective environment for microbes in the lungs (REFS REFS REFS). Thus, while the throat, stomach, and lung "compartments" are physically connected, the amount of material, including bacteria, flowing between them is not fully characterized. We also hypothesize that the transport across compartments may be modulated by a variety of disease states.
+
+Previous work has determined that oral microbial communities seed those of the lung and stomach (REF), but this investigatioon was uni-directional: the interplay between gastric and lungs, for example, was not studied. 
+
 Come up with a metric based on correlation of abundances
 
 \subsubsection{Finding clinical modulators of these relationships}
