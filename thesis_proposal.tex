@@ -88,19 +88,25 @@ No curated microbe sets. Some existing similar tools: SourceTracker, ImG, ...?
 In Aim 1, I will apply existing analytical methods to deeply characterize the lung, gastric, and throat microbiota in a large patient cohort with aspiration and gastro-esophogeal reflux diseases. I will first determine whether and how much of the lung, gastric, and throat microbial communities are shared across the sites. Then, I will investigate potential clinical modulators of this 'sharedness' - modulators like aspiration disease, reflux severity, and use of proton-pump inhibitors. These analyses will provide a baseline understanding of the poorly studied gastric and lung microbiomes, and may point to potential mechanistic causes or possible interventions for a variety of aerodigestive diseases. Additionally, by deeply characterizating this rich dataset, I will establish best practices for future 16S analyses.
 
 \subsubsection{The dataset}
-
-
 From clinical collaborator, really cool dataset, etc
 
+\subsubsection{Apply standard approaches to find aspiration and reflux-associated features}
+Alpha diversity, p-values, JSD.
+
 \subsubsection{Defining shared microbes across sites}
-First, we will investigate how much of the throat, gastric, and lung microbial communities are shared across sites. From an engineering perspective, the stomach, throat, and lung sites can be thought of as multiple compartments connected by the esophagus and windpipe. (FIGURE) The mass transport between these compartments is regulated by complex physiological mechanisms. Swallowing guides material from the mouth to the stomach, but may dysfunction and allow material to enter the lungs. The esophageal sphincter usually prevents material from leaving the stomach, but in some diseases is dysfunctional. Finally, complex homeostatic mechanisms clear the lungs of foreign bodies and create a very selective environment for microbes in the lungs (REFS REFS REFS). Thus, while the throat, stomach, and lung "compartments" are physically connected, the amount of material, including bacteria, flowing between them is not fully characterized. We also hypothesize that the transport across compartments may be modulated by a variety of disease states.
+Prelim results indicated that JSD might have an interesting story, so we dive into it.
 
-Previous work has determined that oral microbial communities seed those of the lung and stomach (REF), but this investigatioon was uni-directional: the interplay between gastric and lungs, for example, was not studied. 
+First, we will investigate how much of the throat, gastric, and lung microbial communities are shared across sites. From an engineering perspective, the stomach, throat, and lungs can be thought of as different compartments connected by the esophagus and windpipe. (FIGURE) The mass transport between these compartments is regulated by complex physiological mechanisms. Swallowing guides material from the mouth to the stomach, but may dysfunction and allow material to enter the lungs. The esophageal sphincter usually prevents material from leaving the stomach, but in some diseases is dysfunctional. Finally, complex homeostatic mechanisms clear the lungs of foreign bodies and create a very selective environment for microbes in the lungs (REFS REFS REFS). Thus, while the throat, stomach, and lung "compartments" are physically connected, the amount of material, including bacteria, flowing between them is not readily apparent. Before investigating how clinical factors can modulate the microbiota in the stomach, lungs, and throat, we must first determine how much exchange of microbial communities can and does happen between these sites.
 
-Come up with a metric based on correlation of abundances
+Only one previous study has examined the relationship between sites of the upper aerodigestive tract (REF). Bassis et al. found that oral microbial communities were more similar to both stomach and lung communities than nasal communities. However, these authors did not examine the inter-relationships between all sites - their driving hypothesis was that the mouth is the source of the downstream communities. In this work, we will take a broader view: which of the upper aerodigestive body sites exchange microbes, are these the same microbes across multiple patients, and are there phylogenetic patterns for these shared microbes? 
 
-\subsubsection{Finding clinical modulators of these relationships}
+To begin, we must define a metric to quantify how "shared" a microbe is across two sites. A shared microbe must fulfill two characteristics: it must often be present in both sites in patients, and its abundance in the two sites should be correlated. If the abundances are correlated, then this indicates that the sites are directly linked: if there is more of the bacteria in one site, then there will also be more in the other sites because of the exchange between sites. A truly "shared" microbe must also co-occur relatively often - otherwise, it may just be present in both sites by chance. There are thus multiple ways to define the "sharedness" metric: as the percentage of patients who have the microbe in both sites, as the correlation between the abundance of the microbe in one site with its abundance in the other site, or some combination of these two approaches. Because so many microbes in the stomach and lungs are seeded by those in the mouth, simple co-occurence of bacteria is not a sufficient bar to establish "sharedness" (REF and FIG). On the other hand, simply choosing the correlation of abundances in both sites is also not adequate to measure sharedness, since in many people the bacteria may not be present in either or both sites. Thus, we define a cutoff of shared vs. not with the correlation and quantify the degree of sharedness using co-occurence. More specifically, for each microbe, we calculate the non-parametric Spearman rank correlation of the log10(relative abundances) in two sites, using only the patients who have the microbe present in both sites. If this correlation is greater than 0.5, the "sharedness" metric is defined as the percentage of patients with the microbe present in both sites. We calculated sharedness of all microbes in this dataset, and are identifying phylogenetic patterns in the shared microbes of the upper aerodigestive tract (see Results).
+
+\subsubsection{Clinical modulators of aerodigestive community relationships}
+Once we identify the baseline exchange between the throat, lungs, and stomach, we can begin to ask which clinical factors module the exchange between sites.
+
 Aspiration, reflux severity, PPI usage.
+
 
 \subsection*{Aim 2}
 
@@ -115,13 +121,17 @@ Look at: alpha diversity, beta diversity for H-Dis, significant genera.
 
 Also try to see how *disease types* are related - either by comparing their microbial signatures or something...
 
-\subsubsection*{Correcting for batch effects}
-Do stuff here
+\subsubsection*{Identify microbial community signatures associated with diseases}
+Do stuff here, with collaborators
+
+\subsubsection*{Determine best practices for case-control}
+Main issue: batch effects. 
+Do stuff here, with collaborators
 
 \subsection*{Aim 3}
 
 \subsubsection*{Define microbe sets - a priori from biology}
-Using an undergrad and lots of lit searching.
+Using an undergrad and lots of lit searching. And ImG and Ilana.
 
 \subsubsection*{Define microbe sets - unsupervised, from results from Aim 2}
 And \#machinelearning stuff bam wow wow.
