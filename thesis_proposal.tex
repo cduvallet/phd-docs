@@ -15,6 +15,7 @@
 
 \maketitle
 \newpage
+\tableofcontents
 
 \begin{abstract}
 Analyzing the microbiome is hard. Getting clinical insights from analyses is even harder. I'm gonna do some analyses to give us insight into an under-studied clinical microbial system, do some meta-analyses to get direly-needed biological consensus on gut microbiome and disease, and propose a new tool for analyzing 16S datasets.
@@ -24,30 +25,28 @@ Analyzing the microbiome is hard. Getting clinical insights from analyses is eve
 \section{Overall objectives and specific aims}
 \subsection{Overall objectives}
 
-Many clinicians and scientists are interested in understanding how the human microbiome relates to health and disease, leading to a recent increase in case-control microbiome studies. However, we still do not have clear consensus about the relationship between the human microbiome and disease. Existing analyses often search for individual disease-associated microbes or genes by studying one patient cohort in one disease state. However, published studies from different patient cohorts often contain contradictory or inconsistent results, likely due to technical and analytical batch effects. In this thesis, I will increase our understanding of the microbiome's clinical relevance by expanding our analyses to span multiple diseases, different patient cohorts, and a variety of microbial markers. I will define baseline approaches to study the clinical microbiome in case-control studies. Then, I will apply these approaches to a comprehensive meta-analysis of existing studies. Finally, I will combine the results from these analyses with \textit{a priori} biological knowledge to define groups of microbes which can be used in enrichment analyses and provid clear biological interpretation. This work will improve our understanding of the clinical relevance of the human microbiome and provide best practices and new tools for analyzing future clinical microbiome studies.
+In spite of the recent increase in research about the human microbiome, there is not a clear consensus on the relationship between human microbial communities and disease. Current 16S microbiome analyses typically study one patient cohort in one disease state, searching for individual disease-associated microbes. However, different published studies for the same disease often contain contradictory or inconsistent results. Existing meta-analyses rarely expand to more than one or two diseases, and thus do not distinguish between microbes which are associated with specific diseases from those which are associated with disease in general. Finally, there are no established tools to extract general biological insights from groups of disease-associated microbes.
+
+This thesis will increase our understanding of the clinical microbiome by moving analyses from focusing on single microbes in individual diseases toward consolidation of groups of related microbes across many different kinds of diseases. In this thesis, I will first apply standard methods to characterize the under-studied microbiota of the aerodigestive tract of one patient cohort. Then, I will perform a comprehensive meta-analysis of gut microbiome studies across many disease states with multiple patient cohorts. Finally, I will develop a tool to enable generalizable interpretation of results from existing and future microbiome studies. This work will improve our understanding of the clinical relevance of the human microbiome and will also provide new approaches and tools for analyzing future studies.
 
 \subsection{Specific Aims}
 \begin{description}
-	\item[Aim 1] Establish a baseline for 16S analyses by deeply characterizing one patient cohort in one disease state.
+	\item[Aim 1] Apply standard methods to identify microbial community characteristics associated with gastro-esophogeal reflux disease and aspiration.
 		\begin{enumerate}
-			\item  Apply standard methods to identify microbial community characteristics associated with gastro-esophogeal reflux disease and aspiration.
-			\item Characterize the under-studied lung and gastric microbiomes.
-			\begin{enumerate}
 			\item Determine how lung, gastric, and throat microbial communities are related.
-			\item Identify clinical modulators of lung, gastric, and throat communities.
-			\end{enumerate}
+			\item Identify clinical modulators of lung, gastric, and throat microbial communities.
 		\end{enumerate}
-	\item[Aim 2] Expand analyses from Aim 1 to multiple diseases and patient cohorts to identify general microbial characteristics associated with health and disease.
+	\item[Aim 2] Perform a meta-analysis of case-control gut microbiome studies to identify consistent microbial signatures within and across multiple diseases.
 	\begin{enumerate}
-		\item Discover microbes consistently associated with health and/or individual diseases.
-		\item Identify microbial community signatures associated with physiologically-related diseases.
-		\item Determine best practices for analyzing case-control 16S microbiome studies.
+		\item Compile and process publicly available case-control gut microbiome studies using a standardized method.
+		\item Identify microbes that are consistently associated with specific diseases and with disease in general.
+		\item Compare results betweens studies to identify similarities in microbial characteristics of physiologically-related diseases.
 	\end{enumerate}
-	\item[Aim 3] Define \textit{microbe sets} for generalizable interpretations of case-control microbiome studies.
+	\item[Aim 3] Enable generalizable interpretations of microbiome analyses by assigning bacteria to groups with similar functions and known associations with disease.
 	\begin{enumerate}
-	\item Use \textit{a priori} knowledge about microbes to define biologically-driven \textit{microbe sets}.
+	\item Combine existing databases with targeted literature searches to define \textit{microbe sets} based on known biological relationships.
 	\item Use machine-learning techniques to extract disease-associated \textit{microbe sets} from datasets collected in Aim 2.
-	\item Use the defined \textit{microbe sets} to perform enrichment analyses on a broad spectrum of case-control microbiome studies.
+	\item Develop these \textit{microbe sets} into a collaborative tool for use in interpreting new microbiome studies.
 	\end{enumerate}
 \end{description}
 \newpage
@@ -55,107 +54,153 @@ Many clinicians and scientists are interested in understanding how the human mic
 \section{Background and significance}
 \textit{Three to five pages}
 
-\subsection{The microbiome}
 The microbiome is a hot hot hot field and we know some stuff but we don't know a lot of stuff too.
 
-\subsection{The aerodigestive tract}
+My aims cover multiple body systems: aerodigestive and gut. My aims also span from one study to many, so need to talk about those approaches.
+
+\subsection{Biological background and significance}
+
+\subsubsection{Aerodigestive tract: physiology and disease}
 Clinically, gastric and lung disorders are known to be associated but the nature of the relationship is not fully understood. For example, gastro-esophageal reflux disease (GERD) is associated with many respiratory disorders like asthma and chronic pulmonary disease (REF) and aspirators are known to be at higher risk for respiratory infections. However, the exact mechanisms of these associations remains unclear. Researchers have hypothesized that the lungs and stomach may be physically connected, with gastric contents seeding the lungs and leading to disease, and that their microbiota may be involved in causing or exacerbating disease. However, the microbial communities in human lungs and stomachs are among the least studied, except in a few specific disease (CF REF, H. pylori REF). In fact, until recently medical literature stated that the lungs were sterile and free of bacteria (REF). Neither gastric nor lung sites were included in the Human Microbiome Project, leading to a dearth of studies and data on these important body sites.
 
-\subsubsection{Microbiome of the lung, stomach, and throat/oral sites}
+First, we will investigate how much of the throat, gastric, and lung microbial communities are shared across sites. From an engineering perspective, the stomach, throat, and lungs can be thought of as different compartments connected by the esophagus and windpipe. (FIGURE) The mass transport between these compartments is regulated by complex physiological mechanisms. Swallowing guides material from the mouth to the stomach, but may dysfunction and allow material to enter the lungs. The esophageal sphincter usually prevents material from leaving the stomach, but in some diseases is dysfunctional. Finally, complex homeostatic mechanisms clear the lungs of foreign bodies and create a very selective environment for microbes in the lungs (REFS REFS REFS). Thus, while the throat, stomach, and lung "compartments" are physically connected, the amount of material, including bacteria, flowing between them is not readily apparent. Before investigating how clinical factors can modulate the microbiota in the stomach, lungs, and throat, we must first determine how much exchange of microbial communities can and does happen between these sites.
 
-\subsubsection*{Aspiration, gastro-esophageal reflux disease, and pulmonary infections}
+
+\subsubsection{Microbiome of the aerodigestive tract}
 It's all super complicated, yo. And also super connected wat who knew.
 
-\subsection*{Gut microbiome in disease}
-Lots of interest, not that many conclusions.
 
-\subsection*{Existing meta-analyses?}
-Haven't found much and haven't been great.
+Only one previous study has examined the relationship between sites of the upper aerodigestive tract (REF). Bassis et al. found that oral microbial communities were more similar to both stomach and lung communities than nasal communities. However, these authors did not examine the inter-relationships between all sites - their driving hypothesis was that the mouth is the source of the downstream communities. In this work, we will take a broader view: which of the upper aerodigestive body sites exchange microbes, are these the same microbes across multiple patients, and are there phylogenetic patterns for these shared microbes? 
 
-\subsection*{Current practice in case-control microbiome studies}
-Eh there isn't really a current practice. Use QIIME and see what it tells you?
+
+\subsubsection{Lower gastrointestinal tract: physiology and disease}
+Stuff about all the disease I'll be looking at - vaguely.
+
+\subsubsection{Microbiome of the lower gastrointestinal tract}
+We know way more, and also not that many hard and fast conclusions.
+
+\subsection{Analytical background and significance}
+Start with summary of how we get from sample to data.
+16S is in all bacteria, we amplify a conserved part of that 16S and sequence it using NGS. This gives us lots of data, which we quality filter and assign taxonomy.
+Make sure to define what an OTU is here!!
+
+Then talk about what we do with the data.
+
+\subsubsection{Current analytical approaches for 16S analyses}
+Including how community related-ness is measured.
+
 Common methods: Alpha diversity, JSD, t-tests, etc
-Data processing: different methods (OTU calling, Latin name mapping) lead to drastically different results
 Data analysis: lots of multiple corrections to do
 
-\subsection*{Enrichment analysis}
+Data processing: different methods (OTU calling, Latin name mapping) lead to drastically different results
+
+What studies exist, sample size limitations, different technologies, batch effects.
+
+\subsubsection{Existing meta-analyses}
+Haven't found much and haven't been great.
+
+\subsubsection{Databases and tools for annotations}
 GSEA is commonly used in RNAseq data! Gene databases exist and have been curated into gene sets.
 No curated microbe sets. Some existing similar tools: SourceTracker, ImG, ...?
 
 \section{Research design and methods}
 \textit{Six to eight pages}
-\subsection{Aim 1}
-In Aim 1, I will apply existing analytical methods to deeply characterize the lung, gastric, and throat microbiota in a large patient cohort with aspiration and gastro-esophogeal reflux diseases. I will first determine whether and how much of the lung, gastric, and throat microbial communities are shared across the sites. Then, I will investigate potential clinical modulators of this 'sharedness' - modulators like aspiration disease, reflux severity, and use of proton-pump inhibitors. These analyses will provide a baseline understanding of the poorly studied gastric and lung microbiomes, and may point to potential mechanistic causes or possible interventions for a variety of aerodigestive diseases. Additionally, by deeply characterizating this rich dataset, I will establish best practices for future 16S analyses.
 
-\subsubsection{The dataset}
-From clinical collaborator, really cool dataset, etc
+\subsection{Aim 1: Aerodigestive microbiota associated with GERD and aspiration}
 
-\subsubsection{Apply standard approaches to find aspiration and reflux-associated features}
-Alpha diversity, p-values, JSD.
+As discussed previously, sites in the aerodigestive tract are connected and can exchange materials. Additionally, patients with aerodigestive disorders like aspiration and GERD are at a higher risk for respiratory infections. This leads us to hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain diseases. We hypothesize that microbial communities in the aerodigestive tract share and exchange certain members, and that clinical factors like reflux or aspiration disease will change the amount of bacterial exchange between the sites.
 
-\subsubsection{Defining shared microbes across sites}
-Prelim results indicated that JSD might have an interesting story, so we dive into it.
+Our patient cohort consists of N patients who were recruited by Rachel Rosen at Boston Children's Hospital over the course of the past 6 years. Multiple samples were taken from patients: throat swabs, gastric fluid aspiration, and broncho-alveolar lavages. SOME patients had all three sites sampled, SOME only have one. Furthermore, N patients were monitored for GERD and N patients were tested for aspiration. Overall, this cohort represents the largest existing collection of human aerodigestive microbiome samples.
 
-First, we will investigate how much of the throat, gastric, and lung microbial communities are shared across sites. From an engineering perspective, the stomach, throat, and lungs can be thought of as different compartments connected by the esophagus and windpipe. (FIGURE) The mass transport between these compartments is regulated by complex physiological mechanisms. Swallowing guides material from the mouth to the stomach, but may dysfunction and allow material to enter the lungs. The esophageal sphincter usually prevents material from leaving the stomach, but in some diseases is dysfunctional. Finally, complex homeostatic mechanisms clear the lungs of foreign bodies and create a very selective environment for microbes in the lungs (REFS REFS REFS). Thus, while the throat, stomach, and lung "compartments" are physically connected, the amount of material, including bacteria, flowing between them is not readily apparent. Before investigating how clinical factors can modulate the microbiota in the stomach, lungs, and throat, we must first determine how much exchange of microbial communities can and does happen between these sites.
+\subsubsection{Exchange of microbes between lung, gastric, and throat communities}
+To understand the microbial exchange between sites in the aerodigestive tract, we must define a metric to quantify how "shared" each microbe is across two sites. If sites are directly linked and a microbe is shared between them, we expect that having more of the bacteria in one site will result in having more of the bacteria in the other site as well. 
 
-Only one previous study has examined the relationship between sites of the upper aerodigestive tract (REF). Bassis et al. found that oral microbial communities were more similar to both stomach and lung communities than nasal communities. However, these authors did not examine the inter-relationships between all sites - their driving hypothesis was that the mouth is the source of the downstream communities. In this work, we will take a broader view: which of the upper aerodigestive body sites exchange microbes, are these the same microbes across multiple patients, and are there phylogenetic patterns for these shared microbes? 
+There are multiple ways to define the "sharedness" metric: as the percentage of patients who have the microbe present in both sites, as the correlation between the abundance of the microbe in one site with its abundance in the other site, or some combination of these two approaches. Because so many microbes in the stomach and lungs are seeded by oral community, simple co-occurence of bacteria is not a sufficient bar to establish "sharedness" (REF and FIG). On the other hand, simply choosing the correlation of abundances in both sites is also not adequate, since the bacteria may not be present in either or both sites in many people due to the inherent variability of microbial communities between different people. 
 
-To begin, we must define a metric to quantify how "shared" a microbe is across two sites. A shared microbe must fulfill two characteristics: it must often be present in both sites in patients, and its abundance in the two sites should be correlated. If the abundances are correlated, then this indicates that the sites are directly linked: if there is more of the bacteria in one site, then there will also be more in the other sites because of the exchange between sites. A truly "shared" microbe must also co-occur relatively often - otherwise, it may just be present in both sites by chance. There are thus multiple ways to define the "sharedness" metric: as the percentage of patients who have the microbe in both sites, as the correlation between the abundance of the microbe in one site with its abundance in the other site, or some combination of these two approaches. Because so many microbes in the stomach and lungs are seeded by those in the mouth, simple co-occurence of bacteria is not a sufficient bar to establish "sharedness" (REF and FIG). On the other hand, simply choosing the correlation of abundances in both sites is also not adequate to measure sharedness, since in many people the bacteria may not be present in either or both sites. Thus, we define a cutoff of shared vs. not with the correlation and quantify the degree of sharedness using co-occurence. More specifically, for each microbe, we calculate the non-parametric Spearman rank correlation of the log10(relative abundances) in two sites, using only the patients who have the microbe present in both sites. If this correlation is greater than 0.5, the "sharedness" metric is defined as the percentage of patients with the microbe present in both sites. We calculated sharedness of all microbes in this dataset, and are identifying phylogenetic patterns in the shared microbes of the upper aerodigestive tract (see Results).
+We will define "sharedness" using both co-occurence in sites and correlation of abundances between sites. We will first identify which microbes are shared using the abundance correlation, and then quanity each microbe's degree of sharedness by its co-occurence rate in patients. For each microbe, we will calculate the non-parametric Spearman rank correlation of the log10(relative abundances) in the two sites, using only abundances from patients with the microbe present in both sites. If this correlation is greater than 0.5, the microbe is considered to be shared. The "sharedness" metric is then defined as the percentage of patients who have the microbe present in both sites. We calculated sharedness of all microbes in this dataset, and are identifying phylogenetic patterns in the shared microbes of the upper aerodigestive tract (see Results).
 
-\subsubsection{Clinical modulators of aerodigestive community relationships}
-Once we identify the baseline exchange between the throat, lungs, and stomach, we can begin to ask which clinical factors module the exchange between sites.
+INSERT FIGURE HERE: Decision tree with two example scatterplots, one showing shared bug and one showing unshared bug.
 
-Aspiration, reflux severity, PPI usage.
+\subsubsection{Clinical modulators of lung, gastric, and throat microbial communities}
+Once we quantify microbial exchange within the aerodigestive tract, we can begin to ask which clinical factors modulate how much exchange occurs between sites. One possible explanation for the higher risk of bacterial infection in patients with aspiration and GERD is that these clinical factors increase the exchange of bacteria between the throat or stomach and the lungs, and seed the lungs with bacteria that lead to respiratory infections.
 
+Our first hypothesis is that aspirators will have a stronger connection between their throat and lungs. Additionally, because many of these patients have GERD, we also expect a slight increase in the connection between the stomach and lungs as well. We have X patients with MBS testing (N abnormal, N normal). We will compare the abundance of shared microbes in patients with and without abnormal MBS results, for each of the site-combinations. 
 
-\subsection*{Aim 2}
+Our next hypothesis is that patients with more severe GERD will have more sharing between the stomach and lung communities. TODO: We have X patients with at least one full-column event during the study period, and Y patients without any. We will categorize patients with full-column events as "severe GERD" and compare the number and abundance of shared microbes in these patients with those without severe GERD. Additionally, we may regress each of the many different measures for GERD severity onto the abundance of "shared" microbes in each patient's microbial community to identify GERD-related microbes.
 
-\subsubsection*{The datasets}
-Identified through literature search.
-Processed using an in-house pipeline that I've also contributed to.
+Finally, we will investigate whether PPIs modulate the connection between aerodigestive sites, specifically the lung and gastric sites. We will compare the abundance of the microbes shared between the stomach and lungs in patients who are taking PPIs against those who aren't. 
 
-\subsubsection*{Finding general patterns of disease-microbe relationships}
+\subsubsection{TODO Additional considerations}
+Critique: shared microbes between lungs and stomach are actually coming from the environment. Response: look at their phylogenetic relationships. See if they have genes that make sense for the environment (i.e. lactic acid, etc).
+
+Caveat: we can't prove causality of lung disease. Follow up studies should focus on patients with respiratory infections, or patients who frequently have GERD- or aspiration-associated respiratory infections. However, mouse models may be better since BAL is so invasive.
+
+It is also difficult to prove the directionality of the exchange. And, we still don't know what's going on in the lungs (and stomach, to some exctent)! Are the microbes there surviving and reproducing, or are they transient? Who knows, but the fact that we see many patients having the same microbes indicates that at least some selection is happening, and even if these communities are not thriving they may still be physiologically relevant.
+
+If clinical factors don't change how much sharing there is, but rather which microbes there are: we'll also be doing JSD for each of the comparisons, to make sure results are consistent. If sample size allows, maybe we can calculate 'sharedness' metric for the sub-populations independently.
+
+\subsection{Aim 2: Meta-analysis of gut microbiome studies}
+By combining results from existing gut microbiome case-control studies, we will move toward a consolidated understanding of consistent microbial markers of gut-related diseases. We hypothesize that certain bacteria will often be associated with disease, and that some of these bacteria will be associated with many different types of diseases while others will be unique to one or two conditions. Additionally, we hypothesize that microbial signatures, i.e. which bacteria are significant or the abundance differences between cases and controls, will be more similar for diseases with similar etiologies.
+
+\subsubsection{Compile and process gut microbiome datasets}
+To perform a comprehensive meta-analysis, we need to collect a comprehensive selection of 16S gut microbiome case-control studies. We will identify these studies through a targeted literature search.  See TABLE for exclusion and inclusion criteria for studies to be considered.
+
+We will process these datasets using a standardized in-house pipeline developed by Thomas Gurry and to which I have contributed. We will start with the rawest available data - in most cases, these will be fastq files but for some studies we will begin from quality-filtered fasta files. Sequences will be quality and length trimmed, clustered at 100\% similarity, and assigned Latin taxonomic names using the RDP classifier. Samples with fewer than 100 reads will be removed from consideration. OTUs with fewer than 10 reads or which are present in less than 1\% of samples will be removed. More stringent quality filtering may be considered in order to reduce noise in the dataset.
+
+Because different 16S regions have different sequences corresponding to the same bacteria, we can not used sequence-based approaches to compare results across studies. After assigning Latin names based on OTUs within each study, we will collapse OTUs to the genus level and compare these across studies.
+
+\subsubsection{Identify microbes consistently associated with diseases}
 Process and analyze each dataset individually. Compare results.
 
 Look at: alpha diversity, beta diversity for H-Dis, significant genera.
 
-Also try to see how *disease types* are related - either by comparing their microbial signatures or something...
+Also lump everyone together to get a disease vs healthy signal.
 
-\subsubsection*{Identify microbial community signatures associated with diseases}
-Do stuff here, with collaborators
+\subsubsection{Compare results between studies for related diseases}
 
-\subsubsection*{Determine best practices for case-control}
-Main issue: batch effects. 
-Do stuff here, with collaborators
 
-\subsection*{Aim 3}
+That PCA thing. Find some way to summarize the "microbial signature" of each dataset, and see if these signatures are more similar for similar/same diseases.
 
-\subsubsection*{Define microbe sets - a priori from biology}
+\subsubsection{Additional considerations}
+No bugs are consistent across studies - highly unlikely, since mechanistic studies have found some consistent stuff like butyrate producers. In fact, if we don't find some sort of general signal, then we may need to find different ways of assigning names to bacteria (i.e. different databases, BLASTing, phylogenetic methods for assigning phylogenetic relationships (Mathieu's thing) etc). We can also look at higher phylogenetic resolutions, or functionality (like with PiCRUST).
+
+
+
+Batch effects greater than biological effects, esp. when comparing microbial signatures across diseases!
+
+We can also try different transformations of the data to address some of these challenges - cumulative sum normalization may reduce batch, rarefying might put things on a more even level...
+
+\subsection{Aim 3: Assigning bacteria to groups with similar functions and disease associations}
+
+\subsubsection{Define microbe sets based on known biological relationships}
 Using an undergrad and lots of lit searching. And ImG and Ilana.
 
-\subsubsection*{Define microbe sets - unsupervised, from results from Aim 2}
+\subsubsection{Extract disease-associated microbe sets from datasets in Aim 2}
 And \#machinelearning stuff bam wow wow.
 
-\subsubsection*{Perform enrichment analysis on datasets in Aim 2}
+\subsubsection{Develop collaborative tool for interpreting microbiome studies}
 See if results jive with what we found from individual genus-based analyses, if we uncover new "signatures of general types of diseases", etc.
 
-\section*{Preliminary studies}
+\subsubsection{Additional considerations}
+
+\section{Preliminary studies}
 \textit{Three to four pages}
 
-\subsection*{Aim 1}
-\subsubsection*{Microbiome community sharedness}
+\subsection{Aim 1}
+\subsubsection{Microbiome community sharedness}
 Look what I can do ma.
 
-\subsubsection*{Modulators of sharedness}
+\subsubsection{Modulators of sharedness}
 And here!
 
-\subsection*{Aim 2}
-\subsubsection*{Datasets}
+\subsection{Aim 2}
+\subsubsection{Collect datasets}
 Check out what I got!
-\subsubsection*{Preliminary analyses}
+
+\subsubsection{Find consistent microbes}
 PCA, alpha diversity, comparing microbial signatures, consistency of significant OTUs.
 
-\section*{Conclusion}
+\section{Conclusion}
 
 
 \end{document}
