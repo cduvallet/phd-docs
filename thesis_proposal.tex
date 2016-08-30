@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 
+\usepackage{wrapfig}
+
 \usepackage{enumerate}
 \usepackage{enumitem}
 \setlist{nolistsep}
@@ -108,9 +110,23 @@ No curated microbe sets. Some existing similar tools: SourceTracker, ImG, ...?
 
 \subsection{Aim 1: Aerodigestive microbiota associated with GERD and aspiration}
 
-As discussed previously, sites in the aerodigestive tract are connected and can exchange materials. Additionally, patients with aerodigestive disorders like aspiration and GERD are at a higher risk for respiratory infections. This leads us to hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain diseases. We hypothesize that microbial communities in the aerodigestive tract share and exchange certain members, and that clinical factors like reflux or aspiration disease will change the amount of bacterial exchange between the sites.
+\begin{wraptable}{r}{5.5cm}
+\begin{tabular}{|l|c|}
+	\hline
+	\textbf{Sites} & \textbf{N} \\
+	\hline
+	gastric, throat, \& BAL & 87 \\
+	gastric \& throat & 45 \\
+	gastric \& BAL & 34 \\
+	BAL \& throat & 9 \\
+	\hline 
+\end{tabular}
+\caption{Aerodigestive site samples}\label{tab:rosen_samples}
+\end{wraptable}
 
-Our patient cohort consists of N patients who were recruited by Rachel Rosen at Boston Children's Hospital over the course of the past 6 years. Multiple samples were taken from patients: throat swabs, gastric fluid aspiration, and broncho-alveolar lavages. SOME patients had all three sites sampled, SOME only have one. Furthermore, N patients were monitored for GERD and N patients were tested for aspiration. Overall, this cohort represents the largest existing collection of human aerodigestive microbiome samples.
+As discussed previously, patients with aerodigestive disorders like aspiration and GERD are at a higher risk for respiratory infections. We hypothesize that microbial communities in the aerodigestive tract share and exchange certain members which lead to or exacerbate infections, and that clinical factors like reflux or aspiration disease change the amount of bacterial exchange between aerodigestive sites.
+
+Our patient cohort consists of 261 patients who were recruited by Rachel Rosen, M.D. at Boston Children's Hospital for multiple studies over the course of the past 6 years. Multiple samples were taken from patients: throat swabs, gastric fluid, and broncho-alveolar lavages (BAL) (Table \ref{tab:rosen_samples}). 125 patients were monitored for full-column GERD and 112 patients were tested for aspiration. Overall, this cohort represents the largest existing human aerodigestive microbiome dataset.
 
 \subsubsection{Exchange of microbes between lung, gastric, and throat communities}
 To understand the microbial exchange between sites in the aerodigestive tract, we must define a metric to quantify how "shared" each microbe is across two sites. If sites are directly linked and a microbe is shared between them, we expect that having more of the bacteria in one site will result in having more of the bacteria in the other site as well. 
@@ -135,40 +151,43 @@ Critique: shared microbes between lungs and stomach are actually coming from the
 
 Caveat: we can't prove causality of lung disease. Follow up studies should focus on patients with respiratory infections, or patients who frequently have GERD- or aspiration-associated respiratory infections. However, mouse models may be better since BAL is so invasive.
 
-It is also difficult to prove the directionality of the exchange. And, we still don't know what's going on in the lungs (and stomach, to some exctent)! Are the microbes there surviving and reproducing, or are they transient? Who knows, but the fact that we see many patients having the same microbes indicates that at least some selection is happening, and even if these communities are not thriving they may still be physiologically relevant.
+It is also difficult to prove the directionality of the exchange. And, we still don't know what's going on in the lungs (and stomach, to some extent)! Are the microbes there surviving and reproducing, or are they transient? Who knows, but the fact that we see many patients having the same microbes indicates that at least some selection is happening, and even if these communities are not thriving they may still be physiologically relevant.
 
 If clinical factors don't change how much sharing there is, but rather which microbes there are: we'll also be doing JSD for each of the comparisons, to make sure results are consistent. If sample size allows, maybe we can calculate 'sharedness' metric for the sub-populations independently.
 
 \subsection{Aim 2: Meta-analysis of gut microbiome studies}
-By combining results from existing gut microbiome case-control studies, we will move toward a consolidated understanding of consistent microbial markers of gut-related diseases. We hypothesize that certain bacteria will often be associated with disease, and that some of these bacteria will be associated with many different types of diseases while others will be unique to one or two conditions. Additionally, we hypothesize that microbial signatures, i.e. which bacteria are significant or the abundance differences between cases and controls, will be more similar for diseases with similar etiologies.
+By combining results from existing gut microbiome case-control studies, we can move toward a consolidated understanding of consistent microbial markers of gut-related diseases. We hypothesize that certain bacteria will often be associated with disease, and that some of these bacteria will be associated with many different types of diseases while others will be unique to one or two conditions. Additionally, we hypothesize that microbial signatures  of health and disease will be more similar in similar diseases (i.e. diabetes and obesity).
 
 \subsubsection{Compile and process gut microbiome datasets}
 To perform a comprehensive meta-analysis, we need to collect a comprehensive selection of 16S gut microbiome case-control studies. We will identify these studies through a targeted literature search.  See TABLE for exclusion and inclusion criteria for studies to be considered.
 
-We will process these datasets using a standardized in-house pipeline developed by Thomas Gurry and to which I have contributed. We will start with the rawest available data - in most cases, these will be fastq files but for some studies we will begin from quality-filtered fasta files. Sequences will be quality and length trimmed, clustered at 100\% similarity, and assigned Latin taxonomic names using the RDP classifier. Samples with fewer than 100 reads will be removed from consideration. OTUs with fewer than 10 reads or which are present in less than 1\% of samples will be removed. More stringent quality filtering may be considered in order to reduce noise in the dataset.
+We will process these datasets using a standardized in-house pipeline developed by Thomas Gurry and to which I have also contributed. We will start with the rawest available data - in most cases, these will be fastq files but for some studies we will begin from quality-filtered fasta files. Sequences will be quality and length trimmed, clustered at 100\% similarity, and assigned Latin taxonomic names using the RDP classifier. Samples with fewer than 100 reads will be removed from consideration. OTUs with fewer than 10 reads or which are present in less than 1\% of samples will be removed. More stringent quality filtering may be considered in order to reduce noise in the dataset.
 
-Because different 16S regions have different sequences corresponding to the same bacteria, we can not used sequence-based approaches to compare results across studies. After assigning Latin names based on OTUs within each study, we will collapse OTUs to the genus level and compare these across studies.
+Because studies which sequence different 16S regions will have different sequences corresponding to the same bacteria, we can not used sequence-based open-reference approaches to compare OTUs across studies. After assigning Latin names based on OTUs within each study, we will collapse OTUs to the genus level and compare these across studies.
 
 \subsubsection{Identify microbes consistently associated with diseases}
-Process and analyze each dataset individually. Compare results.
-
-Look at: alpha diversity, beta diversity for H-Dis, significant genera.
+Once we have processed all datasets in a standardized way, our first goal is to identify consistent markers of health and disease. We will analyze each dataset with methods commonly used in the literature: univariate non-parameteric statistical tests on relative abundances, alpha and beta diversity in different types of patients, and ratios of Firmicutes to Bacteroides in healthy vs. disease patients. It is generally thought that low alpha diversity is a marker of dysbiosis (REF), and that while most people have a Firmicutes/Bacteroides ratio of (XXX), in certain diseases this ratio may be different (REF). (MAYBE BACKGROUND?) By analyzing each study in the same way from raw data, we can reduce the study-wise batch effects and increase our ability to identify general trends in the gut microbiome in health and disease. We also hope to identify bacteria or clades which are associated with diseases in multiple studies. 
 
 Also lump everyone together to get a disease vs healthy signal.
 
 \subsubsection{Compare results between studies for related diseases}
+Our next hypothesis is that similar diseases will have similar signatures of dysbiosis. For example, we expect that metabolic diseases like obesity and diabetes will be more similar to each other in their marker of dysbiosis than diarrheal diseases like Clostridium difficile infection or enteric diarrhea. 
 
+We will summarize each dataset with one vector indicating its "microbial signature". This signature will be based on the change in relative abundances between healthy and disease, and may also include factors like differences in alpha diversity or Bacteroides/Firmicutes ratio. Then, we will determine whether similar diseases are closer together in this "signature space". (SEE FIGURE WITH PCA FLOWCHART) 
 
-That PCA thing. Find some way to summarize the "microbial signature" of each dataset, and see if these signatures are more similar for similar/same diseases.
+If a disease has a strong impact on or association with the gut microbiome, then we would expect its signatures from multiple studies to cluster very tightly together. If this is the case, we can extract the bacterial features which contribute the most to this tight clustering - these will then be most likely to be associated with that specific disease, and would be good candidates for further mechanistic explorations. On the other hand, if datasets of the same disease or similar conditions do not have similar microbial signatures, this may indicate that the microbiome is not inherently implicated or affected by the disease. In this case, any signal that we see in the gut microbiome is likely driven by other non-disease effects, which are not necessarily the same across studies. Finally, if we find different diseases with similar underlying causes (i.e. inflammation) clustering relatively near each other, then perhaps this would indicate that the microbiome is affected or involved with the underlying cause rather than the specific diseases. Such insights could help us design better experiments to follow up on mechanism or causal relationships.
 
 \subsubsection{Additional considerations}
-No bugs are consistent across studies - highly unlikely, since mechanistic studies have found some consistent stuff like butyrate producers. In fact, if we don't find some sort of general signal, then we may need to find different ways of assigning names to bacteria (i.e. different databases, BLASTing, phylogenetic methods for assigning phylogenetic relationships (Mathieu's thing) etc). We can also look at higher phylogenetic resolutions, or functionality (like with PiCRUST).
+Although some mechanistic studies have reported consisted bacterial associations with diseases like colorectal cancer and IBD (REFS), it is possible that we struggle to find bacteria consistently associated with diseases because of technical batch effects. In this case, we could consider using a phylogenetics-based approach: rather than looking for specific genera associated with diseases, we can identify associations with open-referenced OTUs and then compare their phylogenetic relationships across all studies. Another approach could be to use tools like PiCRUST to assign functionality to our observed taxonomies, and approach these analysis from a functional point of view.
 
 
-
-Batch effects greater than biological effects, esp. when comparing microbial signatures across diseases!
-
-We can also try different transformations of the data to address some of these challenges - cumulative sum normalization may reduce batch, rarefying might put things on a more even level...
+Another important consideration in this work may be if study-associated effects are larger than biological effects. For example, when we compare 'microbial signatures' across datasets, it's possible that the largest signal driving dataset clustering is sequencer or 16S region sequenced, rather than disease state. There are many approaches we could take to correct for such batch effects:
+\begin{enumerate}
+	\item Subtracting the principal components corresponding to the technical artifact
+	\item Build a model that accounts for these technical artifacts by including them as factors in the model.
+	\item Transform the data in ways shown to remove batch effects, cumulative sum normalization (HAS IT BEEN SHOWN TO REMOVE BATCH EFFECTS??).
+	\item Non-parametric correction, like sample- or OTU-wise quantile normalization, using controls in each study as the reference distribution.
+\end{enumerate}
 
 \subsection{Aim 3: Assigning bacteria to groups with similar functions and disease associations}
 
@@ -202,5 +221,7 @@ PCA, alpha diversity, comparing microbial signatures, consistency of significant
 
 \section{Conclusion}
 
+\section{Gud werds}
+We hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain disease states. 
 
 \end{document}
