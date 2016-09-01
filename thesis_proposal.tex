@@ -173,7 +173,20 @@ Once we have processed all datasets in a standardized way, our first goal is to 
 \subsubsection{Compare results between studies for related diseases}
 Our next hypothesis is that similar diseases will have similar signatures of dysbiosis. For example, we expect that metabolic diseases like obesity and diabetes will have more similar microbiota disruptions than they will to diarrheal diseases like Clostridium difficile infection or enteric diarrhea. 
 
-We will summarize each dataset with one vector indicating its "microbial signature". This signature will be based on number and identities of microbes significantly associated with the disease and the direction of change of these microbes. Depending on the results from Section \ref{sec:indep_studies}, we may also include factors like differences in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will investigate which diseases cluster together in this "signature space". (SEE FIGURE WITH PCA FLOWCHART) 
+We will summarize each dataset with one vector indicating its "microbial signature". This signature will be based on number and identities of microbes significantly associated with the disease and the direction of change of these microbes. Depending on the results from Section \ref{sec:indep_studies}, we may also include factors like differences in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will investigate which diseases cluster together in this "signature space". (Fig. \ref{fig:microbe_signatures})
+
+%\begin{wrapfigure}{R}{0.5\textwidth}
+%	\centering
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{microbial_signatures}
+\caption{Defining microbial signatures}\label{fig:microbe_signatures}
+\end{center}
+\end{figure}
+%    \caption{Defining microbial signatures}
+%\label{fig:microbe_signatures}
+%\end{wrapfigure}
+
 
 If a disease has a strong impact on or association with the gut microbiome, then we would expect its signatures from multiple studies to cluster very tightly together. If this is the case, we can extract the bacterial features which contribute the most to this tight clustering - these will then be most likely to be associated with that specific disease, and would be good candidates for further mechanistic explorations. On the other hand, if datasets of the same disease or similar conditions do not have similar microbial signatures, this may indicate that the microbiome is not inherently implicated or affected by the disease. In this case, any signal that we see in the gut microbiome is likely driven by other non-disease effects, which are not necessarily the same across studies. Finally, if we find different diseases with similar underlying causes (i.e. inflammation) clustering relatively near each other, then perhaps this would indicate that the microbiome is affected or involved with the underlying cause rather than the specific diseases. Such insights could help us design better experiments to follow up on mechanism or causal relationships.
 
