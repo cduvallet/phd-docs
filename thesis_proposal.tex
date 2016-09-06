@@ -9,7 +9,7 @@
 \usepackage{enumitem}
 \setlist{nolistsep}
 
-\title{Analyzing the Clinical Microbiome \\ Biological Engineering Thesis Proposal}
+\title{Understanding the Clinical Microbiome \\ Biological Engineering Thesis Proposal}
 
 \author{Claire Duvallet}
 \date{October 11, 2016}
@@ -157,7 +157,7 @@ This work does not address the direction of microbial exchange between aerodiges
 
 Finally, an important caveat to note when discussing the human lung and gastric microbiomes in general is that our basic understanding of these communities in healthy humans is still quite rudimentary. For example, the extent to which lung microbial communities are composed of surviving and replicating microbes versus transient members is unknown. However, because we do see similarities in microbiota across patients, we can conclude that at least some selection is happening in these sites, and even if these communities are not thriving they may still be physiologically relevant.
 
-\subsection{Aim 2: Meta-analysis of gut microbiome studies}
+\subsection{Aim 2: Meta-analysis of gut microbiome studies}\label{sec:aim2}
 By combining results from existing gut microbiome case-control studies, we can move the field toward a consolidated understanding of consistent microbial markers of gut-related diseases. We hypothesize that certain bacteria will often be associated with disease, and that some of these bacteria will be associated with many different types of diseases while others will be unique to one or two conditions. Additionally, we hypothesize that microbial signatures  of health and disease will be more similar in similar diseases (i.e. diabetes and obesity).
 
 \subsubsection{Compile and process gut microbiome datasets}
@@ -168,12 +168,10 @@ We will process these datasets using a standardized in-house pipeline developed 
 Because studies which sequence different 16S regions will have different sequences corresponding to the same bacteria, we can not used sequence-based open-reference approaches to compare OTUs across studies. After assigning Latin names based on OTUs within each study, we will collapse OTUs to the genus level and compare these across studies.
 
 \subsubsection{Identify microbes consistently associated with diseases}\label{sec:indep_studies}
-Once we have processed all datasets in a standardized way, our first goal is to identify consistent markers of health and disease. We will analyze each dataset with methods commonly used in the literature: univariate non-parameteric statistical tests on relative abundances, alpha and beta diversity in different types of patients, and ratios of Firmicutes to Bacteroides in healthy vs. disease patients. It is generally thought that low alpha diversity is a marker of dysbiosis (REF), and that while most people have a Firmicutes/Bacteroides ratio of (XXX), in certain diseases this ratio may be different (REF). (MAYBE BACKGROUND?) By analyzing each study in the same way from raw data, we can reduce the study-wise batch effects and increase our ability to identify general trends in the gut microbiome in health and disease.  
+Once we have processed all datasets in a standardized way, our first goal is to identify consistent markers of health and disease. We will analyze each dataset with microbiome methods commonly used in the literature: univariate non-parameteric statistical tests on relative abundances, alpha and beta diversity in different types of patients, and ratios of Firmicutes to Bacteroides in healthy vs. disease patients. It is generally thought that low alpha diversity is a marker of dysbiosis (REF), and that while most people have a Firmicutes/Bacteroides ratio of (XXX), in certain diseases this ratio may be different (REF). (MAYBE BACKGROUND?) By analyzing each study in the same way from raw data, we can reduce the study-wise batch effects and increase our ability to identify general trends in the gut microbiome in health and disease. We will identify consistent markers of disease by using standard meta-analysis methods, comparing the effect sizes and directionality of bacteria across studies, and using Fisher's method to determine overall significant of a microbe (REFS). 
 
-\subsubsection{Compare results between studies for related diseases}
-Our next hypothesis is that similar diseases will have similar signatures of dysbiosis. For example, we expect that metabolic diseases like obesity and diabetes will have more similar microbiota disruptions than they will to diarrheal diseases like Clostridium difficile infection or enteric diarrhea. 
-
-We will summarize each dataset with one vector indicating its "microbial signature". This signature will be based on number and identities of microbes significantly associated with the disease and the direction of change of these microbes. Depending on the results from Section \ref{sec:indep_studies}, we may also include factors like differences in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will investigate which diseases cluster together in this "signature space". (Fig. \ref{fig:microbe_signatures})
+\subsubsection{Compare results between studies for related diseases}\label{sec:signatures}
+Our next hypothesis is that similar diseases will have similar signatures of dysbiosis. For example, we expect that metabolic diseases like obesity and diabetes will have more similar microbiota changes than they will to diarrheal diseases like Clostridium difficile infection or enteric diarrhea. We will summarize each dataset with one vector indicating its "microbial signature". This signature will be based on number and identities of microbes significantly associated with the disease and the direction of change of these microbes. Depending on the results from Section \ref{sec:indep_studies}, we may also include factors like differences in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will investigate which datasets cluster together in this "signature space". (Fig. \ref{fig:microbe_signatures})
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
 %	\centering
@@ -188,32 +186,85 @@ We will summarize each dataset with one vector indicating its "microbial signatu
 %\end{wrapfigure}
 
 
-If a disease has a strong impact on or association with the gut microbiome, then we would expect its signatures from multiple studies to cluster very tightly together. If this is the case, we can extract the bacterial features which contribute the most to this tight clustering - these will then be most likely to be associated with that specific disease, and would be good candidates for further mechanistic explorations. On the other hand, if datasets of the same disease or similar conditions do not have similar microbial signatures, this may indicate that the microbiome is not inherently implicated or affected by the disease. In this case, any signal that we see in the gut microbiome is likely driven by other non-disease effects, which are not necessarily the same across studies. Finally, if we find different diseases with similar underlying causes (i.e. inflammation) clustering relatively near each other, then perhaps this would indicate that the microbiome is affected or involved with the underlying cause rather than the specific diseases. Such insights could help us design better experiments to follow up on mechanism or causal relationships.
+If a disease has a strong impact on or association with the gut microbiome, then we would expect its signatures from multiple studies to cluster very tightly together. If this is the case, we can extract the bacterial features which contribute the most to this tight clustering - these will then be most likely to be associated with that specific disease, and would be good candidates for further mechanistic explorations. On the other hand, if datasets of the same disease or similar conditions do not have similar microbial signatures, this may indicate that the microbiome is not inherently implicated or affected by the disease. In this case, any signal that we see in the gut microbiome is likely driven by other non-disease effects, which are not necessarily the same across studies. Finally, if we find different diseases with similar underlying causes (i.e. inflammation) clustering near each other, then perhaps this would indicate that the microbiome is affected or involved with the underlying cause rather than the specific diseases. Such insights could help us design better experiments to follow up on mechanism or causal relationships.
 
 \subsubsection{Additional considerations}
-Although some mechanistic studies have reported consisted bacterial associations with diseases like colorectal cancer and IBD (REFS), it is possible that we struggle to find bacteria consistently associated with diseases because of technical batch effects. In this case, we could consider using a phylogenetics-based approach: rather than looking for specific genera associated with diseases, we can identify associations with open-referenced OTUs and then compare their phylogenetic relationships across all studies. Another approach could be to use tools like PiCRUST to assign functionality to our observed taxonomies, and approach these analysis from a functional point of view.
-
-
-Another important consideration in this work may be if study-associated effects are larger than biological effects. For example, when we compare 'microbial signatures' across datasets, it's possible that the largest signal driving dataset clustering is sequencer or 16S region sequenced, rather than disease state. There are many approaches we could take to correct for such batch effects:
-\begin{enumerate}
-	\item Subtracting the principal components corresponding to the technical artifact
-	\item Build a model that accounts for these technical artifacts by including them as factors in the model.
-	\item Transform the data in ways shown to remove batch effects, cumulative sum normalization (HAS IT BEEN SHOWN TO REMOVE BATCH EFFECTS??).
-	\item Non-parametric correction, like sample- or OTU-wise quantile normalization, using controls in each study as the reference distribution.
-\end{enumerate}
+It is possible that we struggle to find bacteria consistently associated with diseases because of technical batch effects, even where we expect to find a clear signal (i.e. in diseases which have had clear results from experimental or mechanistic studies (REFS)). Developing robust methods to overcome technical batch effects in 16S studies is not within the scope of this work. However, if standard meta-analysis methods fail, we can try some naive correction methods like a linear correction for the principal components which correlate closely with technical artifacts like read depth (FIGURE?). We could also consider using a phylogenetics-based approach rather than taxonomically-assigned closed-reference OTUs. We could identify associations with disease using open-referenced OTUs and then compare their phylogenetic relationships across all studies. Finally, we could also use tools like PiCRUST to assign functionality to our observed taxonomies, and approach our meta-analysis from a functional point of view (REF). 
 
 \subsection{Aim 3: Assigning bacteria to groups with similar functions and disease associations}
+Few analytical tools exist to motivate biological hypotheses from the results of high-throughput case-control microbiome studies. Although studies often yield some significant OTU-disease associations, assigning biological interpretations to such results remains challenging. For example, the importance of short-chain fatty acid producers is well-accepted in IBD, and may play in a role in many other diseases as well (REFS). However, directly identifying enrichment functionally-related bacteria (such as SCFA-producing bacteria) is not currently possible. Instead, researchers face the task of interpreting lists of individual OTUs into common biological themes or functions on their own (GSEA REF). 
+
+In this aim, we will curate biologically-motivated \textit{microbe sets} to enable easier interpretation of results from 16S microbiome analyses. By defining groups of related microbes \textit{a priori}, we will enable enrichment analyses similar to GSEA (\ref{sec:something}, REF) for microbiome data. Enrichment analyses will allow for better biological understanding of individual studies' results as well as more consistent comparisons of results across individual studies in the literature.
 
 \subsubsection{Define microbe sets based on known biological relationships}
-Using an undergrad and lots of lit searching. And ImG and Ilana.
+
+
+No existing databases annotate microbes in a way that can be mapped to 16S sequencing studies. Our first task is therefore to curate and define \textit{microbe sets} for use in enrichment analyses of microbiome datasets. We will begin with ImG, an existing database with approximately 10,000 annotated microbial genomes. About half of these genomes are human-associated, and half of those have annotations for categories like disease association, sporulation, body site habitat, and gram staining. We will extract the 16S sequences for all the annotated human-associated microbes in this dataset to determine whether they adequately span the phylogenetic diversity we expect to find in the human gut. If certain key clades are missing from these bacteria, we will manually include them from literature searches and NCBI queries.
+
+In collaboration with Ilana Brito at Cornell, we will apply a combination of literature mining and bioinformatics approaches to fill out the missing annotations in the ImG data and to add our own fields of interest. We will first perform a comprehensive literature review to identify all existing annotated microbial databases. We may also pursue unsupervised text mining of literature results to infer trait-associations for well-studied bacteria (REF). As we populate the microbes in our microbe sets with annotations, we will simultaneously collect their 16S sequences to put them all on a tree. We will apply phylogenetic and phylogenomic inference models to infer the missing traits of leaf organisms when possible.
+
+\begin{table}
+\begin{tabular}{|p{6cm}|p{10cm}|}
+	\hline
+	\textbf{Category} & \textbf{Approach} \\
+	\hline
+	Pathogens & Targeted literature search, literature mining, \& databases \\
+	\hline
+	Body sites & Literature mining, machine learning on HMP data \\
+	\hline
+	Environmental associations & Literature mining, machine learning on EMP data \\
+	\hline
+	Growth rate & Inference from 16S sequences in datasets from Aim 2 and HMP \\
+	\hline
+	Obesity-associated & Targeted literature search \& machine learning on Aim 2 datasets \\
+	\hline
+	Inflammation-associated & Targeted literature search \& machine learning on Aim 2 datasets \\
+	\hline
+	Miscellaneous functions (acid-tolerant, mucus-degrading, etc) & Targeted literature search, unsupervised PiCRUST clustering \\
+	\hline 
+\end{tabular}
+\caption{Possible approaches to define microbe sets of interest}\label{tab:microbe_set_categories}
+%\end{wraptable}
+\end{table}
+
 
 \subsubsection{Extract disease-associated microbe sets from datasets in Aim 2}
-And \#machinelearning stuff bam wow wow.
+We will leverage the datasets collected in Aim 2 to extract additional disease-associated groups of microbes. We will define groups of microbes based on those that distinguished diseases or broader phenotypes in (Section \ref{sec:signatures}). We will also pursue machine-learning driven approaches to identify novel disease- or phenotype-associated \textit{microbe sets}. We will define \textit{microbe sets} based on the most discriminating features of various comparisons, as described in Table \ref{tab:classifications}.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|p{6cm}|p{10cm}|}
+	\hline
+	\textbf{Microbe set association} & \textbf{Classification task} \\
+	\hline
+	General health/disease & All healthy vs. all disease \\
+	\hline
+	Diarrhea & CDI, EDD, IBS-D vs. controls \\
+	\hline
+	Neurological & Autism, Parkinson's vs. controls \\
+	\hline
+	Immune system & Rheumatoid arthritis, allergy, Crohn's disease, Graft-versus-host disease vs. controls \\
+	\hline
+	Liver & NASH, MHE (all hepatic diseases) vs. controls\\
+	\hline
+	Metabolic syndrome & T1D, T2D, obesity, metabolic syndrome vs. controls \\
+	\hline
+\end{tabular}
+\caption{Classification tasks to identify groups of phenotype-associated microbes}\label{tab:classifications}
+\end{center}
+\end{table}
 
 \subsubsection{Develop collaborative tool for interpreting microbiome studies}
-See if results jive with what we found from individual genus-based analyses, if we uncover new "signatures of general types of diseases", etc.
+We will make the microbe set annotations available to researchers for further annotation and development. Through our literature searches, we will pay attention to the databases researchers have found most useful and strive to package our annotations in an easy-to-use format. We will likely begin with one very large text file containing all of the microbes, 16S sequences, and metadata that we have gathered. 
+
+We will also package our \textit{microbe set} annotations into a tool that researchers can use to interpret the results of their 16S studies. Our software will take as input an OTU table with taxonomically assigned microbes and disease-state labels for samples. It will perform enrichment analysis on the OTU table and return the results to researchers, similar to the Broad's GSEA tool (REF).
+
+All of this work will be done using public open-source tools like GitHub to encourage collaboration and dissemination of our findings.
 
 \subsubsection{Additional considerations}
+Developing a database of microbial annotations is a daunting task due to the vast diversity and complexity of microbes. We recognize the inherent difficulty of this task, and do not expect to produce a fully comprehensive database. However, because our annotations are intended to serve as a tool for biological interpretations and hypothesis generation, even a partially-complete database will be extremely valuable in reducing the number of false-negative results in case-control studies and also providing coherent biological interpretations of existing results. We also recognize that our work will be just the beginning of systematic grouping of phenotypically-associated microbes, and so we will ensure that the format of the database we develop is easily accessible and modifiable by other researchers.
+
+This work will be the beginning of what will hopefully become a new approach to interpreting 16S datasets - moving the field from asking simply "what's different?" toward a more critical interpretation of "why are things different?"
 
 \section{Preliminary studies}
 \textit{Three to four pages}
@@ -232,9 +283,16 @@ Check out what I got!
 \subsubsection{Find consistent microbes}
 PCA, alpha diversity, comparing microbial signatures, consistency of significant OTUs.
 
-\section{Conclusion}
-
 \section{Gud werds}
 We hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain disease states. 
+
+
+Another important consideration in this work may be if study-associated effects are larger than biological effects. For example, when we compare 'microbial signatures' across datasets, it's possible that the largest signal driving dataset clustering is sequencer or 16S region sequenced, rather than disease state. There are many approaches we could take to correct for such batch effects:
+\begin{enumerate}
+	\item Subtracting the principal components corresponding to the technical artifacts.
+	\item Build a model that accounts for these technical artifacts by including them as factors in the model.
+	\item Non-parametric correction, like sample- or OTU-wise quantile normalization, using controls in each study as the reference distribution.
+\end{enumerate}
+
 
 \end{document}
