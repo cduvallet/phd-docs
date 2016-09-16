@@ -32,80 +32,69 @@ Analyzing the microbiome is hard. Getting clinical insights from analyses is eve
 \section{Overall objectives and specific aims}
 \subsection{Overall objectives}
 
-In spite of the recent increase in research about the human 
+In spite of the recent increase in research on the human 
 microbiome, there is not a clear consensus on the relationship between 
-human microbial communities and disease. Current 16S microbiome 
-analyses typically study one patient cohort in one disease state, 
-searching for individual disease-associated microbes. However, 
-different published studies for the same disease often contain 
-contradictory or inconsistent results. Existing meta-analyses rarely 
-expand to more than one or two diseases, and thus do not distinguish 
-between microbes which are associated with specific diseases from 
-those which are associated with disease in general. Finally, there are 
-no established tools to extract general biological insights from 
-groups of disease-associated microbes.
+human microbial communities and disease. The microbiota of 
+the aerodigestive tract is poorly studied, and we have little understanding 
+of how the microbial communities in different aeordigest sites are related or 
+affected by disease. In contrast, the gut microbiome has 
+been extensively studied through many case-control studies. 
+However, these studies have frequently yielded inconsistent or incomparable 
+results. Existing meta-analyses have not extended to more than one or two 
+diseases, and thus can not determine whether significant microbes are 
+associated with specific diseases or with disease in general. 
+Finally, there are no existing tools that can be used to extract general 
+biological insights from groups of disease-associated microbes.
 
-This thesis will increase our understanding of the clinical microbiome 
-by moving analyses from focusing on single microbes in individual 
-diseases toward consolidation of groups of related microbes across 
-many different kinds of diseases. In this thesis, I will first apply 
-standard methods to characterize the under-studied microbiota of the 
-aerodigestive tract of one patient cohort. Then, I will perform a 
-comprehensive meta-analysis of gut microbiome studies across many 
-disease states with multiple patient cohorts. Finally, I will develop 
-a tool to enable generalizable interpretation of results from existing 
-and future microbiome studies. This work will improve our 
-understanding of the clinical relevance of the human microbiome and 
-will also provide new approaches and tools for analyzing future 
-studies.
+This thesis will expand our understanding of the clinical microbiome in three ways.
+First, I will characterize the relationships between the microbial communities
+of the aerodigestive tract and their associations with clinical factors, 
+increasing our basic understanding of this under-studied system.
+Next, I will perform a meta-analysis of published case-control gut microbiome studies
+across many disease states, identifying consistent microbial markers of health and disease.
+Finally, I will curate groups of biologically related microbes, 
+thus enabling enrichment analyses and generalizable interpretations
+of results from microbiome studies. 
 
 \subsection{Specific Aims}
 \begin{description}
 	\item[Aim 1] Apply standard methods to identify microbial 
 	community characteristics associated with gastro-esophogeal reflux 
 	disease and aspiration.
-		\begin{enumerate}
-			\item Determine how lung, gastric, and throat microbial 
-			communities are related.
-			\item Identify clinical modulators of lung, gastric, and 
-			throat microbial communities.
-		\end{enumerate}
+	\begin{enumerate}
+		\item Determine how lung, gastric, and throat microbial 
+		communities are related.
+		\item Identify clinical modulators of lung, gastric, and 
+		throat microbial communities.
+	\end{enumerate}
 	\item[Aim 2] Perform a meta-analysis of case-control gut 
 	microbiome studies to identify consistent microbial signatures 
 	within and across multiple diseases.
 	\begin{enumerate}
 		\item Compile and process publicly available case-control gut 
-		microbiome studies using a standardized method.
-		\item Identify microbes that are consistently associated with 
-		specific diseases and with disease in general.
-		\item Compare results betweens studies to identify 
-		similarities in microbial characteristics of physiologically-
-		related diseases.
+		microbiome studies with a standardized method.
+		\item Determine whether certain microbes are consistently 
+		associated disease in general or with specific diseases.
+		\item Identify relationships between physiologically-related 
+		diseases by comparing their microbial characteristics.
 	\end{enumerate}
 	\item[Aim 3] Enable generalizable interpretations of microbiome 
 	analyses by assigning bacteria to groups with similar functions 
 	and known associations with disease.
 	\begin{enumerate}
-	\item Combine existing databases with targeted literature searches 
-	to define \textit{microbe sets} based on known biological 
-	relationships.
-	\item Use machine-learning techniques to extract disease-
-	associated \textit{microbe sets} from datasets collected in Aim 2.
-	\item Develop these \textit{microbe sets} into a collaborative 
-	tool for use in interpreting new microbiome studies.
+		\item Combine existing databases with targeted literature searches 
+		to define \textit{microbe sets} based on known biological 
+		relationships.
+		\item Use machine-learning techniques to extract disease-
+		associated \textit{microbe sets} from datasets collected in Aim 2.
+		\item Develop these \textit{microbe sets} into a collaborative 
+		tool for use in interpreting new microbiome studies.
 	\end{enumerate}
 \end{description}
 \newpage
 
 \section{Background and significance}
 \textit{Three to five pages}
-
-The microbiome is a hot hot hot field and we know some stuff but we 
-don't know a lot of stuff too.
-
-My aims cover multiple body systems: aerodigestive and gut. My aims 
-also span from one study to many, so need to talk about those 
-approaches.
 
 \subsection{Biological background and significance}
 
@@ -151,17 +140,17 @@ observed and abnormalities like aspiration of contents past the vocal
 chords can be diagnosed \cite{martinharris-clinical_mbs-2000},
 \cite{martinharris-mbs-2008}. However, the MBS test cannot be used to 
 determine aspiration of gastric contents or episodes of micro-
-aspiration, which may also have clinical relevance \cite{raghavendran-
-asp_injury-2011},\cite{lee-pulm_asp-2014}. No validated clinical 
+aspiration, which may also have clinical relevance 
+\cite{raghavendran-asp_injury-2011},\cite{lee-pulm_asp-2014}. No validated clinical 
 biomarkers exist to diagnose and define gastric and micro-aspiration 
 events\cite{lee-pulm_asp-2014}, but they are thought to play a role in 
-causing or exacerbating many respiratory diseases \cite{reen-
-aspirated_bile-2014},\cite{almomani-cf_sputum-2016},\cite{houghton-
-microaspiration-2016}. Currently, microaspiration of gastric contents 
+causing or exacerbating many respiratory diseases 
+\cite{reen-aspirated_bile-2014},\cite{almomani-cf_sputum-2016},
+\cite{houghton-microaspiration-2016}. Currently, microaspiration of gastric contents 
 is studied by measuring the concentration of bile or pepsin in the 
 lungs, but such assays are rarely validated against gold-standard 
-methods and have not undergone clinical validation \cite{houghton-
-microaspiration-2016},\cite{lee-pulm_asp-2014}. Further complicating 
+methods and have not undergone clinical validation 
+\cite{houghton-microaspiration-2016},\cite{lee-pulm_asp-2014}. Further complicating 
 the issue is that many healthy patients have a baseline level of 
 micro-aspiration (REF).
 
@@ -183,15 +172,14 @@ direct aspiration of gastric bacteria leading to infection
 However, because of the difficulties in diagnosing and studying 
 microaspiration, aspiration of gastric contents, and GERD, precise 
 causal links between reflux, aspiration, and lung disease have yet to 
-be established \cite{almomani-cf_sputum-2016},\cite{houghton-
-microaspiration-2016}.
+be established \cite{almomani-cf_sputum-2016},\cite{houghton-microaspiration-2016}.
 
 \subsubsection{Microbiome of the aerodigestive tract}
 The microbiota of the human lungs and stomachs are among the least 
 well-studied human-associated microbial communities. In fact, the 
 lungs are classically thought to be sterile and free of bacteria in 
-healthy people \cite{charslon-topographical-2011},\cite{bassis-
-source-2015}. Neither gastric nor lung sites were included in the 
+healthy people \cite{charslon-topographical-2011},\cite{bassis-source-2015}. 
+Neither gastric nor lung sites were included in the 
 Human Microbiome Project, leading to a dearth of studies and data on 
 these important body sites (HMP REF). However, subsequent studies have 
 found suggestions that aerodigestive tract sites are microbially 
@@ -299,8 +287,8 @@ analysis of obesity studies found no clear taxonomic signal, and a
 difference in alpha diversity that was significant but likely too 
 small to be biologically relevant\cite{sze-signal-2016}. Another study 
 found no clear results in obesity datasets but did identify a strong 
-signal associated with IBD across multiple datasets \cite{walters-
-ob_meta-2014}. Every meta-analysis performed on 16S data has observed 
+signal associated with IBD across multiple datasets \cite{walters-ob_meta-2014}. 
+Every meta-analysis performed on 16S data has observed 
 strong batch effects between studies and noted the need for large 
 sample sizes to extract any meanginful signal \cite{sze-signal-2016},
 \cite{walters-ob_meta-2014},\cite{knights-supervised-2010},
@@ -312,8 +300,7 @@ control experimental designs. The positive results from these studies
 are not particularly biologically insightful: it is a much easier task 
 to differentiate vastly different communities (like the skin vs. the 
 gut) than it is to differentiate subtleties contributing to health and 
-disease (like the inflamed gut vs. the healthy gut) \cite{knights-
-supervised-2010}.
+disease (like the inflamed gut vs. the healthy gut) \cite{knights-supervised-2010}.
 
 \subsubsection{Databases and tools for annotations}
 Few analytical tools exist to motivate biological hypotheses from the 
@@ -331,8 +318,8 @@ themes or functions on their own (GSEA REF).
 Enrichment analysis is a powerful way to identify biologically 
 meaningful patterns in high-dimensional data. Enrichment analysis is 
 widely used in RNA expression studies and has been proposed for use in 
-metabolomics studies (\cite{subramanian-gsea-2005}, \cite{xia-
-msea-2010}. In Gene Set Enrichment Analysis (GSEA), genes are first 
+metabolomics studies (\cite{subramanian-gsea-2005}, 
+\cite{xia-msea-2010}. In Gene Set Enrichment Analysis (GSEA), genes are first 
 ranked by differential expression between two conditions. Then, 
 \textit{a priori}-defined groups of related genes are analzed for 
 over- or under-representation at either end of the ranked list. Rather 
@@ -377,7 +364,7 @@ define biologically related groups of organisms.
 	BAL \& throat & 9 \\
 	\hline 
 \end{tabular}
-\caption{Aerodigestive site samples}\label{tab:rosen_samples}
+\caption{Samples in study}\label{tab:rosen_samples}
 \end{wraptable}
 
 As discussed previously, patients with aerodigestive disorders like 
@@ -398,40 +385,43 @@ monitored for full-column GERD and 112 patients were tested for
 aspiration. Overall, this cohort represents the largest existing human 
 aerodigestive microbiome dataset.
 
-
 \subsubsection{Exchange of microbes between lung, gastric, and throat communities} \label{sec:exchange}
+
 To understand the microbial exchange between sites in the 
-aerodigestive tract, we will first define a metric to quantify how 
-"shared" microbes are between two sites. There are multiple ways to 
-define this metric: as the percentage of patients who have the microbe 
-present in both sites, as the correlation between the abundance of the 
-microbe in one site with its abundance in the other site, or some 
-combination of these two approaches. Because many microbes in the 
-stomach and lungs are seeded by the oral community, simple co-
-occurence of bacteria is not sufficient to establish meaningful 
-microbial exchange (REF). Using the correlation of abundances in two 
-sites is also not adequate, since many people may not have the OTU 
-present in either or both sites due to the inherent variability of 
-microbial communities between people.
+aerodigestive tract, we must first identify which microbes are being exchanged
+and then quantify their how ``shared'' they are across the sites. 
+If a microbe is being exchanged between sites, we would expect that if we see 
+more of it in one site, then we will also see more of it in the other. 
+Thus, we define a microbe as exchanged between two sites if the Spearman 
+correlation of its abundance in both sites is greater than 0.5. To 
+calculate this correlation, we consider only patients who have the microbe present in both sites (blue dots in \ref{fig:sharedness_defn}).
+We quantify the extent of exchange by asking how many of the total patients
+have the microbe present in both sites. In other words, $p_s$ is the 
+percentage of patients who are exchanging that microbe across the two sites.
+This definition of exchange, which depends on correlated abundances, is 
+superior to simple co-occurence since there is significant overlap in the
+members of the three aeordigestive communities\cite{bassis-source-2015}, \cite{charslon-topographical-2011}.
 
-Thus, we will use both co-occurence and correlation to quantify 
-microbial exchange across sites, which we call $p_s$. We will first 
-identify which microbes are shared using the abundance correlation, 
-and then quantify each microbe's degree of sharedness by its co-
-occurence rate in patients. For each microbe, we will calculate the 
-non-parametric Spearman rank correlation of the log10(relative 
-abundances) in the two sites, using only abundances from patients with 
-the microbe present in both sites. If this correlation is greater than 
-0.5, the microbe is considered to be shared. Our metric $p_s$ is then 
-defined as the percentage of patients who have the microbe present in 
-both sites (Fig. \ref{fig:sharedness_defn}).
+To determine how lung, gastric, and throat microbial communities are related,
+we will calculate $p_s$ for each of the site combinations. We will 
+then see if there are apparent phylogenetic relationships between
+the exchanged microbes. We expect to find significantly more exchange
+between the throat and stomach, and very little exchange between the throat and lungs. 
 
-
-\begin{wrapfigure}{R}{0.5\textwidth}
-	\centering
-    \includegraphics[scale=0.5]{sharedness_definition}
-    \caption{Determining $p_s$}\label{fig:sharedness_defn}
-\end{wrapfigure}
+%\begin{wrapfigure}{R}{0.5\textwidth}
+%	\centering
+\begin{figure}
+\begin{center}
+    \includegraphics[scale=0.6]{sharedness_definition}
+    \caption{Calculating $p_s$: if the abundance of a microbe when it is 
+    present in both sites is correlated, then we consider it exchanged 
+    across those sites (blue dots). $p_s$ is then calculated as the 
+    percentage of patients who have the microbe present in both sites (blue 
+    dots divided by total dots). Example of microbes which are (A) not 
+    exchanged and (B) exchanged between stomach and lungs.}\label{fig:sharedness_defn}
+\end{center}
+\end{figure}
+%\end{wrapfigure}
 
 
 \subsubsection{Clinical modulators of lung, gastric, and throat microbial communities}
@@ -783,6 +773,11 @@ Another important consideration in this work may be if study-associated effects 
 	\item Build a model that accounts for these technical artifacts by including them as factors in the model.
 	\item Non-parametric correction, like sample- or OTU-wise quantile normalization, using controls in each study as the reference distribution.
 \end{enumerate}
+
+This work will improve our 
+understanding of the clinical relevance of the human microbiome and 
+will also provide new approaches and tools for analyzing future 
+studies.
 
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
