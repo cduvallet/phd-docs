@@ -280,7 +280,7 @@ samples) - after multiple hypothesis testing corrections, many studies
 yield no significant results (REF).
 
 Existing meta-analyses of microbiome datasets often focus on healthy 
-patients or on just one or two diseases (REFS). These meta-analyses 
+patients or on just one or two diseases \cite{walters-ob_meta-2014}, \cite{sze-signal-2016}. These meta-analyses 
 have had mixed results. In some cases like IBD, strong and consistent 
 signals can be found across studies and in other cases. A meta-
 analysis of obesity studies found no clear taxonomic signal, and a 
@@ -290,7 +290,7 @@ found no clear results in obesity datasets but did identify a strong
 signal associated with IBD across multiple datasets \cite{walters-ob_meta-2014}. 
 Every meta-analysis performed on 16S data has observed 
 strong batch effects between studies and noted the need for large 
-sample sizes to extract any meanginful signal \cite{sze-signal-2016},
+sample sizes to extract any meaningful signal \cite{sze-signal-2016},
 \cite{walters-ob_meta-2014},\cite{knights-supervised-2010},
 \cite{lozupone-meta-2013}. 
 
@@ -302,7 +302,7 @@ to differentiate vastly different communities (like the skin vs. the
 gut) than it is to differentiate subtleties contributing to health and 
 disease (like the inflamed gut vs. the healthy gut) \cite{knights-supervised-2010}.
 
-\subsubsection{Databases and tools for annotations}
+\subsubsection{Databases and tools for annotations}\label{sec:gsea}
 Few analytical tools exist to motivate biological hypotheses from the 
 results of high-throughput case-control microbiome studies. Although 
 studies often yield some significant OTU-disease associations, 
@@ -313,7 +313,7 @@ many other diseases as well (REFS). However, directly identifying
 enrichment of functionally-related bacteria (such as SCFA-producing 
 bacteria) is not currently possible. Instead, researchers face the 
 task of interpreting lists of individual OTUs into common biological 
-themes or functions on their own (GSEA REF). 
+themes or functions on their own \cite{subramanian-gsea-2005}. 
 
 Enrichment analysis is a powerful way to identify biologically 
 meaningful patterns in high-dimensional data. Enrichment analysis is 
@@ -339,12 +339,13 @@ with disease. Similar annotations exist in some microbial databases,
 but none of these databases or tools have been used to define groups 
 of related microbes. ImG contains approximately 10,000 annotated 
 bacterial genomes, but the annotations are not fully complete and do 
-not span all categories of possible interest (IMG REF). SourceTracker 
+not span all categories of possible interest \cite{markowitz-img-2013}. SourceTracker 
 can be used to label microbial communities according to their 
 environmental source, but requires input training sets with each use 
-in order to learn and make the classifications (REF SOURCETRACKER). 
-Finally, bioinformatic tools have been developed that can functional 
-content (PICRUST) or metabolic pathways (HUMANN) from 16S data. Again, 
+in order to learn and make the classifications \cite{knights-sourcetracker-2011}. 
+Finally, bioinformatic tools have been developed that can infer functional 
+content (PICRUST) \cite{langille-picrust-2013} or metabolic pathways 
+(HUMANN) \cite{abubucker-humann-2012} from 16S data. Again, 
 these tools are dataset-specific and have not been generalized to 
 define biologically related groups of organisms.
 
@@ -492,17 +493,17 @@ some of these bacteria will be associated with many different types of
 diseases while others will be unique to one or two conditions. 
 Additionally, we hypothesize that microbial signatures  of health and 
 disease will be more similar in similar diseases (i.e. diabetes and 
-obesity).
+obesity vs. diabetes and autism).
 
 \subsubsection{Compile and process gut microbiome datasets}
-To perform a comprehensive meta-analysis, we need to collect a 
+To perform a meta-analysis, we need to collect a 
 comprehensive selection of 16S gut microbiome case-control studies. We 
 will identify these studies through a targeted literature search.  See 
 TABLE for exclusion and inclusion criteria for studies to be 
 considered.
 
 We will process these datasets using a standardized in-house pipeline 
-developed by Thomas Gurry and to which I have contributed. We will 
+developed by Thomas Gurry, a post-doc in the Alm lab. We will 
 start with the rawest available data - in most cases, these will be 
 fastq files but for some studies we will begin from quality-filtered 
 fasta files. Sequences will be quality and length trimmed, clustered 
@@ -519,34 +520,41 @@ studies. After assigning Latin names based on OTUs within each study,
 we will collapse OTUs to the genus level and compare these across 
 studies.
 
-\subsubsection{Identify microbes consistently associated with diseases}\label{sec:indep_studies}
+\subsubsection{Identify microbial markers of disease}\label{sec:indep_studies}
 Once we have processed all datasets in a standardized way, our first 
-goal is to identify consistent markers of health and disease. We will 
-analyze each dataset with microbiome methods commonly used in the 
-literature: univariate non-parameteric statistical tests on relative 
-abundances, alpha and beta diversity in different types of patients, 
-and ratios of Firmicutes to Bacteroides in healthy vs. disease 
-patients. It is generally thought that low alpha diversity is a marker 
-of dysbiosis (REF), and that while most people have a Firmicutes/
-Bacteroides ratio of (XXX), in certain diseases this ratio may be 
-different (REF). (MAYBE BACKGROUND?) By analyzing each study in the 
-same way from raw data, we can reduce the study-wise batch effects and 
-increase our ability to identify general trends in the gut microbiome 
-in health and disease. We will identify consistent markers of disease 
-by using standard meta-analysis methods, comparing the effect sizes 
-and directionality of bacteria across studies, and using Fisher's 
-method to determine overall significant of a microbe (REFS). 
+goal is to identify microbial markers of general health and disease. 
+For each study, we will compare gross summaries of the microbial communities
+(i.e. alpha diversity, Bacteroides/Firmicutes ratio) between cases and controls.
+Then, we will look for specific microbes associated with health or disease using
+univariate non-parametric statistics to compare abundances of microbes in cases
+and controls. To identify microbes which are \textit{consistently} associated with
+health or disease, we will combine the results from all studies using 
+the weighted Z-test, a weighted method used in meta-analyses for combining p-values \cite{zavkin-ztest-2011}. 
+This will yield an overall significance for each microbe,
+incorporating the results from all case-control studies.
+
+Next, we aim to identify microbes which are consistently associated with \textit{specific}
+diseases. For diseases which have more than 3 studies, we will
+perform the same meta-analysis as above with only the studies
+of that disease. There are many interesting possible outcomes from this analysis.
+First, we could find bacteria which are not associated with disease in general 
+but which \textit{are} associated with that specific disease. 
+We could also find bacteria which are significant markers of disease in general and 
+that specific disease, but whose direction of change may differ in the two cases.
+For example, a bacteria could be significantly higher in Parkinson's patients but
+significantly lower in all other disease states. The microbes we identify with this
+analysis may be very interesting candidates for biomarkers or mechanistic follow-up studies.
 
 \subsubsection{Compare results between studies for related diseases}\label{sec:signatures}
 Our next hypothesis is that similar diseases will have similar 
 signatures of dysbiosis. For example, we expect that metabolic 
 diseases like obesity and diabetes will have more similar microbiota 
-changes than they will to diarrheal diseases like Clostridium 
-difficile infection or enteric diarrhea. We will summarize each 
+changes than they will to diarrheal diseases like \textit{Clostridium 
+difficile} infection or enteric diarrhea. We will summarize each 
 dataset with one vector indicating its "microbial signature". This 
 signature will be based on number and identities of microbes 
-significantly associated with the disease and the direction of change 
-of these microbes. Depending on the results from Section 
+significantly associated with the cases and the direction of change 
+of these microbes relative to the controls. Depending on the results from Section 
 \ref{sec:indep_studies}, we may also include factors like differences 
 in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will 
 investigate which datasets cluster together in this "signature space". 
@@ -597,48 +605,46 @@ also consider using a phylogenetics-based approach rather than
 taxonomically-assigned closed-reference OTUs. We could identify 
 associations with disease using open-referenced OTUs and then compare 
 their phylogenetic relationships across all studies. Finally, we could 
-also use tools like PiCRUST to assign functionality to our observed 
-taxonomies, and approach our meta-analysis from a functional point of 
-view (REF). 
+approach our meta-analysis from a functional point of view by
+using tools like PiCRUST or HUMANN to assign functionality to our
+observed taxonomies \cite{langille-picrust-2013}, \cite{abubucker-humann-2012}.
 
 \subsection{Aim 3: Assigning bacteria to groups with similar functions and disease associations}
 
 In this aim, we will curate biologically-motivated \textit{microbe 
 sets} to enable easier interpretation of results from 16S microbiome 
 analyses. By defining groups of related microbes \textit{a priori}, we 
-will enable enrichment analyses similar to GSEA (\ref{sec:something}, 
-REF) for microbiome data. Enrichment analyses will allow for better 
+will enable enrichment analyses similar to GSEA (\ref{sec:gsea}, 
+\cite{subramanian-gsea-2005}) for microbiome data. Enrichment analyses will allow for better 
 biological understanding of individual studies' results as well as 
 more consistent comparisons of results across individual studies in 
 the literature.
 
 \subsubsection{Define microbe sets based on known biological relationships}
 
-
-No existing databases annotate microbes in a way that can be mapped to 
-16S sequencing studies. Our first task is therefore to curate and 
-define \textit{microbe sets} for use in enrichment analyses of 
-microbiome datasets. We will begin with ImG, an existing database with 
-approximately 10,000 annotated microbial genomes. About half of these 
-genomes are human-associated, and half of those have annotations for 
-categories like disease association, sporulation, body site habitat, 
-and gram staining. We will extract the 16S sequences for all the 
-annotated human-associated microbes in this dataset to determine 
-whether they adequately span the phylogenetic diversity we expect to 
+Our first task is to curate and define \textit{microbe sets} for use in enrichment analyses of 
+microbiome datasets. We will perform an extensive literature search
+to identify existing databases with microbial annotations, with the goal of
+combining these databases and filling them out where they are missing annotations.
+We will begin with ImG which has approximately 10,000 annotated microbial genomes. 
+About half of these genomes are human-associated bacteria, 
+and half of those have annotations for categories like disease 
+association, sporulation, body site habitat, and gram staining. 
+We will extract the 16S sequences for all the annotated human-associated 
+microbes in this dataset, build a phylogenetic tree, and determine whether 
+they adequately span the phylogenetic diversity we expect to 
 find in the human gut. If certain key clades are missing from these 
 bacteria, we will manually include them from literature searches and 
 NCBI queries.
 
 In collaboration with Ilana Brito at Cornell, we will apply a 
 combination of literature mining and bioinformatics approaches to fill 
-out the missing annotations in the ImG data and to add our own fields 
-of interest. We will first perform a comprehensive literature review 
-to identify all existing annotated microbial databases. We may also 
+out the missing annotations in the databases and to add our own fields 
+of interest \ref{tab:microbe_set_categories}. We may also 
 pursue unsupervised text mining of literature results to infer trait-
-associations for well-studied bacteria (REF). As we populate the 
-microbes in our microbe sets with annotations, we will simultaneously 
-collect their 16S sequences to put them all on a tree. We will apply 
-phylogenetic and phylogenomic inference models to infer the missing 
+associations for well-studied bacteria \cite{korbel-lit_mining-2005}. As we populate the 
+our microbe annotations, we will also collect 16S sequences to 
+put build a tree and apply appropriate inference models to infer the missing 
 traits of leaf organisms when possible.
 
 \begin{table}
@@ -722,7 +728,7 @@ that researchers can use to interpret the results of their 16S
 studies. Our software will take as input an OTU table with 
 taxonomically assigned microbes and disease-state labels for samples. 
 It will perform enrichment analysis on the OTU table and return the 
-results to researchers, similar to the Broad's GSEA tool (REF).
+results to researchers, similar to the Broad's GSEA tool \cite{subramanian-gsea-2005}.
 
 All of this work will be done using public open-source tools like 
 GitHub to encourage collaboration and dissemination of our findings.
@@ -743,8 +749,8 @@ develop is easily accessible and modifiable by other researchers.
 
 This work will be the beginning of what will hopefully become a new 
 approach to interpreting 16S datasets - moving the field from asking 
-simply "what's different?" toward a more critical interpretation of 
-"why are things different?"
+simply ``what's different?'' toward a more critical interpretation of 
+``why are things different?''
 
 \section{Preliminary studies}
 \textit{Three to four pages}
@@ -778,6 +784,22 @@ This work will improve our
 understanding of the clinical relevance of the human microbiome and 
 will also provide new approaches and tools for analyzing future 
 studies.
+
+We will summarize each dataset's microbial communities
+methods commonly used in the 
+literature: univariate non-parameteric statistical tests on relative 
+abundances, alpha and beta diversity in different types of patients, 
+and ratios of Firmicutes to Bacteroides in healthy vs. disease 
+patients. It is generally thought that low alpha diversity is a marker 
+of dysbiosis (REF), and that while most people have a Firmicutes/
+Bacteroides ratio of (XXX), in certain diseases this ratio may be 
+different (REF). (MAYBE BACKGROUND?) By analyzing each study in the 
+same way from raw data, we can reduce the study-wise batch effects and 
+increase our ability to identify general trends in the gut microbiome 
+in health and disease. We will identify consistent markers of disease 
+by using standard meta-analysis methods, comparing the effect sizes 
+and directionality of bacteria across studies, and using Fisher's 
+method to determine overall significant of a microbe (REFS). 
 
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
