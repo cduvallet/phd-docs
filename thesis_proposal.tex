@@ -186,7 +186,6 @@ found suggestions that aerodigestive tract sites are microbially
 related, and that these microbiomes are altered in certain disease 
 states (REFS).
 
-
 Few studies have examined the relationship between sites of the upper 
 aerodigestive tract \cite{bassis-source-2015}. Bassis et al. found 
 that oral microbial communities were more similar to both stomach and 
@@ -209,28 +208,66 @@ digesting and salvaging additional nutrients, interacting with the
 immune system, and protecting the gut from invasion by pathogenic 
 organisms (REF). 
 
-We know that the microbial communities in our guts are unique, 
-modifiable, and integral to our overall health. Studies have 
-consistently shown that gut microbial communities are more similar 
-within a person over time than across people (REF). Environmental 
-disruptions like travel, change in diet, or antibiotics can have both 
-reversible and irreversible changes on the composition of the gut 
-microbiome (REF). Fecal microbiota transplants have demonstrated the 
-causal ability of the microbiome to impact health in both animal 
-models and human patients, and more targeted therapies like narrow-
-spectrum antibiotics or strain-specific probiotics are an active area 
-of research and development (REF). Experiments with germ-free model 
-organisms have also clearly demonstrated the microbiome's causal role 
-in sustaining health and causing disease (REF).
+We know that the microbial communities in our guts are unique to 
+individuals (REF), modifiable on short- and long-term scales (HuGE REF), and integral to our overall health (REF). 
+Fecal microbiota transplants have demonstrated the incredible
+causal ability of the microbiome to affect health in 
+human patients. Germ-free mouse models have shown that microbes are
+necessary for healthy functioning, and specific animal models have  
+allowed for probing mechanistic understanding of host-microbial 
+interactions (autism 440 ref, gordon mouse experiment ref). 
+
+Many case-control studies examining the association between gut microbial 
+disease and putatively associated gut-related diseases exist, but there
+is little consensus among or synthesis of the existing research.
+A few meta-analyses have been recently undertaken to leverage multiple
+studies based on similar disease states. However, these studies have
+rarely found consistent signals and fail to account for the broad
+variety of disease states which are thought to be microbially-related
+(meta-analysis REFS). Thus, the current field of clinically-motivated
+microbiome science lacks a synthesized understanding of the relationship
+between gut microbial communities and disease states across the broad
+range of previously studied conditions.
+
 
 \subsubsection{Microbiome/disease associations of the lower gastrointestinal tract}
-Because of the microbiota's importance in the healthy function of the 
-gastrointestinal tract, associations between microbial communities 
-have been investigated for a wide variety of diseases (REFS). 
+The microbes in our guts provide essential functions to our well being. 
+They help us harvest energy from the food we eat and digest otherwise 
+undigestible fibers, train our immune system, break down xenobiotics and 
+other foreign products, and release metabolites and hormones that provide 
+chemical signals to our bodies. These signals can act locally in the gut 
+and can also have larger systemic effects, for example by sending signals 
+through the vagus nerve to the brain via the 'gut-brain axis' (REFS?!). 
+Because of this complex interplay between host and microbes, many 
+diseases have been hypothesized to have associations with the gut 
+microbiome.
 
-Because of its important role in human physiology, many disorders are 
-related to a dysfunctional intestinal tract. Metabolic syndromes like 
-obesity and diabetes 
+The relationship between the gut microbiome and obesity has been 
+extensively studied in mouse models and human patients. These studies
+have found encouraging results and causal associations in mice but 
+relatively little consensus in humans (REFS, incl jump, look at escobar 
+paper for good conflicting refs). Related disorders like metabolic 
+syndrome and diabetes have also been examined, with little consensus and 
+speficic microbial markers (TODO: edit after reading papers!). 
+Inflammatory bowel disease (IBD) is a chronic disease characterized by 
+mucosal inflammation of the GI tract. Animal studies relating gut 
+microbes, immune function, and IBD have pointed to an important role for 
+bacteria in affecting the progression of IBD \cite{tamboli-ibd-2004}. 
+Recent 16S studies have focused on classifying IBD patients based on 
+their fecal microbiota and on identifying discriminatory taxa in stool \cite{papa}, \cite{gevers}, yielding mixed results. 
+Colorectal cancer (CRC) has long been associated with the intestinal 
+microbiome, with bacterial metabolites thought to contribute to the 
+development of CRC and specific bacteria having been isolated from CRC 
+tumors (zhao, xiang). 16S studies have analyzed disease associations with 
+tumor- and lumen-associated microbiota, and have consistently found 
+enrichment of the \textit{Fusobacterium} genus in CRC patients. Diarrheal 
+diseases caused by intestinal pathogens have also been extensively 
+surveyed using 16S methods, especially in the context of 
+\textit{Clostridium difficile} infection (CDI) and related fecal 
+microbiota transplants (REFS). Finally, diseases like rheumatoid 
+arthritis, autism, Parkinson's, HIV, MHE, and others have also been 
+examined for microbial associations, though these fields remain 
+relatively unexplored (REFS).
 
 \subsection{Analytical background and significance}
 
@@ -756,10 +793,28 @@ simply ``what's different?'' toward a more critical interpretation of
 \textit{Three to four pages}
 
 \subsection{Aim 1}
-\subsubsection{Microbiome community sharedness}
-Look what I can do ma.
+\subsubsection{Microbiome community exchange}
+Using our definition of $p_s$ (\ref{sec:exchange}), we identified over 100
+OTUs exchanged across sites of the aerodigestive tract.
+As expected, the majority of these were exchanged between the throat and stomach.
+Interestingly, the stomach and lungs also had a significant
+amount of microbial exchange, and these communities were almost as similar to
+each other as the throat and stomach communities were. 
+These findings support the hypothesis that frequent microaspiration
+of gastric contents into the lungs is occurring. While certain bacteria
+may be preferentially exchanged between the lungs and stomach, the lower 
+number of exchanged microbes as compared to the throat and lungs, combined with
+the similar similarity of communities, indicates that much of the exchange may
+be more stochastic, and not selecting for specific community members
+across many patients.
+Finally, we observed a decreasing trend in number of exchange microbes 
+across throat-stomach, lung-stomach, and throat-lung sites, respectively, 
+for all phyla except Proteobacteria. More Proteobacteria were exchanged 
+between lungs and stomach than throat and stomach. Proteobacteria are 
+known aerobes, and so may be preferentially selected for colonization in 
+the lungs after microaspiration from the stomach.
 
-\subsubsection{Modulators of sharedness}
+\subsubsection{Modulators of community exchange}
 And here!
 
 \subsection{Aim 2}
@@ -800,6 +855,9 @@ in health and disease. We will identify consistent markers of disease
 by using standard meta-analysis methods, comparing the effect sizes 
 and directionality of bacteria across studies, and using Fisher's 
 method to determine overall significant of a microbe (REFS). 
+
+"Thus, humans are super organisms: http://science.sciencemag.org/content/312/5778/1355"
+
 
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
