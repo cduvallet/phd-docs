@@ -25,13 +25,36 @@
 \tableofcontents
 
 \begin{abstract}
-Analyzing the microbiome is hard. Getting clinical insights from analyses is even harder. I'm gonna do some analyses to give us insight into an under-studied clinical microbial system, do some meta-analyses to get direly-needed biological consensus on gut microbiome and disease, and propose a new tool for analyzing 16S datasets.
+Researchers and clinicians have long appreciated the contribution of microbes
+to human disease. Recently, many studies have moved from analyzing the effect of
+individual microbes on human health to studying the complex interactions between
+microbial communities and their human hosts, due in large part to developments
+in high throughput DNA sequencing. We are beginning to understand
+that microbial communities are involved in disease and are also
+integral to human health,
+but there remains no clear understanding on the precise relationships between human 
+microbial communities and disease. Certain microbial communities, like those
+of the aerodigestive tract, remain drastically under-studied. On the other hand,
+the gut microbiome is extensively studied but lacks
+a synthesized understanding of the relationship between alterations in its
+microbes to disease in general and to specific diseases.
+This thesis will expand our understanding of the clinical relevance
+of the human microbiome by characterizing the 
+understudied aerodigestive tract microbiome,
+synthesizing results from gut microbiome case-control studies across
+all studied disease states, and developing a tool to enable generalizable analysis
+of microbial communities. This work will identify promising candidates and approaches
+for follow-up mechanistic studies, and will move the field toward a more
+translationally-relevant understanding of the relationship between our microbes
+and our health.
+
+
+
 \end{abstract}
 \newpage
 
 \section{Overall objectives and specific aims}
 \subsection{Overall objectives}
-
 In spite of the recent increase in research on the human 
 microbiome, there is not a clear consensus on the relationship between 
 human microbial communities and disease. The microbiota of 
@@ -815,14 +838,68 @@ known aerobes, and so may be preferentially selected for colonization in
 the lungs after microaspiration from the stomach.
 
 \subsubsection{Modulators of community exchange}
-And here!
+We observed a distinct difference in the amount of exchange between the 
+throat and lungs of aspirators versus patients with normal MBS results.
+We looked at the previously-defined microbes that were exchanged between 
+the throat and lungs and re-caculated $p_s$, the percent of patients
+who have that microbe present in both sites, for the aspirator and 
+non-aspirator groups separately. 25\% of aspirators shared
+these microbes across their throats and lungs, while only 13\% of 
+non-aspirators did. Additionally, the throat and lung communities
+were significantly more similar in aspirating patients than non-aspirators. These results indicate that a consequence of abnormal swallowing
+dysfunction is likely a seeding of the lungs with oral bacteria.
+Interestingly, the stomach and lung communities of aspirating
+patients were slightly more similar to each other than in non-aspirators.
+By definition, aspirating patients are unable to protect their airways
+from foreign material - while most apparent in swallowing, such dysfunction
+may also enable more material to move between the stomach and lungs as well.
+
+The effect of reflux on the stomach-lung connection was less striking 
+but still apparent. Specifically, the stomach and lung communities were
+more similar to each other in patients with very frequent full-column reflux. However, here was no significant difference in the extent of
+microbial exchange between the stomach and lungs. In other words,
+the previously-defined stomach-lung exchanged microbes were as likely
+to be found in both sites in patients with frequent full-column reflux
+than in patients with less severe reflux. This may indicate a more
+stochastic seeding of the lungs from the stomach rather than reproducible
+exchange of the same microbes across patients. In this case, stomach 
+microbes are not necessarily growing in the lungs but nonetheless do have 
+measurable impact on the lung's microbial community.
 
 \subsection{Aim 2}
-\subsubsection{Collect datasets}
-Check out what I got!
+\subsubsection{Collecting and reprocessing 16S case-control datasets}
+Our extensive literature review has so far identified 54 suitable case-control 16S datasets.
+29 datasets and their associated metadata have been downloaded and processed through our in-house pipeline.
+Characteristics of these datasets are shown in Table \ref{tab:datasets}
 
-\subsubsection{Find consistent microbes}
-PCA, alpha diversity, comparing microbial signatures, consistency of significant OTUs.
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	\textbf{Dataset ID} & \textbf{Diseases} & \textbf{Median reads/sample} & \textbf{Year} & \textbf{Platform} & \textbf{Region} \\
+	\hline 
+\end{tabular}
+\caption{Datasets}\label{tab:datasets}
+\end{table}
+
+\subsubsection{Identify general patterns of health and diseases}
+We first summarized overall community structure using Shannon's alpha diversity
+index (SDI). We observed significant batch effects across studies, likely due to
+the differences in sequencing depth. After standardizing SDI within studies
+and combining similar disease states, we observed little difference in overall
+community structure between cases and controls. An exception to this was seen
+in diarrheal diseases (\textit{Clostridium difficile} infection and enteric 
+diarrheal disease), in which alpha diversity was significantly lower in the cases. 
+
+We next performed univariate comparisons at the genus level for abundance in cases 
+vs. controls for each study. This analysis revealed a similar result: diarrheal 
+diseases showed striking shifts in many microbes, while other
+diseases had less obvious patterns of dysbiosis. We observed that many bacteria
+seemed to have relatively consistent shifts between cases and controls across many
+different diseases \ref{fig:pval_heatmap}. This supports the hypothesis that
+there is a general signature for disease, in other words, that sick people have 
+altered microbiomes. In light of this finding, identifying microbial shifts that 
+are unique to individual diseases will be crucial to finding specific biomarkers
+for diagnostic purposes and to motivate mechanistic investigations.
 
 \section{Gud werds}
 We hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain disease states. 
