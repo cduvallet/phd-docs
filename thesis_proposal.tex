@@ -57,26 +57,27 @@ and our health.
 \subsection{Overall objectives}
 In spite of the recent increase in research on the human 
 microbiome, there is not a clear consensus on the relationship between 
-human microbial communities and disease. The microbiota of 
-the aerodigestive tract is poorly studied, and we have little understanding 
-of how the microbial communities in different aeordigest sites are related or 
-affected by disease. In contrast, the gut microbiome has 
-been extensively studied through many case-control studies. 
-However, these studies have frequently yielded inconsistent or incomparable 
-results. Existing meta-analyses have not extended to more than one or two 
-diseases, and thus can not determine whether significant microbes are 
-associated with specific diseases or with disease in general. 
-Finally, there are no existing tools that can be used to extract general 
-biological insights from groups of disease-associated microbes.
+human microbial communities and disease. Microbes colonize our entire bodies,
+supplementing our own functions, priming and training our immune 
+systems, providing resistance to colonization 
+by pathogens, and contributing to maintenance of health or progression of disease (REF). 
+However, our knowledge of the human microbiome is imbalanced: some
+body sites are much more extensively studied than others. 
+Additionally, even the most extensively studied body sites lack a 
+synthesized understanding of the clinical relevance of all studied human-microbe associations. 
+Finally, translating microbial associations into biological hypotheses
+remains challenging due to the lack of centralized tools and databases
+for assigning biological meaning to groups of microbes.
 
 This thesis will expand our understanding of the clinical microbiome in three ways.
 First, I will characterize the relationships between the microbial communities
 of the aerodigestive tract and their associations with clinical factors, 
 increasing our basic understanding of this under-studied system.
 Next, I will perform a meta-analysis of published case-control gut microbiome studies
-across many disease states, identifying consistent microbial markers of health and disease.
-Finally, I will curate groups of biologically related microbes, 
-thus enabling enrichment analyses and generalizable interpretations
+across many disease states, synthesizing the extensive existing studies by 
+identifying consistent microbial markers of health and disease.
+Finally, I will curate groups of biologically related microbes
+to enable enrichment analyses and generalizable interpretations
 of results from microbiome studies. 
 
 \subsection{Specific Aims}
@@ -85,7 +86,7 @@ of results from microbiome studies.
 	community characteristics associated with gastro-esophogeal reflux 
 	disease and aspiration.
 	\begin{enumerate}
-		\item Determine how lung, gastric, and throat microbial 
+		\item Quantify how lung, gastric, and throat microbial 
 		communities are related.
 		\item Identify clinical modulators of lung, gastric, and 
 		throat microbial communities.
@@ -119,9 +120,19 @@ of results from microbiome studies.
 \section{Background and significance}
 \textit{Three to five pages}
 
-\subsection{Biological background and significance}
+The topics addressed in this thesis are broad, but are all connected by
+the motivation to better understand
+clinically-relevant associations between microbes and their human hosts.
+My work will focus on the microbial communities of two major body systems:
+the aerodigestive and gastrointestinal tracts. To study these, I will 
+use a combination of traditional analytical techniques, supplemented by 
+novel methods as required. This section will provide background on
+the aerodigestive tract, the gut microbiome, and analytical techniques 
+used in microbiome studies. 
 
-\subsubsection{Aerodigestive tract}
+\subsection{Aerodigestive tract}
+
+\subsubsection{Physiology and disease}
 The aerodigestive tract consists of the upper gastrointestinal and 
 respiratory tracts (REF). From an engineering perspective, the 
 stomach, throat, and lungs can be thought of as different compartments 
@@ -137,8 +148,6 @@ Thus, while the throat, stomach, and lung "compartments" are
 physically connected, the amount of material, including bacteria, 
 flowing between them is not readily apparent. 
 
-\subsubsection{Gastro-esophogeal reflux disease and aspiration}
-
 Gastro-esophogeal reflux disease (GERD) is set of syndromes in which 
 the reflux of stomach contents leads to troublesome symptoms or 
 complications \cite{vakil-gerd_defn-2006},\cite{dent-gerd_epi-2005}
@@ -147,9 +156,18 @@ are regurgitation and heartburn, but the disease may also present
 asymptomatically\cite{vakil-gerd_defn-2006},\cite{dent-gerd_epi-2005}. 
 GERD can be diagnosed by demonstrating reflux of gastric contents (via 
 pH and impedance monitoring), injury to the esophogus (via endoscopy), 
-or based on symptoms alone\cite{vakil-gerd_defn-2006}. 
+or based on symptoms alone\cite{vakil-gerd_defn-2006}. GERD affects
+A LOT OF PEOPLE and can lead to severe complications such as Barrett's 
+esophagus (REF). Proton-pump inhibitors (PPIs) are often prescribed for GERD,
+though long-term adverse effects of these drugs is becoming more widely understood (REFS - the PPI microbiome ref).
+In cases of severe reflux, fundoplication surgery may
+be recommended, in which part of the stomach is wrapped around the 
+esophagus to prevent refluxate from leaving the stomach and going up
+into the esophagus (REF). 
 
-Aspiration is the inhalation of foreign material such as food or 
+Aspiration is another complex aerodigestive condition which may result
+from dysfunctional swallowing or through other mechanisms, the etiology and consequences of which are unclear.
+Clinically, aspiration is defined as the inhalation of foreign material such as food or 
 gastric contents into the lungs \cite{raghavendran-asp_injury-2011}. 
 Most aspiration events are unwitnessed without obvious outward signs 
 or symptoms, and may involved large quantities of aspirated material 
@@ -177,8 +195,7 @@ methods and have not undergone clinical validation
 the issue is that many healthy patients have a baseline level of 
 micro-aspiration (REF).
 
-\subsubsection{GERD, aspiration, and respiratory disease}
-GERD is associated with many respiratory diseases, but the precise 
+GERD and aspiration are thought to be associated with many respiratory diseases, but the precise 
 link and mechanisms underlying these associations remains very unclear 
 \cite{houghton-microaspiration-2016}. The prevalence of GERD in 
 respiratory diseases has been estimated to be up to 90\% for some 
@@ -200,78 +217,64 @@ be established \cite{almomani-cf_sputum-2016},\cite{houghton-microaspiration-201
 \subsubsection{Microbiome of the aerodigestive tract}
 The microbiota of the human lungs and stomachs are among the least 
 well-studied human-associated microbial communities. In fact, the 
-lungs are classically thought to be sterile and free of bacteria in 
+lungs have classically thought to be sterile and free of bacteria in 
 healthy people \cite{charslon-topographical-2011},\cite{bassis-source-2015}. 
 Neither gastric nor lung sites were included in the 
 Human Microbiome Project, leading to a dearth of studies and data on 
-these important body sites (HMP REF). However, subsequent studies have 
-found suggestions that aerodigestive tract sites are microbially 
-related, and that these microbiomes are altered in certain disease 
-states (REFS).
+these important body sites (HMP REF). However, both culture-based
+and culture-independent studies of the lung microbiome have recovered
+bacteria, mostly of the \textit{Prevotella}, \textit{Veillonella}, and \textit{Streptococcus} genera \cite{bassis-source-2015}. The most well-studied
+microbial disease associations in the lungs has been with cystic fibrosis,
+since the majority of its morbidity is related to bacterial infections
+in the lungs \cite{almomani-cf_sputum-2016}. Additional studies have
+examined the microbiome of patients with chronic obstructive 
+pulmonary disorder, smokers, and patients on PPIs \cite{erbdownward-copd-2011}.
+Although the balance between factors that shape the lung microbiome 
+remains to be fully elucidated, it is clear that the lungs
+contain microbial communities which result from
+immigration, elimination, and active colonization of microbes 
+throughout the respiratory tract \cite{bassis-source-2015}.
+Many studies of the gastric microbiome have focused
+on the pathogen \textit{Helicobacter pylori} and its effect on  
+gastric microbial communities (REFS). Culture-independent analyses 
+of both the mucosal-associated and gastric fluid microbiota
+have identified diverse communities AND SOMETHING SOMETHING.
 
-Few studies have examined the relationship between sites of the upper 
-aerodigestive tract \cite{bassis-source-2015}. Bassis et al. found 
-that oral microbial communities were more similar to both stomach and 
-lung communities than nasal communities. However, these authors did 
-not examine the inter-relationships between all sites - their driving 
-hypothesis was that the mouth is the source of the downstream 
-communities. In this work, we will take a broader view: which of the 
-upper aerodigestive body sites exchange microbes, are these the same 
-microbes across multiple patients, and are there  patterns for these 
-shared microbes? 
+Previous studies have examined the relationship between microbial communitis in  the upper 
+aerodigestive tract, with conflicting results \cite{bassis-source-2015}, \cite{rosen-ppi-2015}, \cite{charslon-topographical-2011}, \cite{almomani-cf_sputum-2016}. 
+Some have shown striking similarities in the microbial
+communities across the respiratory tract \cite{almomani-cf_sputum-2016}, \cite{bassis-source-2015} while others
+argue that different sites have distinct microbial communities \cite{rosen-ppi-2015},
+and that these may vary even within individual sites like the lungs \cite{erbdownward-copd-2011}, (MAYBE TAMI'S PAPER?).
 
-\subsubsection{Lower gastrointestinal tract: physiology and microbiome}
-The human gastrointestinal tract is integral to health and disease. 
-Its primary function is to digest food and absorb nutrients, and it 
-also plays important roles in many other aspects of physiology. For 
-example, it is the largest secretor of serotonin and something else 
-(blood flow??) (REF?!). The lower gastrointestinal tract is populated 
-by a complex microbial community, which serves important functions in 
-digesting and salvaging additional nutrients, interacting with the 
-immune system, and protecting the gut from invasion by pathogenic 
-organisms (REF). 
+\subsection{Gut microbiome}
 
-We know that the microbial communities in our guts are unique to 
-individuals (REF), modifiable on short- and long-term scales (HuGE REF), and integral to our overall health (REF). 
-Fecal microbiota transplants have demonstrated the incredible
-causal ability of the microbiome to affect health in 
-human patients. Germ-free mouse models have shown that microbes are
-necessary for healthy functioning, and specific animal models have  
-allowed for probing mechanistic understanding of host-microbial 
-interactions (autism 440 ref, gordon mouse experiment ref). 
+\subsubsection{Gut microbiome in health and disease}
 
-Many case-control studies examining the association between gut microbial 
-disease and putatively associated gut-related diseases exist, but there
-is little consensus among or synthesis of the existing research.
-A few meta-analyses have been recently undertaken to leverage multiple
-studies based on similar disease states. However, these studies have
-rarely found consistent signals and fail to account for the broad
-variety of disease states which are thought to be microbially-related
-(meta-analysis REFS). Thus, the current field of clinically-motivated
-microbiome science lacks a synthesized understanding of the relationship
-between gut microbial communities and disease states across the broad
-range of previously studied conditions.
-
-
-\subsubsection{Microbiome/disease associations of the lower gastrointestinal tract}
+The human gastrointestinal tract is integral to health and disease
+and its microbiota is, in turn, integral to its functioning.
+The intestine digests food and absorbs nutrients, and  
+also plays important roles in maintaining metabolic homeostasis, 
+regulating hormone levels, and communicating sensory signals with the brain (REFS).
 The microbes in our guts provide essential functions to our well being. 
 They help us harvest energy from the food we eat and digest otherwise 
 undigestible fibers, train our immune system, break down xenobiotics and 
 other foreign products, and release metabolites and hormones that provide 
-chemical signals to our bodies. These signals can act locally in the gut 
+chemical signals to our body's regulatory mechanisms. These signals can act locally in the gut 
 and can also have larger systemic effects, for example by sending signals 
 through the vagus nerve to the brain via the 'gut-brain axis' (REFS?!). 
+
 Because of this complex interplay between host and microbes, many 
 diseases have been hypothesized to have associations with the gut 
-microbiome.
-
+microbiome. These include metabolic disorders,
+inflammatory and auto-immune diseases, pathogenic diarrhea, and others.
 The relationship between the gut microbiome and obesity has been 
 extensively studied in mouse models and human patients. These studies
 have found encouraging results and causal associations in mice but 
 relatively little consensus in humans (REFS, incl jump, look at escobar 
 paper for good conflicting refs). Related disorders like metabolic 
 syndrome and diabetes have also been examined, with little consensus and 
-speficic microbial markers (TODO: edit after reading papers!). 
+specific microbial markers (TODO: edit after reading papers!). 
 Inflammatory bowel disease (IBD) is a chronic disease characterized by 
 mucosal inflammation of the GI tract. Animal studies relating gut 
 microbes, immune function, and IBD have pointed to an important role for 
@@ -283,8 +286,8 @@ microbiome, with bacterial metabolites thought to contribute to the
 development of CRC and specific bacteria having been isolated from CRC 
 tumors (zhao, xiang). 16S studies have analyzed disease associations with 
 tumor- and lumen-associated microbiota, and have consistently found 
-enrichment of the \textit{Fusobacterium} genus in CRC patients. Diarrheal 
-diseases caused by intestinal pathogens have also been extensively 
+enrichment of the \textit{Fusobacterium} genus in CRC patients. 
+Diarrheal diseases caused by intestinal pathogens have also been extensively 
 surveyed using 16S methods, especially in the context of 
 \textit{Clostridium difficile} infection (CDI) and related fecal 
 microbiota transplants (REFS). Finally, diseases like rheumatoid 
@@ -292,95 +295,102 @@ arthritis, autism, Parkinson's, HIV, MHE, and others have also been
 examined for microbial associations, though these fields remain 
 relatively unexplored (REFS).
 
+\subsubsection{Synthesizing existing knowledge}
+
+Although specific microbiome-disease associations remain unclear, general characteristics
+of the gut microbiome are relatively well-known. People have unique gut microbial 
+communities, very few microbes can be consistently found across the majority of people,
+and many gut communities are dominated by one or two phyla (Bacteroidetes and Firmicutes) (HMP REF).
+Our gut microbiome is stable over time and can change rapidly in response to 
+disease, antibiotics, travel, and diet. These perturbations can be fully reversible
+and can also have long-term effects \cite{david-huge-2012}.
+Dysbiosis is often discussed as an ``imbalance'' of gut microbes, though
+is generally applied to mean any community disruption related to disease (REFS).
+Generally, less diverse communities are thought to be associated with disease,
+though many recent studies find no such associations (REFS).
+Early mouse studies associated the ratio of Bacteroidetes to Firmicutes with
+altered phenotypes, but few subsequent studies have found similar associations
+in human patients (mouse REF, BF REFS). 
+
+Combining existing studies to increase our ability to find consistent
+disease associations is a promising approach, but the most recent of these meta-analyses
+have had mixed results \cite{walters-ob_meta-2014}, \cite{sze-signal-2016}. 
+In some cases like IBD, strong and consistent 
+signals can be found across studies but no specific microbes have 
+been found to be consistently associated with the condition \cite{walters-ob_meta-2014}. Meta-analyses of obesity studies also tend 
+to find no clear taxonomic associations with obesity \cite{sze-signal-2016}, \cite{walters-ob_meta-2014}. 
+Other meta-analysis studies are not relevant to extracting 
+clinically-relevant microbial associations: many of these test the 
+ability of various statistical and machine learning methods
+to extract biomarkers or classify disease states, without much
+interpreation of what the statistical results mean clinically
+\cite{knights-supervised-2010}, \cite{lozupone-meta-2013}, \cite{BIOMARKERS-PAPERS-the-one-in-asana}.
+
 \subsection{Analytical background and significance}
 
-\subsubsection{Data generation and challenges}
-The advent of high throughput next generation sequencing has enabled 
-culture-independent analyses of complex microbial communities. 
-Briefly, DNA is extracted from biological samples of interest and a 
-portion of the universal bacterial 16S region is amplified. Data is 
-sequenced using a variety of available technologies such as 454 
-Pyrosequencing or, more recently, Illumina HiSeq or MiSeq (REFS). The 
-resulting reads are quality-controlled and processed into Operational 
-Taxonomic Units (OTUs), clusters of similar sequences which serve as 
-proxies for bacterial species. OTUs can be assigned bacterial 
-taxonomies using a variety of methods, for example by mapping them to 
-annotated reference genomes or using Bayesian inference trained on a 
-reference set of annotated bacteria (GG and RDP REFS). 
+\subsubsection{Data generation, analysis and associated challenges} 
+A common way that researchers study the human microbiome is to do 
+amplicon-based next generation sequencing of the complex microbial 
+communities. This culture-independent method begins with extracting
+DNA from a sample of interest, amplifiying the universally conserved
+bacterial 16S rRNA gene, and sequencing by one of the available technologies such as 454 
+Pyrosequencing or, more recently, Illumina HiSeq or MiSeq (REFS). 
+The resulting reads are quality-controlled and often processed into Operational Taxonomic Units (OTUs), 
+clusters of similar sequences which serve as proxies for bacterial 
+species. To interpret results, researchers assign taxonomies to 
+OTUs using a variety of methods, for example by mapping them to 
+annotated reference genomes or using Bayesian inference trained on 
+a reference set of annotated bacteria (GG and RDP REFS). Each of 
+these processing steps affects the eventual output data, and there
+are no accepted standardized methods followed by all studies.
 
-The resulting datasets are often very high-dimensional, with hundreds 
+The data that results from these surveys can be very challenging to analyze.
+The datasets are often very high-dimensional, with hundreds 
 of OTUs present in a given cohort which may only have tens of samples. 
 The data is also incredibly sparse: only very few OTUs tend to be 
 present in many of the samples, and most entries in the data matrix 
-are zeros. Furthermore, technical artifacts such as DNA extraction and 
-PCR amplification biases are known issues that lead to strong batch 
-effects across different studies. Different data processing, quality 
-filtering, and name-assignment methods also lead to strong batch 
-effects. For example, different taxonomy databases contain different 
+are zeros. 
+Furthermore, strong batch effects between studies results from 
+differences in experimental and computational processing steps.
+For example, different taxonomy databases contain different 
 microbes or conflicting names for the same bacteria, making it 
 difficult to compare even published, annotated results across studies.  
 These issues may be major contributors to the lack of consensus on the 
-role of the microbiome in disease, in spite of the availability of 
-many studies.
+role of the microbiome in disease, in spite of the broad availability of data and studies.
 
-\subsubsection{Current analytical approaches for 16S analyses}
 While there exist no established standards for processing or analyzing 
 16S data, most studies take similar approaches to gleaning insight 
-from case-control cohorts. Alpha diversity, the diversity of species 
-within each sample, is usually compared for case and control groups. 
-Many studies have found slight indications that alpha diversity is 
-higher in healthy patients (REF). Beta diversity, the diversity 
-between samples, is also frequently compared to understand whether 
-samples within the control or case group are more similar to each 
-other than they are to the other group. Finally, most studies perform 
+from case-control cohorts. 
+ Alpha diversity, the diversity of species within each sample, is usually compared across groups of interest. 
+Beta diversity, the diversity between samples, is also frequently compared to understand whether 
+samples within groups are more similar to each 
+other than they are to the other group(s). Finally, most studies perform 
 univariate non-parametric tests on the abundance of OTUs to find 
-bacteria significantly associated with disease or health. These 
-analyses suffer from high-dimenstionality coupled with low power (few 
-samples) - after multiple hypothesis testing corrections, many studies 
-yield no significant results (REF).
+bacteria significantly associated with the condition of interest. 
+However, because of the high-dimensionality of the data and the 
+often very low sample sizes, many studies yield no significant
+results (REFS).
 
-Existing meta-analyses of microbiome datasets often focus on healthy 
-patients or on just one or two diseases \cite{walters-ob_meta-2014}, \cite{sze-signal-2016}. These meta-analyses 
-have had mixed results. In some cases like IBD, strong and consistent 
-signals can be found across studies and in other cases. A meta-
-analysis of obesity studies found no clear taxonomic signal, and a 
-difference in alpha diversity that was significant but likely too 
-small to be biologically relevant\cite{sze-signal-2016}. Another study 
-found no clear results in obesity datasets but did identify a strong 
-signal associated with IBD across multiple datasets \cite{walters-ob_meta-2014}. 
-Every meta-analysis performed on 16S data has observed 
-strong batch effects between studies and noted the need for large 
-sample sizes to extract any meaningful signal \cite{sze-signal-2016},
-\cite{walters-ob_meta-2014},\cite{knights-supervised-2010},
-\cite{lozupone-meta-2013}. 
+\subsubsection{Interpreting taxonomy-based analyses}\label{sec:gsea}
+Few analytical tools exist to interpret the lists of
+significant OTUs which often result from 16S analyses into biological hypotheses. 
+Similar groups of bacteria are frequently associated with health or 
+disease states, but identifying the patterns which group these bateria 
+remains a manual task for researchers. 
+Typically, once significant OTUs are found for a certain condition,
+researchers perform a literature search and hope to find 
+previous mechanistic studies on these bacteria.
+Other more seasoned researchers can often look at a list and infer
+over-representation of certain phenotypes, such as spore-formers
+or short-chain fatty acid-producing bacteria.
 
-Additionally, many of the most successful existing meta-analyses 
-combine vastly different types of microbial communities and non-case-
-control experimental designs. The positive results from these studies 
-are not particularly biologically insightful: it is a much easier task 
-to differentiate vastly different communities (like the skin vs. the 
-gut) than it is to differentiate subtleties contributing to health and 
-disease (like the inflamed gut vs. the healthy gut) \cite{knights-supervised-2010}.
-
-\subsubsection{Databases and tools for annotations}\label{sec:gsea}
-Few analytical tools exist to motivate biological hypotheses from the 
-results of high-throughput case-control microbiome studies. Although 
-studies often yield some significant OTU-disease associations, 
-assigning biological interpretations to such results remains 
-challenging. For example, the importance of short-chain fatty acid 
-(SCFA) producers is well-accepted in IBD, and may play in a role in 
-many other diseases as well (REFS). However, directly identifying 
-enrichment of functionally-related bacteria (such as SCFA-producing 
-bacteria) is not currently possible. Instead, researchers face the 
-task of interpreting lists of individual OTUs into common biological 
-themes or functions on their own \cite{subramanian-gsea-2005}. 
-
-Enrichment analysis is a powerful way to identify biologically 
+Enrichment analysis is a powerful way to directly identify biologically 
 meaningful patterns in high-dimensional data. Enrichment analysis is 
 widely used in RNA expression studies and has been proposed for use in 
 metabolomics studies (\cite{subramanian-gsea-2005}, 
-\cite{xia-msea-2010}. In Gene Set Enrichment Analysis (GSEA), genes are first 
-ranked by differential expression between two conditions. Then, 
+\cite{xia-msea-2010}. Gene Set Enrichment Analysis (GSEA) introduced
+this statistical method to biomedical applications. In GSEA, genes are 
+ranked by their differential expression between two conditions. Then, 
 \textit{a priori}-defined groups of related genes are analzed for 
 over- or under-representation at either end of the ranked list. Rather 
 than asking whether individual genes are correlated with a phenotype, 
@@ -389,10 +399,14 @@ together. This allows for identification of significant phenotypes
 where individual genes do not exhibit large enough changes to reach 
 significance on their own. It also enables more direct biological 
 interpretation, since the gene sets are defined \textit{a priori} 
-based on biological knowledge. 
+based on biological knowledge. Enrichment analyses like GSEA
+could be incredibly useful in microbiome studies, where 
+many phenotype associations are likely to result from groups of
+bacteria working together, and high-dimensional datasets
+frequently produce few significant OTU-level phenotype associations.
 
-GSEA relies on the existence of curated gene sets, which has no 
-existing analog (\textit{i.e.}, microbe sets) in microbial databases. 
+Enrichment analyses rely upon the existence of curated sets of the features of interest (i.e. genes, metabolites, or microbes).
+No such grouping of microbes, i.e. \textit{microbe sets}, currently exist. 
 In GSEA, genes were grouped into gene sets based on their common 
 pathways, functions, locations in the chromosome, and associations 
 with disease. Similar annotations exist in some microbial databases, 
@@ -407,7 +421,7 @@ Finally, bioinformatic tools have been developed that can infer functional
 content (PICRUST) \cite{langille-picrust-2013} or metabolic pathways 
 (HUMANN) \cite{abubucker-humann-2012} from 16S data. Again, 
 these tools are dataset-specific and have not been generalized to 
-define biologically related groups of organisms.
+define biologically related groups of organisms in a study-independent way.
 
 \section{Research design and methods}
 \textit{Six to eight pages}
@@ -934,6 +948,40 @@ and directionality of bacteria across studies, and using Fisher's
 method to determine overall significant of a microbe (REFS). 
 
 "Thus, humans are super organisms: http://science.sciencemag.org/content/312/5778/1355"
+
+The microbiota of 
+the aerodigestive tract is poorly studied, and we have little understanding 
+of how the microbial communities in different aeordigest sites are related or 
+affected by disease. In contrast, the gut microbiome has 
+been extensively studied through many case-control studies. 
+However, these studies have frequently yielded inconsistent or incomparable 
+results. Existing meta-analyses have not extended to more than one or two 
+diseases, and thus can not determine whether significant microbes are 
+associated with specific diseases or with disease in general. 
+Finally, there are no existing tools that can be used to extract general 
+biological insights from groups of disease-associated microbes.
+
+Fecal microbiota transplants have demonstrated the incredible
+causal ability of the microbiome to affect health in 
+human patients. Germ-free mouse models have shown that microbes are
+necessary for healthy functioning, and specific animal models have  
+allowed for probing mechanistic understanding of host-microbial 
+interactions (autism 440 ref, gordon mouse experiment ref). 
+
+Additionally, many of the most successful existing meta-analyses 
+combine vastly different types of microbial communities and non-case-
+control experimental designs. The positive results from these studies 
+are not particularly biologically insightful: it is a much easier task 
+to differentiate vastly different communities (like the skin vs. the 
+gut) than it is to differentiate subtleties contributing to health and 
+disease (like the inflamed gut vs. the healthy gut) \cite{knights-supervised-2010}.
+
+Every meta-analysis performed on 16S data has observed 
+strong batch effects between studies and noted the need for large 
+sample sizes to extract any meaningful signal \cite{sze-signal-2016},
+\cite{walters-ob_meta-2014},\cite{knights-supervised-2010},
+\cite{lozupone-meta-2013}. 
+
 
 
 \bibliographystyle{unsrtnat}
