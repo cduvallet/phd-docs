@@ -58,14 +58,14 @@ and our health.
 In spite of the recent increase in research on the human 
 microbiome, there is not a clear consensus on the relationship between 
 human microbial communities and disease. Microbes colonize our entire bodies,
-supplementing our own functions, priming and training our immune 
+supplementing our body's functions, priming and training our immune 
 systems, providing resistance to colonization 
-by pathogens, and contributing to maintenance of health or progression of disease (REF). 
-However, our knowledge of the human microbiome is imbalanced: some
-body sites are much more extensively studied than others. 
-Additionally, even the most extensively studied body sites lack a 
-synthesized understanding of the clinical relevance of all studied human-microbe associations. 
-Finally, translating microbial associations into biological hypotheses
+by pathogens, and contributing to maintenance of health or progression of disease. 
+However, major knowledge gaps exist in this field. 
+The microbiota of certain body sites have been much less studied than others, and 
+even the most extensively studied body sites lack a 
+synthesized understanding of the clinical relevance of human-microbe associations. 
+Additionally, translating microbial associations into biological hypotheses
 remains challenging due to the lack of centralized tools and databases
 for assigning biological meaning to groups of microbes.
 
@@ -74,7 +74,7 @@ First, I will characterize the relationships between the microbial communities
 of the aerodigestive tract and their associations with clinical factors, 
 increasing our basic understanding of this under-studied system.
 Next, I will perform a meta-analysis of published case-control gut microbiome studies
-across many disease states, synthesizing the extensive existing studies by 
+across many disease states, synthesizing many existing studies by 
 identifying consistent microbial markers of health and disease.
 Finally, I will curate groups of biologically related microbes
 to enable enrichment analyses and generalizable interpretations
@@ -86,12 +86,12 @@ of results from microbiome studies.
 	community characteristics associated with gastro-esophogeal reflux 
 	disease and aspiration.
 	\begin{enumerate}
-		\item Quantify how lung, gastric, and throat microbial 
-		communities are related.
+		\item Quantify relationships between lung, gastric, and throat microbial 
+		communities.
 		\item Identify clinical modulators of lung, gastric, and 
 		throat microbial communities.
 	\end{enumerate}
-	\item[Aim 2] Perform a meta-analysis of case-control gut 
+	\item[Aim 2] Perform a meta-analysis of gut 
 	microbiome studies to identify consistent microbial signatures 
 	within and across multiple diseases.
 	\begin{enumerate}
@@ -103,14 +103,14 @@ of results from microbiome studies.
 		diseases by comparing their microbial characteristics.
 	\end{enumerate}
 	\item[Aim 3] Enable generalizable interpretations of microbiome 
-	analyses by assigning bacteria to groups with similar functions 
+	analyses by assigning bacteria to groups with similar characteristics 
 	and known associations with disease.
 	\begin{enumerate}
 		\item Combine existing databases with targeted literature searches 
 		to define \textit{microbe sets} based on known biological 
 		relationships.
-		\item Use machine-learning techniques to extract disease-
-		associated \textit{microbe sets} from datasets collected in Aim 2.
+		\item Use machine-learning techniques to extract disease-associated 
+		\textit{microbe sets} from datasets collected in Aim 2.
 		\item Develop these \textit{microbe sets} into a collaborative 
 		tool for use in interpreting new microbiome studies.
 	\end{enumerate}
@@ -120,52 +120,60 @@ of results from microbiome studies.
 \section{Background and significance}
 \textit{Three to five pages}
 
-The topics addressed in this thesis are broad, but are all connected by
+The topics addressed in this thesis are broad, and are all connected by
 the motivation to better understand
 clinically-relevant associations between microbes and their human hosts.
 My work will focus on the microbial communities of two major body systems:
 the aerodigestive and gastrointestinal tracts. To study these, I will 
 use a combination of traditional analytical techniques, supplemented by 
 novel methods as required. This section will provide background on
-the aerodigestive tract, the gut microbiome, and analytical techniques 
+the aerodigestive tract, the gut microbiome, and current analytical techniques 
 used in microbiome studies. 
 
 \subsection{Aerodigestive tract}
 
 \subsubsection{Physiology and disease}
+
+%\begin{figure}
+\begin{wrapfigure}{R}{0.2\textwidth}
+\begin{center}
+    \includegraphics[scale=0.35]{aero_tract}
+    \caption{Schematic of the flow relationship between sites of the 
+    aerodigestive tract. Adapted from \cite{bassis-source-2015}.}\label{fig:aero_tract}
+\end{center}
+%\end{figure}
+\end{wrapfigure}
+
 From an engineering perspective, the aerodigestive tract,
 consisting of the upper gastrointestinal and respiratory tracts,
-can be thought of as different compartments connected by the esophagus and windpipe (REF, FIGURE).
+can be thought of as different compartments connected by the esophagus and windpipe (Figure \ref{fig:aero_tract}).
 The mass transport between the throat, stomach, and lung compartments is regulated by complex physiological 
 mechanisms. Swallowing guides material from the mouth to the stomach, 
 but may dysfunction and allow material to enter the lungs. The 
 esophageal sphincter usually prevents material from leaving the 
-stomach, but in some diseases is dysfunctional. Finally, complex 
+stomach, but sometimes allows gastric contents into the lungs \cite{beck-lung-2012}. Finally, complex 
 homeostatic mechanisms clear the lungs of foreign bodies and create a 
-very selective environment for microbes in the lungs (REFS REFS REFS). 
-Thus, while the throat, stomach, and lung "compartments" are 
-physically connected, the amount of material, including bacteria, 
-flowing between them is not readily apparent. 
+selective environment for microbes in the lungs \cite{martinharris-mbs-2008}, \cite{dickson-lung_microbiome-2014}. 
+Understanding these complex physiological relationships is further complicated
+by the experimental and ethical considerations involved in
+sampling and studying the human aerodigestive tract \cite{beck-lung-2012}.
 
-Gastro-esophogeal reflux disease (GERD) is set of syndromes in which 
+Gastro-esophogeal reflux disease (GERD) is a set of syndromes in which 
 the reflux of stomach contents leads to troublesome symptoms or 
-complications \cite{vakil-gerd_defn-2006},\cite{dent-gerd_epi-2005}
-(FIGURE - Figure 2 of Vakil et al). The most common symptoms of GERD 
+complications \cite{vakil-gerd_defn-2006},\cite{dent-gerd_epi-2005}. The most common symptoms of GERD 
 are regurgitation and heartburn, but the disease may also present 
-asymptomatically\cite{vakil-gerd_defn-2006},\cite{dent-gerd_epi-2005}. 
-GERD can be diagnosed by demonstrating reflux of gastric contents (via 
-pH and impedance monitoring), injury to the esophogus (via endoscopy), 
-or based on symptoms alone\cite{vakil-gerd_defn-2006}. GERD affects
-A LOT OF PEOPLE and can lead to severe complications such as Barrett's 
-esophagus (REF). Proton-pump inhibitors (PPIs) are often prescribed for GERD,
-though long-term adverse effects of these drugs is becoming more widely understood (REFS - the PPI microbiome ref).
+asymptomatically \cite{vakil-gerd_defn-2006},\cite{dent-gerd_epi-2005}. 
+GERD can be diagnosed by demonstrating reflux of gastric contents, injury to the esophogus, 
+or based on symptoms alone \cite{vakil-gerd_defn-2006}. GERD affects
+10-20\% of people in Western Europe and North America, and can lead to severe complications such as Barrett's 
+esophagus \cite{vakil-gerd_defn-2006}. Proton-pump inhibitors (PPIs) are often prescribed for GERD,
+though long-term adverse effects of these drugs is becoming more widely understood \cite{sweet-gerd_asp-2009}, \cite{imhann-ppi-2016}, \cite{houghton-microaspiration-2016}.
 In cases of severe reflux, fundoplication surgery may
 be recommended, in which part of the stomach is wrapped around the 
 esophagus to prevent refluxate from leaving the stomach and going up
-into the esophagus (REF). 
+into the esophagus \cite{sweet-gerd_asp-2009}. 
 
-Aspiration is another complex aerodigestive condition which may result
-from dysfunctional swallowing or through other mechanisms, the etiology and consequences of which are unclear.
+Aspiration is another complex aerodigestive condition in which foreign material is inhaled, either through macro-aspiration resulting from dysfunctional swallowing or micro-aspiration which is common in healthy people \cite{sweet-gerd_asp-2009}, \cite{dickson-lung_microbiome-2014}.
 Clinically, aspiration is defined as the inhalation of foreign material such as food or 
 gastric contents into the lungs \cite{raghavendran-asp_injury-2011}. 
 Most aspiration events are unwitnessed without obvious outward signs 
@@ -192,7 +200,7 @@ lungs, but such assays are rarely validated against gold-standard
 methods and have not undergone clinical validation 
 \cite{houghton-microaspiration-2016},\cite{lee-pulm_asp-2014}. Further complicating 
 the issue is that many healthy patients have a baseline level of 
-micro-aspiration (REF).
+micro-aspiration \cite{sweet-gerd_asp-2009}, \cite{dickson-lung_microbiome-2014}.
 
 GERD and aspiration are thought to be associated with many respiratory diseases, but the precise 
 link and mechanisms underlying these associations remains very unclear 
@@ -201,7 +209,7 @@ respiratory diseases has been estimated to be up to 90\% for some
 diseases, and often presents without the common symptoms of heartburn 
 or regurgitation \cite{houghton-microaspiration-2016}. Studies have 
 shown that GERD is related to adverse outcomes after lung 
-transplantation (REF) and reduced lung function in patients with 
+transplantation \cite{sweet-gerd_asp-2009} and reduced lung function in patients with 
 cystic fibrosis \cite{almomani-cf_sputum-2016}. Aspiration of stomach 
 contents is thought to contribute to these adverse outcomes, either 
 through the aspiration of bile triggering a change in the lung's 
@@ -214,37 +222,37 @@ causal links between reflux, aspiration, and lung disease have yet to
 be established \cite{almomani-cf_sputum-2016},\cite{houghton-microaspiration-2016}.
 
 \subsubsection{Microbiome of the aerodigestive tract}
-The microbiota of the human lungs and stomachs are among the least 
-well-studied human-associated microbial communities. In fact, the 
-lungs have classically thought to be sterile and free of bacteria in 
-healthy people \cite{charslon-topographical-2011},\cite{bassis-source-2015}. 
+The microbial communities of the human aerodigestive tract are among the least 
+studied human-associated microbiota. 
 Neither gastric nor lung sites were included in the 
 Human Microbiome Project, leading to a dearth of studies and data on 
-these important body sites (HMP REF). However, both culture-based
-and culture-independent studies of the lung microbiome have recovered
-bacteria, mostly of the \textit{Prevotella}, \textit{Veillonella}, and \textit{Streptococcus} genera \cite{bassis-source-2015}. The most well-studied
-microbial disease associations in the lungs has been with cystic fibrosis,
-since the majority of its morbidity is related to bacterial infections
-in the lungs \cite{almomani-cf_sputum-2016}. Additional studies have
-examined the microbiome of patients with chronic obstructive 
-pulmonary disorder, smokers, and patients on PPIs \cite{erbdownward-copd-2011}.
-Although the balance between factors that shape the lung microbiome 
-remains to be fully elucidated, it is clear that the lungs
-contain microbial communities which result from
-immigration, elimination, and active colonization of microbes 
-throughout the respiratory tract \cite{bassis-source-2015}.
-Many studies of the gastric microbiome have focused
-on the pathogen \textit{Helicobacter pylori} and its effect on  
-gastric microbial communities (REFS). Culture-independent analyses 
-of both the mucosal-associated and gastric fluid microbiota
-have identified diverse communities AND SOMETHING SOMETHING.
-
-Previous studies have examined the relationship between microbial communitis in  the upper 
+these important body sites \cite{bassis-source-2015}. Previous studies have examined the relationships between microbial communities in  the upper 
 aerodigestive tract, with conflicting results \cite{bassis-source-2015}, \cite{rosen-ppi-2015}, \cite{charslon-topographical-2011}, \cite{almomani-cf_sputum-2016}. 
 Some have shown striking similarities in the microbial
 communities across the respiratory tract \cite{almomani-cf_sputum-2016}, \cite{bassis-source-2015} while others
 argue that different sites have distinct microbial communities \cite{rosen-ppi-2015},
-and that these may vary even within individual sites like the lungs \cite{erbdownward-copd-2011}, (MAYBE TAMI'S PAPER?).
+and that these vary even within individual sites like the lungs \cite{erbdownward-copd-2011}, \cite{dickson-spatial-2015}. The lungs have classically thought to be sterile and free of bacteria in 
+healthy people \cite{charslon-topographical-2011},\cite{bassis-source-2015}, \cite{beck-lung-2012}. 
+However, both culture-based
+and culture-independent studies of the lung microbiome have recovered
+bacteria, mostly of the \textit{Prevotella}, \textit{Veillonella}, and \textit{Streptococcus} genera \cite{bassis-source-2015}. 
+Although the balance between factors that shape the lung microbiome 
+remains to be fully elucidated, lung microbial communities are shaped by the balance of
+immigration, elimination, and active colonization of microbes 
+throughout the respiratory tract \cite{bassis-source-2015}, \cite{dickson-lung_microbiome-2014}.
+Existing studies have examined the microbiome of patients with cystic fibrosis, chronic obstructive 
+pulmonary disorder, and asthma, as well as smokers and patients on PPI therapy \cite{almomani-cf_sputum-2016}, \cite{erbdownward-copd-2011}, \cite{rosen-ppi-2015}.
+However, many of these studies are limited by small sample sizes and sampling constraints. Due to its low pH, the stomach has also traditionally thought to be
+relatively sterile \cite{lawson-gastric-2010}.
+Many studies of the gastric microbiota have focused on \textit{Helicobacter pylori}, 
+which colonizes many healthy patients and is also implicated in the development of gastric cancer and other stomach diseases \cite{bik-stomach-2006}.
+These consistently find that \textit{H. pylori} dominates the mucosal 
+community when it is present \cite{bik-stomach-2006}, \cite{lawson-gastric-2010}.
+Other culture-independent studies have found diverse gastric communities in 
+both the mucosa and lumen healthy patients' stomachs \cite{bassis-source-2015}, \cite{rosen-ppi-2015}, \cite{lawson-gastric-2010}.
+While the majority of the gastric flora is likely seeded by the
+oral microbiota (via swallowing), 
+the stomach also contains its own unique community \cite{bassis-source-2015}, \cite{lawson-gastric-2010}.
 
 \subsection{Gut microbiome}
 
@@ -254,12 +262,12 @@ The human gastrointestinal tract is integral to health and disease
 and its microbiota is, in turn, integral to its functioning.
 The intestine digests food and absorbs nutrients, and  
 also plays important roles in maintaining metabolic homeostasis, 
-regulating hormone levels, and communicating sensory signals with the brain (REFS).
+regulating hormone levels, and communicating sensory signals with the brain.
 The microbes in our guts provide essential functions to our well being. 
 They help us harvest energy from the food we eat and digest otherwise 
 undigestible fibers, train our immune system, break down xenobiotics and 
 other foreign products, and release metabolites and hormones that provide 
-chemical signals to our body's regulatory mechanisms. These signals can act locally in the gut 
+chemical signals to our body's regulatory mechanisms \cite{nash-baker},\cite{asd-kb}, \cite{turnbaugh-energy_harvest-2006}. These signals can act locally in the gut 
 and can also have larger systemic effects, for example by sending signals 
 through the vagus nerve to the brain via the 'gut-brain axis' (REFS?!). 
 
@@ -294,7 +302,7 @@ arthritis, autism, Parkinson's, HIV, MHE, and others have also been
 examined for microbial associations, though these fields remain 
 relatively unexplored (REFS).
 
-\subsubsection{Synthesizing existing knowledge}
+\subsubsection{Existing understanding of the gut microbiome}
 
 Although specific microbiome-disease associations remain unclear, general characteristics
 of the gut microbiome are relatively well-known. People have unique gut microbial 
