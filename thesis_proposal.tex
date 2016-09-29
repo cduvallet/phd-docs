@@ -25,10 +25,10 @@
 \maketitle
 \newpage
 \tableofcontents
-
+\newpage
 \begin{abstract}
 Researchers and clinicians have long appreciated the contribution of microbes
-to human disease. Recently, many studies have moved from analyzing the effect of
+to human disease. Recently, scientists have moved from analyzing the effect of
 individual microbes on human health to studying the complex interactions between
 microbial communities and their human hosts, due in large part to developments
 in high throughput DNA sequencing. We are beginning to understand
@@ -37,19 +37,18 @@ integral to human health,
 but there remains no clear understanding on the precise relationships between human 
 microbial communities and disease. Certain microbial communities, like those
 of the aerodigestive tract, remain drastically under-studied. On the other hand,
-the gut microbiome is extensively studied but lacks
-a synthesized understanding of the relationship between alterations in its
-microbes to disease in general and to specific diseases.
+other communities like the gut microbiome are extensively studied but lack
+a synthesized consensus on the relationship between its microbes 
+and specific diseases or disease in general.
 This thesis will expand our understanding of the clinical relevance
 of the human microbiome by characterizing the 
 understudied aerodigestive tract microbiome,
-synthesizing results from gut microbiome case-control studies across
-all studied disease states, and developing a tool to enable generalizable analysis
+synthesizing results from gut microbiome studies across
+many different types of diseases, and developing a database and tool to enable generalizeable analyses
 of microbial communities. This work will identify promising candidates and approaches
 for follow-up mechanistic studies, and will move the field toward a more
 translationally-relevant understanding of the relationship between our microbes
 and our health.
-
 
 
 \end{abstract}
@@ -244,8 +243,8 @@ immigration, elimination, and active colonization of microbes
 throughout the respiratory tract \cite{bassis-source-2015}, \cite{dickson-lung_microbiome-2014}.
 Existing studies have examined the microbiome of patients with cystic fibrosis, chronic obstructive 
 pulmonary disorder, and asthma, as well as smokers and patients on PPI therapy \cite{almomani-cf_sputum-2016}, \cite{erbdownward-copd-2011}, \cite{rosen-ppi-2015}.
-However, many of these studies are limited by small sample sizes and sampling constraints. Due to its low pH, the stomach has also traditionally thought to be
-relatively sterile \cite{lawson-gastric-2010}.
+However, many of these studies are limited by small sample sizes and sampling constraints. The stomach has also traditionally thought to be
+relatively sterile due to its low pH \cite{lawson-gastric-2010}.
 Many studies of the gastric microbiota have focused on \textit{Helicobacter pylori}, 
 which colonizes many healthy patients and is also implicated in the development of gastric cancer and other stomach diseases \cite{bik-stomach-2006}.
 These consistently find that \textit{H. pylori} dominates the mucosal 
@@ -443,9 +442,9 @@ First, I will enrich our basic understanding of an under-studied
 microbial system. Second, I will collect and synthesize 
 results from many studies of a well-studied system, to move the 
 field toward a better understanding of the interactions between 
-microbes, microbial communities, and diseases. Finally, I will curate
+microbial communities and human disease. Finally, I will curate
 existing knowledge on microbial communities to develop a tool for 
-inferring generalizable biological hypotheses from existing and future microbiome studies.
+inferring generalizable biological hypotheses from existing and future microbiome studies. Together, these aims
 
 \subsection{Aim 1: Aerodigestive microbiota associated with GERD and aspiration}
 
@@ -493,6 +492,7 @@ investigations and treatments.
 \caption{Samples in study}\label{tab:rosen_samples}
 \end{wraptable}
 
+
 The cohort presented in this work represents the largest collection of 
 human aerodigestive tract samples of its kind.
 It consists of 261 patients recruited by Rachel Rosen 
@@ -534,7 +534,7 @@ the OTUs are being selected for by the environment and are relevant
 community members. Small phylogenetic distance between exchanged microbes
 would indicate either non-random seeding of the aerodigestive communities 
 or non-random selection of randomly-seeded microbes. In either case, the
-identified microbes would be a relevant part of the site's communities.
+identified microbes would be a relevant part of the microbial communities.
 Also, we can compare the exchanged OTUs we identify with previous work
 to determine whether these microbes could be considered commensals, or
 if they have functions that would allow them to survive in their specific niches.
@@ -555,6 +555,7 @@ if they have functions that would allow them to survive in their specific niches
 %\end{wrapfigure}
 
 \subsubsection{Identify clinical modulators of lung, gastric, and throat microbial communities}
+
 Once we quantify microbial exchange within the aerodigestive tract, we 
 can begin to ask which clinical factors modulate the exchange 
 that occurs between sites. We hypothesize that aspiration will modulate the 
@@ -614,7 +615,6 @@ infections or who frequently have GERD- or aspiration-associated
 respiratory infections should be undertaken to directly link the exchange
 between communities with adverse clinical outcomes. 
 
-
 \subsection{Aim 2: Meta-analysis of gut microbiome studies}\label{sec:aim2}
 By combining results from existing gut microbiome case-control 
 studies, we can move the field toward a consolidated understanding of 
@@ -632,8 +632,8 @@ with standardized methods. We will analyze each dataset individually
 and synthesize the results from all datasets with basic meta-analysis 
 techniques to identify microbes consistently associated with health or 
 general disease. We will also perform a similar intra-disease meta-analysis 
-across multiple studies analyzing the same disease, to identify microbes
-that may be specific markers of certain disease and not others.
+for studies analyzing the same disease to identify microbes
+that may be specific markers of certain diseases and not others.
 Finally, we will identify relationships between physiologically-related 
 diseases by comparing their microbial characteristics across multiple
 datasets. This comprehensive pan-disease meta-analysis will
@@ -644,9 +644,16 @@ inform future mechanistic experiments and case-control analyses.
 \subsubsection{Compile and process gut microbiome datasets}
 To perform a meta-analysis, we need to collect a 
 comprehensive selection of 16S gut microbiome case-control studies. We 
-will identify these studies through a targeted literature search.  See 
-\colorbox{red}{TABLE} for exclusion and inclusion criteria for studies to be 
-considered.
+will identify these studies through a targeted literature search.  
+Inclusion criteria for datasets is those that sequenced
+any region of the 16S rRNA gene of human stool samples, with at least 15 patients in the
+case (i.e. disease) group. Studies which focus exclusively on 
+children under 5 will be excluded from these analyses, as the infant
+gut microbiome does not resemble that of adults \cite{lozupone-meta-2013}.
+We will also consider only datasets with 
+publicly-available data, either from data repositories like SRA or
+from personal email communication with authors. We will not 
+apply for special permissions to use IRB-protected data. 
 
 We will process these datasets using a standardized in-house pipeline 
 developed by Thomas Gurry, a post-doc in the Alm lab. We will 
@@ -659,12 +666,20 @@ consideration. OTUs with fewer than 10 reads or which are present in
 less than 1\% of samples will be removed. More stringent quality 
 filtering may be considered in order to reduce noise in the dataset.
 
-Because studies which sequence different 16S regions will have 
-different sequences corresponding to the same bacteria, we can not 
-used sequence-based open-reference approaches to compare OTUs across 
-studies. After assigning Latin names based on OTUs within each study, 
-we will collapse OTUs to the genus level and compare these across 
-studies.
+Different studies sequence different regions of the 16S gene,
+preventing us from using open-reference OTU sequences to compare
+microbes across studies. Therefore, we will collapse OTUs
+based on their taxonomic assignment and compare these across studies.
+Analyzing OTUs at the species or strain level would be ideal,
+but 16S data is limited in that most OTUs cannot be classified
+down to such taxonomic resolution. On the other hand, the majority of gut microbiome
+OTUs tend to be classifiable to genus level. Thus, collapsing to the genus level 
+provides an optimal balance between the amount of taxonomic information and the 
+amount of data we have to throw out (i.e. unannotated OTUs).
+Furthermore, previous work has found that the maximal predictive power of the microbiota
+to distinguish between different phenotypes
+occurs at various taxonomic thresholds \cite{knights-biomarkers-2011}, so we will
+also consider higher-level taxonomic classifications in our in-depth meta-analyses.
 
 \subsubsection{Identify microbial markers of disease}\label{sec:indep_studies}
 Once we have processed all datasets in a standardized way, our first 
@@ -694,20 +709,20 @@ analysis may be very interesting candidates for biomarkers or mechanistic follow
 It is possible that we struggle to find bacteria consistently 
 associated with diseases because of technical batch effects, even 
 where we expect to find a clear signal (i.e. in diseases which have 
-had clear results from experimental or mechanistic studies \cite{turnbaugh-energy_harvest-2006}, \cite{crc_zeller}. 
+had clear results from experimental or mechanistic studies \cite{turnbaugh-energy_harvest-2006}, \cite{crc_zeller}). 
 Developing robust methods to overcome technical batch effects in 16S 
 studies is not within the scope of this work, but there are many
-options available to help mitigate severe batch effects. 
+simpler options available to help mitigate severe batch effects. 
 We will first try applying simple linear correction methods 
 like subtracting the components which correlate closely with technical 
 artifacts like read depth to our datasets. 
-If standard meta-analysis methods still fial, we can also 
+If standard meta-analysis methods still fail after this correction, we will also 
 change the way we compare OTUs across studies:
 rather than depending on taxonomically-assigned closed-reference OTUs, 
 we could identify associations between open-referenced OTUs and 
 diseases within individual studies, and then compare 
 the phylogenetic relationship of significant OTUs across all studies. Finally, 
-if taxonomic approaches still do no yield results, we will consider
+if taxonomic approaches still do not yield results, we will consider
 approaching our meta-analysis from a functional point of view by
 using tools like PiCRUST or HUMANN to assign functionality to our
 observed taxonomies \cite{langille-picrust-2013}, \cite{abubucker-humann-2012}.
@@ -718,13 +733,13 @@ signatures of dysbiosis. For example, we expect that metabolic
 diseases like obesity and diabetes will have more similar microbiota 
 changes than they will to diarrheal diseases like \textit{Clostridium 
 difficile} infection or enteric diarrhea. We will summarize each 
-dataset with one vector indicating its "microbial signature". This 
+dataset with one vector indicating its ``microbial signature''. This 
 signature will be based on number and identities of microbes 
 significantly associated with the cases and the direction of change 
 of these microbes relative to the controls. Depending on the results from Section 
 \ref{sec:indep_studies}, we may also include factors like differences 
 in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will 
-investigate which datasets cluster together in this "signature space". 
+investigate which datasets cluster together in this ``signature space''. 
 (Fig. \ref{fig:microbe_signatures})
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
@@ -761,8 +776,8 @@ experiments to follow up on mechanism or causal relationships.
 
 In this aim, we will curate biologically-motivated \textit{microbe 
 sets} to enable easier interpretation of results from 16S microbiome 
-analyses. By defining groups of related microbes \textit{a priori}, we 
-will enable enrichment analyses similar to GSEA for microbiome data (Section \ref{sec:gsea}, 
+analyses. By defining groups of related microbes, we 
+will enable enrichment analyses like GSEA, but for microbiome data (Section \ref{sec:gsea}, 
 \cite{subramanian-gsea-2005}). Enrichment analyses will allow for better 
 biological understanding of results from individual studies as well as 
 more consistent comparisons of results across studies reported in 
@@ -773,15 +788,15 @@ begin by searching the literature for existing microbial annotation
 databases and papers which characterize broad groups of microbes.
 In parallel, we will also mine the datasets and results from Aim 2
 for meaningful microbial associations with human phenotypes such as
-disease or inflammation. Finally, we will package this information
+disease or inflammation. Finally, we will combine and package this information
 in a format that is easy to use and update as future studies contribute
 to the field. This tool will enable future microbiome scientists to extract more
 meaningful information from their microbiome studies, thus
-contributing significantly to our better understanding of the
-clinical and scientific relevance of the microbiome.
+contributing significantly to increasing our understanding of the
+clinical and scientific relevance of the human microbiome.
 
 
-\subsubsection{Define microbe sets based on known biological relationships}
+\subsubsection{Define microbe sets based on known biological relationships}\label{sec:set_curation}
 
 Our first task is to curate and define \textit{microbe sets} for use in enrichment analyses of 
 microbiome datasets. We will perform an extensive literature search
@@ -800,55 +815,48 @@ NCBI queries.
 
 In collaboration with Ilana Brito at Cornell, we will apply a 
 combination of literature mining and bioinformatics approaches to fill 
-out the missing annotations in the databases and to add our own fields 
-of interest \ref{tab:microbe_set_categories}. We may also 
+out the missing annotations in the databases and to \textcolor{red}{add our own fields 
+of interest (Table \ref{tab:microbe_set_categories})}. We may also 
 pursue unsupervised text mining of literature results to infer trait-
 associations for well-studied bacteria \cite{korbel-lit_mining-2005}. As we populate 
 our microbe annotations, we will also collect the relevant 16S sequences to 
 build a tree. When possible, we apply appropriate inference models to infer 
 missing traits of leaf organisms when possible.
 
-\begin{table}
-\begin{tabular}{|p{6cm}|p{10cm}|}
-	\hline
-	\textbf{Category} & \textbf{Approach} \\
-	\hline
-	Pathogens & Targeted literature search, literature mining, \& 
-	databases \\
-	\hline
-	Body sites & Literature mining, machine learning on HMP data \\
-	\hline
-	Environmental associations & Literature mining, machine learning 
-	on EMP data \\
-	\hline
-	Growth rate & Inference from 16S sequences in datasets from Aim 2 
-	and HMP \\
-	\hline
-	Obesity-associated & Targeted literature search \& machine 
-	learning on Aim 2 datasets \\
-	\hline
-	Inflammation-associated & Targeted literature search \& machine 
-	learning on Aim 2 datasets \\
-	\hline
-	Miscellaneous functions (acid-tolerant, mucus-degrading, etc) & 
-	Targeted literature search, unsupervised PiCRUST clustering, 
-	genome mining \\
-	\hline 
-\end{tabular}
-\caption{Possible approaches to define microbe sets of interest}\label{tab:microbe_set_categories}
-%\end{wraptable}
-\end{table}
-
-
 \subsubsection{Extract disease-associated microbe sets from datasets in Aim 2}
-We will leverage the datasets collected in Aim 2 to extract additional 
+In parallel, we will leverage the datasets collected in Aim 2 to extract additional 
 disease-associated groups of microbes. We will define groups of 
-microbes based on those that distinguished diseases or broader 
-phenotypes in Section \ref{sec:signatures}. We will also pursue 
-machine-learning driven approaches to identify novel disease- or 
-phenotype-associated \textit{microbe sets}. We will define 
-\textit{microbe sets} based on the most discriminating features of 
-various comparisons, as described in Table \ref{tab:classifications}.
+microbes based on those that were markers for specific diseases and which
+distinguished broader phenotypes of health and disease in Section \ref{sec:signatures}. 
+We will also pursue machine learning-driven approaches to identify novel disease- or 
+phenotype-associated \textit{microbe sets}. We will restrict our feature space
+to genera which are present in the majority of studies in order to reduce the
+dimensionality of the problem and also to ensure that extracted groups
+are likely to be generalizeable to future studies. Random forest (RF) and support
+vector machine (SVM) classifiers are the most commonly used methods in
+microbiome datasets and have been shown to perform well in discriminating
+phenotypes based on 16S data \cite{pasolli-meta_analysis-2016}, \cite{ibd-papa}, \cite{knights-supervised-2010}. We will apply these methods to various classification tasks (Table \ref{tab:classifications})
+and identify the most important features (RF) or those with the highest support (SVM)
+in successful classifications.
+Cross-validating the extracted feature sets across different datasets with the same
+classification task will ensure the general discriminatory 
+power of those microbes and prevent over-fitting.
+
+These approaches may yield no \textit{microbe sets} with phenotype associations
+that we are confident enough in to include in future enrichment analyses.
+Considering the diversity of the gut microbiome across people and the
+sparsity and high-dimensionality of 16S data, 
+this result would not be surprising and underscores the importance of the
+manual curation work in Section \ref{sec:set_curation} \cite{wang-pval_method-2016}, \cite{knights-biomarkers-2011}.
+If this happens, we will investigate higher-order taxa as possible \textit{microbe set}-defining features,
+as this will reduce the dimensionality, sparsity, and inter-personal 
+variability in the datasets.
+Another approach could be to convert each 16S community to functional profiles \cite{langille-picrust-2013}
+and perform feature selection on these functional community profiles, and then
+convert these selected functions into taxonomically-defined groups of microbes. 
+We could convert discriminatory functions back to taxa
+by either identifying the bacteria which most frequently have
+the discriminating function(s) in the datasets of interest, or by identifying all bacteria which have that function across all datasets.
 
 \begin{table}
 \begin{center}
@@ -862,13 +870,13 @@ various comparisons, as described in Table \ref{tab:classifications}.
 	\hline
 	Neurological & Autism, Parkinson's vs. controls \\
 	\hline
-	Immune system & Rheumatoid arthritis, allergy, Crohn's disease, 
-	Graft-versus-host disease vs. controls \\
-	\hline
-	Liver & NASH, MHE (all hepatic diseases) vs. controls\\
+	Liver & NASH, MHE vs. controls\\
 	\hline
 	Metabolic syndrome & T1D, T2D, obesity, metabolic syndrome vs. 
 	controls \\
+	\hline
+	Autoimmune/inflammatory & T1D, rheumatoid arthritis, psoriatic arthritis, Crohn's disease 
+	vs. controls or non-autoimmune patients \\
 	\hline
 \end{tabular}
 \caption{Classification tasks to identify groups of phenotype-
@@ -878,16 +886,14 @@ associated microbes}\label{tab:classifications}
 
 \subsubsection{Develop collaborative tool for interpreting microbiome studies}
 We will make the microbe set annotations available to researchers for 
-further annotation and development. Through our literature searches, 
-we will pay attention to the databases researchers have found most 
-useful and strive to package our annotations in an easy-to-use format. 
+further research and development. Through our literature searches, 
+we will identify to the format of databases researchers have found most 
+useful and strive to package our \textit{microbe set} annotations in an easy-to-use format. 
 We will likely begin with one very large text file containing all of 
-the microbes, 16S sequences, and metadata that we have gathered. 
-
-We will also package our \textit{microbe set} annotations into a tool 
-that researchers can use to interpret the results of their 16S 
-studies. Our software will take as input an OTU table with 
-taxonomically assigned microbes and disease-state labels for samples. 
+the microbes, 16S sequences, and metadata that we have gathered. In addition to distributing the annotations and \textit{microbe set} definitions themselves, we will also package them into a tool 
+that researchers can use to interpret their 16S 
+studies. Our software will take as input an OTU table and labels for different categories
+of samples (i.e. cases and controls). 
 It will perform enrichment analysis on the OTU table and return the 
 results to researchers, similar to the Broad's GSEA tool \cite{subramanian-gsea-2005}. All of this work will be done using public open-source tools like 
 GitHub to encourage collaboration and dissemination of our findings.
@@ -900,15 +906,11 @@ to serve as a tool for biological interpretations and hypothesis
 generation, even a partially-complete database will be extremely 
 valuable in reducing the number of false-negative results in case-
 control studies and also providing coherent biological interpretations 
-of existing results. We also recognize that our work will be just the 
-beginning of systematic grouping of phenotypically-associated 
-microbes, and so we will ensure that the format of the database we 
-develop is easily accessible and modifiable by other researchers.
+of existing results. We also recognize that our work will contribute to the 
+beginning of a systematic grouping of phenotypically-associated 
+microbes, and so we will ensure that the architecture of our database and annotation tool 
+is easily accessible and modifiable by other researchers.
 
-This work will be the beginning of what will hopefully become a new 
-approach to interpreting 16S datasets - moving the field from asking 
-simply ``what's different?'' toward a more critical interpretation of 
-``why are things different?''
 
 \section{Preliminary studies}
 \textit{Three to four pages}
@@ -1076,6 +1078,46 @@ then see if there are apparent phylogenetic relationships between
 the exchanged microbes. We expect to find significantly more exchange
 between the throat and stomach, and very little exchange between the throat and lungs. 
 
+
+
+
+\begin{table}
+\begin{tabular}{|p{6cm}|p{10cm}|}
+	\hline
+	\textbf{Category} & \textbf{Approach} \\
+	\hline
+	Pathogens & Targeted literature search, literature mining, \& 
+	databases \\
+	\hline
+	Body sites & Literature mining, machine learning on HMP data \\
+	\hline
+	Environmental associations & Literature mining, machine learning 
+	on EMP data \\
+	\hline
+	Growth rate & Inference from 16S sequences in datasets from Aim 2 
+	and HMP \\
+	\hline
+	Obesity-associated & Targeted literature search \& machine 
+	learning on Aim 2 datasets \\
+	\hline
+	Inflammation-associated & Targeted literature search \& machine 
+	learning on Aim 2 datasets \\
+	\hline
+	Miscellaneous functions (acid-tolerant, mucus-degrading, etc) & 
+	Targeted literature search, unsupervised PiCRUST clustering, 
+	genome mining \\
+	\hline 
+\end{tabular}
+\caption{Possible approaches to define microbe sets of interest}\label{tab:microbe_set_categories}
+%\end{wraptable}
+\end{table}
+
+
+
+This work will be the beginning of what will hopefully become a new 
+approach to interpreting 16S datasets - moving the field from asking 
+simply ``what's different?'' toward a more critical interpretation of 
+``why are things different?''
 
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
