@@ -6,6 +6,11 @@
 \usepackage{wrapfig}
 \usepackage{graphicx}
 \graphicspath{ {figures/} }
+\usepackage{caption}    % to change caption font size
+\captionsetup[figure]{font=footnotesize,labelfont=footnotesize}
+\captionsetup[table]{font=footnotesize,labelfont=footnotesize}
+
+\usepackage{array}    % for table vertical align
 
 \usepackage{enumerate}
 \usepackage{enumitem}
@@ -489,7 +494,7 @@ investigations and treatments.
 	BAL \& throat & 9 \\
 	\hline 
 \end{tabular}
-\caption{Samples in study}\label{tab:rosen_samples}
+\caption{Number of patients with data for each combination of sites.}\label{tab:rosen_samples}
 \end{wraptable}
 
 
@@ -746,8 +751,11 @@ investigate which datasets cluster together in this ``signature space''.
 %	\centering
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.5]{microbial_signatures}
-\caption{Defining microbial signatures}\label{fig:microbe_signatures}
+\includegraphics[scale=0.6]{microbial_signatures}
+\caption{We will define a microbial signature for each dataset by summarizing
+the association of each of its OTUs with the disease of interest. We will
+also include other relevant features like alpha and beta diversities. These 
+signature vectors will be used to cluster datasets and analyze resulting patterns.}\label{fig:microbe_signatures}
 \end{center}
 \end{figure}
 %    \caption{Defining microbial signatures}
@@ -815,13 +823,27 @@ NCBI queries.
 
 In collaboration with Ilana Brito at Cornell, we will apply a 
 combination of literature mining and bioinformatics approaches to fill 
-out the missing annotations in the databases and to \textcolor{red}{add our own fields 
-of interest (Table \ref{tab:microbe_set_categories})}. We may also 
-pursue unsupervised text mining of literature results to infer trait-
+out the missing annotations in the databases and to add our own fields 
+of interest (Figure \ref{fig:microbe_sets}). We may also 
+pursue unsupervised text mining of literature results to infer trait 
 associations for well-studied bacteria \cite{korbel-lit_mining-2005}. As we populate 
 our microbe annotations, we will also collect the relevant 16S sequences to 
-build a tree. When possible, we apply appropriate inference models to infer 
-missing traits of leaf organisms when possible.
+build a tree. When possible, we will apply appropriate inference models to infer 
+missing traits of leaf organisms.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.5]{microbe_sets}
+	\caption{A variety of approaches will be used to define
+	microbe sets, including manual curation from literature
+	and database searches and data-driven methods (``Approach'').
+	Many different kinds of resources will be drawn upon 
+	(``Sources'') to infer groups of related microbes 
+	(``Inference'') based on different categories 
+	(``Microbe Sets'').}
+	\label{fig:microbe_sets}
+\end{center}
+\end{figure}
 
 \subsubsection{Extract disease-associated microbe sets from datasets in Aim 2}
 In parallel, we will leverage the datasets collected in Aim 2 to extract additional 
@@ -857,33 +879,33 @@ convert these selected functions into taxonomically-defined groups of microbes.
 We could convert discriminatory functions back to taxa
 by either identifying the bacteria which most frequently have
 the discriminating function(s) in the datasets of interest, or by identifying all bacteria which have that function across all datasets.
-
+{
+\renewcommand{\arraystretch}{1.2}
 \begin{table}
 \begin{center}
-\begin{tabular}{|p{6cm}|p{10cm}|}
+\begin{tabular}{ m{6cm} m{10cm} }
 	\hline
 	\textbf{Microbe set association} & \textbf{Classification task} \\
 	\hline
 	General health/disease & All healthy vs. all disease \\
-	\hline
+	%\hline
 	Diarrhea & CDI, EDD, IBS-D vs. controls \\
-	\hline
+	%\hline
 	Neurological & Autism, Parkinson's vs. controls \\
-	\hline
+	%\hline
 	Liver & NASH, MHE vs. controls\\
-	\hline
+	%\hline
 	Metabolic syndrome & T1D, T2D, obesity, metabolic syndrome vs. 
 	controls \\
-	\hline
+	%\hline
 	Autoimmune/inflammatory & T1D, rheumatoid arthritis, psoriatic arthritis, Crohn's disease 
 	vs. controls or non-autoimmune patients \\
 	\hline
 \end{tabular}
-\caption{Classification tasks to identify groups of phenotype-
-associated microbes}\label{tab:classifications}
+\caption{Classification tasks to identify groups of phenotype-associated microbes}\label{tab:classifications}
 \end{center}
 \end{table}
-
+}
 \subsubsection{Develop collaborative tool for interpreting microbiome studies}
 We will make the microbe set annotations available to researchers for 
 further research and development. Through our literature searches, 
