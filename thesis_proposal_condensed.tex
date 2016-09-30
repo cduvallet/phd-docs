@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \graphicspath{ {figures/} }
 \usepackage{float} % to force figures in specific place
+\usepackage{array} % to make table row spacing better
 
 \usepackage{enumerate}
 \usepackage{enumitem}
@@ -23,40 +24,12 @@
 \begin{document}
 
 
+
 \maketitle
 \newpage
 \tableofcontents
 \newpage
 \begin{abstract}
-Researchers and clinicians have long appreciated the contribution of microbes
-to human disease. Recently, scientists have moved from analyzing the effect of
-individual microbes on human health to studying the complex interactions between
-microbial communities and their human hosts, due in large part to developments
-in high throughput DNA sequencing. We are beginning to understand
-that microbial communities are involved in disease and are also
-integral to human health,
-but there remains no clear understanding on the precise relationships between human 
-microbial communities and disease. Certain microbial communities, like those
-of the aerodigestive tract, remain drastically under-studied. On the other hand,
-other communities like the gut microbiome are extensively studied but lack
-a synthesized consensus on the relationship between its microbes 
-and specific diseases or disease in general.
-This thesis will expand our understanding of the clinical relevance
-of the human microbiome by characterizing the 
-understudied aerodigestive tract microbiome,
-synthesizing results from gut microbiome studies across
-many different types of diseases, and developing a database and tool to enable generalizeable analyses
-of microbial communities. This work will identify promising candidates and approaches
-for follow-up mechanistic studies, and will move the field toward a more
-translationally-relevant understanding of the relationship between our microbes
-and our health.
-
-
-\end{abstract}
-\newpage
-
-\section{Overall objectives and specific aims}
-\subsection{Overall objectives}
 In spite of the recent increase in research on the human 
 microbiome, there is not a clear consensus on the relationship between 
 human microbial communities and disease. Microbes colonize our entire bodies,
@@ -81,6 +54,34 @@ identifying consistent microbial markers of health and disease.
 Finally, I will curate groups of biologically related microbes
 to enable enrichment analyses and generalizable interpretations
 of results from microbiome studies. 
+
+
+
+\end{abstract}
+\newpage
+
+\section{Overall objectives and specific aims}
+\subsection{Overall objectives}
+
+The research presented in this thesis is united by a common purpose: 
+advancing our understanding of the clinical human microbiome.
+First, I will enrich our basic understanding of an under-studied 
+microbial system by characterizing the relationships between the microbial communities
+of the aerodigestive tract and their associations with clinical factors.
+Second, I will synthesize results across many studies 
+of a well-studied system, moving the field toward 
+a better understanding of and consensus on the associations between 
+gut microbial communities and human disease. To do this, I will perform a meta-analysis of 
+published case-control gut microbiome studies
+across many disease states to identify consistent microbial markers of health and disease.
+Finally, I will curate
+existing knowledge on microbial communities and develop a tool for 
+inferring generalizable biological hypotheses from existing and future 
+microbiome studies. 
+Together, this work will contribute new knowledge
+to the exciting field of human microbiome research and will 
+empower researchers to draw clinically meaningful insights 
+from their exisiting and future analyses.
 
 \subsection{Specific Aims}
 \begin{description}
@@ -370,12 +371,26 @@ begin by searching the literature for existing microbial annotation
 databases and papers which characterize broad groups of microbes.
 In parallel, we will also mine the datasets and results from Aim 2
 for meaningful microbial associations with human phenotypes such as
-disease or inflammation. Finally, we will combine and package this information
+disease or inflammation (Figure \ref{fig:microbe_sets}). Finally, we will combine and package this information
 in a format that is easy to use and update as future studies contribute
 to the field. This tool will enable future microbiome scientists to extract more
 meaningful information from their microbiome studies, thus
 contributing significantly to increasing our understanding of the
 clinical and scientific relevance of the human microbiome.
+
+\begin{figure}[H]
+\begin{center}
+	\includegraphics[scale=0.5]{microbe_sets}
+	\caption{A variety of approaches will be used to define
+	microbe sets, including manual curation from literature
+	and database searches and data-driven methods (``Approach'').
+	Many different kinds of resources will be drawn upon 
+	(``Sources'') to infer groups of related microbes 
+	(``Inference'') based on different categories 
+	(``Microbe Sets'').}
+	\label{fig:microbe_sets}
+\end{center}
+\end{figure}
 
 
 \subsubsection{Define microbe sets based on known biological relationships}
@@ -397,31 +412,33 @@ maybe do some phylogenetic inference to fill out more annotations.
 \item The machine-learning stuff may not work so we'll try a few other approaches. 
 \end{itemize}
 
+{
+\renewcommand{\arraystretch}{1.2}
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|p{6cm}|p{10cm}|}
+\begin{tabular}{ m{6cm} m{10cm} }
 	\hline
 	\textbf{Microbe set association} & \textbf{Classification task} \\
 	\hline
 	General health/disease & All healthy vs. all disease \\
-	\hline
+	%\hline
 	Diarrhea & CDI, EDD, IBS-D vs. controls \\
-	\hline
+	%\hline
 	Neurological & Autism, Parkinson's vs. controls \\
-	\hline
+	%\hline
 	Liver & NASH, MHE vs. controls\\
-	\hline
+	%\hline
 	Metabolic syndrome & T1D, T2D, obesity, metabolic syndrome vs. 
 	controls \\
-	\hline
+	%\hline
 	Autoimmune/inflammatory & T1D, rheumatoid arthritis, psoriatic arthritis, Crohn's disease 
 	vs. controls or non-autoimmune patients \\
 	\hline
 \end{tabular}
-\caption{Classification tasks to identify groups of phenotype-
-associated microbes}\label{tab:classifications}
+\caption{Classification tasks to identify groups of phenotype-associated microbes}\label{tab:classifications}
 \end{center}
 \end{table}
+}
 
 \subsubsection{Develop collaborative tool for interpreting microbiome studies}
 \begin{itemize}
@@ -437,8 +454,8 @@ because it's mainly going to be used as a hypothesis-generation tool.
 \subsubsection{Microbiome community exchange}
 
 \begin{itemize}
-\item We found a lot of exchange microbes, the majority of which were between the throat and stomach. 
-\item Interestingly, we also found lots of exchange between the stomach and lungs. This might have to do with microaspiration of gastric contents. 
+\item We found a lot of exchanged microbes, the majority of which were between the throat and stomach (as expected). 
+\item Interestingly, we also found lots of exchange/similarity between the stomach and lungs. This might have to do with microaspiration of gastric contents. 
 \end{itemize}
 
 \subsubsection{Modulators of community exchange}
@@ -455,7 +472,8 @@ communities, indicating that the exchange might be more stochastic here.
 \subsubsection{Collecting and reprocessing 16S case-control datasets}
 
 \begin{itemize}
-\item We've collected and processed about 30 datasets. These are summarized in a table either here or in the appendix.
+\item We've collected and processed about 30 datasets. These are summarized in 
+a table that I still need to compile (N patients, sequencing depth, sequencing technology).
 \end{itemize}
 
 \subsubsection{Identify general patterns of health and diseases}
@@ -465,7 +483,9 @@ communities, indicating that the exchange might be more stochastic here.
 different in diarrheal diseases.
 \item Then we did univariate analyses for each study. Looking at the pattern, we noticed 
 that diarrheal diseases have broad community shifts. The other diseases are less clear.
-\item We also did the Fisher's method for combining p-values. Results from this are TBD this weekend.
+\item We also did the Fisher's method for combining p-values. Results from this 
+are TBD this weekend. I think we'll find a handful of genera that are significantly
+associated with health or disease when we combine *all* diseases together.
 \end{itemize}
 
 
