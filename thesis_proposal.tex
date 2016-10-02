@@ -195,7 +195,7 @@ However, the MBS test cannot be used to
 determine aspiration of gastric contents or episodes of micro-aspiration, which may also have clinical relevance 
 \cite{raghavendran-asp_injury-2011, lee-pulm_asp-2014}. No validated clinical 
 biomarkers exist to diagnose and define gastric and micro-aspiration 
-events\cite{lee-pulm_asp-2014}, but they are thought to play a role in 
+events \cite{lee-pulm_asp-2014, debenedictis-asp_dis-2009}, but they are thought to play a role in 
 causing or exacerbating many respiratory diseases 
 \cite{houghton-microaspiration-2016, reen-aspirated_bile-2014, almomani-cf_sputum-2016}. Currently, microaspiration of gastric contents 
 is studied by measuring the concentration of bile or pepsin in the 
@@ -203,7 +203,7 @@ lungs, but such assays are rarely validated against gold-standard
 methods and have not undergone clinical validation 
 \cite{houghton-microaspiration-2016, lee-pulm_asp-2014}. Further complicating 
 the issue is that many healthy patients have a baseline level of 
-micro-aspiration \cite{dickson-lung_microbiome-2014, sweet-gerd_asp-2009}.
+micro-aspiration \cite{dickson-lung_microbiome-2014, sweet-gerd_asp-2009, debenedictis-asp_dis-2009}.
 
 GERD and aspiration are thought to be associated with many respiratory diseases, but the precise 
 link and mechanisms underlying these associations remains very unclear 
@@ -222,7 +222,7 @@ direct aspiration of gastric bacteria leading to infection
 However, because of the difficulties in diagnosing and studying 
 microaspiration, aspiration of gastric contents, and GERD, precise 
 causal links between reflux, aspiration, and lung disease have yet to 
-be established \cite{houghton-microaspiration-2016, almomani-cf_sputum-2016}.
+be established \cite{houghton-microaspiration-2016, debenedictis-asp_dis-2009, almomani-cf_sputum-2016}.
 
 \subsubsection{Microbiome of the aerodigestive tract}
 The microbial communities of the human aerodigestive tract are among the least 
@@ -948,54 +948,96 @@ is easily accessible and modifiable by other researchers.
 
 \subsection{Aim 1}
 \subsubsection{Microbiome community exchange}
-Using our definition of $p_s$ (\ref{sec:exchange}), we identified over 100
-OTUs exchanged across sites of the aerodigestive tract.
-As expected, the majority of these were exchanged between the throat and stomach.
-Interestingly, the stomach and lungs also had a significant
-amount of microbial exchange, and these communities were almost as similar to
-each other as the throat and stomach communities were. 
-These findings support the hypothesis that frequent microaspiration
-of gastric contents into the lungs is occurring. While certain bacteria
-may be preferentially exchanged between the lungs and stomach, the lower 
-number of exchanged microbes as compared to the throat and lungs, combined with
-the similar similarity of communities, indicates that much of the exchange may
-be more stochastic, and not selecting for specific community members
-across many patients.
-Finally, we observed a decreasing trend in number of exchange microbes 
-across throat-stomach, lung-stomach, and throat-lung sites, respectively, 
-for all phyla except Proteobacteria. More Proteobacteria were exchanged 
-between lungs and stomach than throat and stomach. Proteobacteria are 
+
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.6]{shared_phyla}
+	\caption{Number of exchanged OTUs, separated by phyla.}
+	\label{fig:shared_phyla}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.7]{all_jsd_sharedness}
+	\caption{Community similarities and exchange across sites.
+	(A) Jensen-Shannon distance (JSD) between sites within each patient. 
+	Identical communities have a JSD = 0; completely different
+	communities have JSD = 1. (B) $p_s$ for each exchanged OTU across 
+	all site combinations. P-values calculated with a
+	non-parametric Kruskal-Wallis test.}
+	\label{fig:similarities}
+\end{center}
+\end{figure}
+
+With our definition of $p_s$ (Section \ref{sec:exchange}), we identified over 100
+OTUs exchanged across sites in the aerodigestive tract (Figure \ref{fig:shared_phyla}).
+As expected, the majority of exchange occurred between the throat and stomach \cite{bassis-source-2015}.
+Interestingly, the stomach and lung communities were almost as similar to
+each other as the throat and stomach communities were,
+but had less exchange of specific microbes (Figure \ref{fig:similarities}). 
+These findings support the hypothesis that frequent non-specific microaspiration
+of gastric contents into the lungs is occurring,
+where the exchange of microbes is more stochastic and
+not necessarily consistently selecting for specific community members across many patients.
+Finally, we observed a decreasing trend in number of exchanged microbes 
+across throat and stomach, lung and stomach, and throat and lung sites, respectively, 
+for all phyla except Proteobacteria (Figure \ref{fig:shared_phyla}). More Proteobacteria were exchanged 
+between lungs and stomach than between the throat and stomach. Proteobacteria are 
 known aerobes, and so may be preferentially selected for colonization in 
 the lungs after microaspiration from the stomach.
 
 \subsubsection{Modulators of community exchange}
-We observed a distinct difference in the amount of exchange between the 
-throat and lungs of aspirators versus patients with normal MBS results.
-We looked at the previously-defined microbes that were exchanged between 
-the throat and lungs and re-caculated $p_s$, the percent of patients
-who have that microbe present in both sites, for the aspirator and 
-non-aspirator groups separately. 25\% of aspirators shared
-these microbes across their throats and lungs, while only 13\% of 
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.7]{aspiration}
+	\caption{Community similarities and exchange across sites, stratitified by aspiration status.
+	(A) and (B) as in Figure \ref{fig:similarities}.}
+	\label{fig:aspirators}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.7]{reflux}
+	\caption{Community similarities and exchange across sites, stratitified by reflux severity.
+	(A) and (B) as in Figure \ref{fig:similarities}.}
+	\label{fig:reflux}
+\end{center}
+\end{figure}
+
+
+We observed a distinct increase in the amount of exchange between the 
+throat and lungs of aspirators relative to non-aspirators (Figure \ref{fig:aspirators}B).
+25\% of aspirators shared
+the previously-defined throat-lung microbes between their throats and lungs, while only 13\% of 
 non-aspirators did. Additionally, the throat and lung communities
-were significantly more similar in aspirating patients than non-aspirators. These results indicate that a consequence of abnormal swallowing
+were significantly more similar in aspirating patients than non-aspirators (Figure \ref{fig:aspirators}A). These results indicate that a consequence of abnormal swallowing
 dysfunction is likely a seeding of the lungs with oral bacteria.
 Interestingly, the stomach and lung communities of aspirating
-patients were slightly more similar to each other than in non-aspirators.
-By definition, aspirating patients are unable to protect their airways
-from foreign material - while most apparent in swallowing, such dysfunction
-may also enable more material to move between the stomach and lungs as well.
+patients were slightly more similar to each other than in non-aspirators, but not significantly so.
+This indicates that the stomach is not likely a major source
+of bacterial seeding of the lungs, even in aspirators. One of the current treatments for
+aspirating patients who have frequent respiratory infections is fundoplication,
+an invasive surgery that prevents refluxate from exiting the stomach, because it is thought
+that the bacteria in the refluxate is seeding the lungs
+and resulting in infection.
+These findings show that fundoplication surgery may not be the best course of action in aspirators, since 
+the bacterial exchange between stomach and lungs is not
+significantly different from the exchange in normal patients \cite{debenedictis-asp_dis-2009, kawahara-fundo-2004}.
 
-The effect of reflux on the stomach-lung connection was less striking 
-but still apparent. Specifically, the stomach and lung communities were
-more similar to each other in patients with very frequent full-column reflux. However, here was no significant difference in the extent of
-microbial exchange between the stomach and lungs. In other words,
-the previously-defined stomach-lung exchanged microbes were as likely
-to be found in both sites in patients with frequent full-column reflux
-than in patients with less severe reflux. This may indicate a more
-stochastic seeding of the lungs from the stomach rather than reproducible
-exchange of the same microbes across patients. In this case, stomach 
-microbes are not necessarily growing in the lungs but nonetheless do have 
-measurable impact on the lung's microbial community.
+As expected, stomach and lung communities of patients with severe reflux were
+more similar to each other than in patients without
+severe reflux (Figure \ref{fig:reflux}A). 
+Patients with severe reflux were also more likely
+to exchange the previously-defined stomach-lung microbes between their stomachs and lungs (Figure \ref{fig:reflux}B).
+In this work, `severe reflux' was defined as reflux in 
+which more than half of events were full-column events.
+Future work will determine the effect of this `severity' 
+threshold on the amount of exchange, with the aim
+of identifying the severity threshold at which bacterial exchange
+between the stomach and lungs becomes significantly higher than in non-severe reflux patients.
+
 
 \subsection{Aim 2}
 \subsubsection{Collecting and reprocessing 16S case-control datasets}
