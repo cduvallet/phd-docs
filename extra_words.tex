@@ -1,0 +1,118 @@
+
+\subsection{Ignore}
+We hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain disease states. 
+
+
+Another important consideration in this work may be if study-associated effects are larger than biological effects. For example, when we compare 'microbial signatures' across datasets, it's possible that the largest signal driving dataset clustering is sequencer or 16S region sequenced, rather than disease state. There are many approaches we could take to correct for such batch effects:
+\begin{enumerate}
+	\item Subtracting the principal components corresponding to the technical artifacts.
+	\item Build a model that accounts for these technical artifacts by including them as factors in the model.
+	\item Non-parametric correction, like sample- or OTU-wise quantile normalization, using controls in each study as the reference distribution.
+\end{enumerate}
+
+This work will improve our 
+understanding of the clinical relevance of the human microbiome and 
+will also provide new approaches and tools for analyzing future 
+studies.
+
+We will summarize each dataset's microbial communities
+methods commonly used in the 
+literature: univariate non-parameteric statistical tests on relative 
+abundances, alpha and beta diversity in different types of patients, 
+and ratios of Firmicutes to Bacteroides in healthy vs. disease 
+patients. It is generally thought that low alpha diversity is a marker 
+of dysbiosis (REF), and that while most people have a Firmicutes/
+Bacteroides ratio of (XXX), in certain diseases this ratio may be 
+different (REF). (MAYBE BACKGROUND?) By analyzing each study in the 
+same way from raw data, we can reduce the study-wise batch effects and 
+increase our ability to identify general trends in the gut microbiome 
+in health and disease. We will identify consistent markers of disease 
+by using standard meta-analysis methods, comparing the effect sizes 
+and directionality of bacteria across studies, and using Fisher's 
+method to determine overall significant of a microbe (REFS). 
+
+"Thus, humans are super organisms: http://science.sciencemag.org/content/312/5778/1355"
+
+The microbiota of 
+the aerodigestive tract is poorly studied, and we have little understanding 
+of how the microbial communities in different aeordigest sites are related or 
+affected by disease. In contrast, the gut microbiome has 
+been extensively studied through many case-control studies. 
+However, these studies have frequently yielded inconsistent or incomparable 
+results. Existing meta-analyses have not extended to more than one or two 
+diseases, and thus can not determine whether significant microbes are 
+associated with specific diseases or with disease in general. 
+Finally, there are no existing tools that can be used to extract general 
+biological insights from groups of disease-associated microbes.
+
+Fecal microbiota transplants have demonstrated the incredible
+causal ability of the microbiome to affect health in 
+human patients. Germ-free mouse models have shown that microbes are
+necessary for healthy functioning, and specific animal models have  
+allowed for probing mechanistic understanding of host-microbial 
+interactions (autism 440 ref, gordon mouse experiment ref). 
+
+Additionally, many of the most successful existing meta-analyses 
+combine vastly different types of microbial communities and non-case-
+control experimental designs. The positive results from these studies 
+are not particularly biologically insightful: it is a much easier task 
+to differentiate vastly different communities (like the skin vs. the 
+gut) than it is to differentiate subtleties contributing to health and 
+disease (like the inflamed gut vs. the healthy gut) \cite{knights-supervised-2010}.
+
+Every meta-analysis performed on 16S data has observed 
+strong batch effects between studies and noted the need for large 
+sample sizes to extract any meaningful signal \cite{sze-signal-2016},
+\cite{walters-ob_meta-2014},\cite{knights-supervised-2010},
+\cite{lozupone-meta-2013}. 
+
+This definition depends on correlated abundances and not simply co-occurence, and is 
+superior to simple co-occurence because of the significant overlap in the
+members of the three aeordigestive communities\cite{bassis-source-2015}, \cite{charslon-topographical-2011}.
+
+To determine how lung, gastric, and throat microbial communities are related,
+we will calculate $p_s$ for each of the site combinations. We will 
+then see if there are apparent phylogenetic relationships between
+the exchanged microbes. We expect to find significantly more exchange
+between the throat and stomach, and very little exchange between the throat and lungs. 
+
+
+
+
+\begin{table}
+\begin{tabular}{|p{6cm}|p{10cm}|}
+	\hline
+	\textbf{Category} & \textbf{Approach} \\
+	\hline
+	Pathogens & Targeted literature search, literature mining, \& 
+	databases \\
+	\hline
+	Body sites & Literature mining, machine learning on HMP data \\
+	\hline
+	Environmental associations & Literature mining, machine learning 
+	on EMP data \\
+	\hline
+	Growth rate & Inference from 16S sequences in datasets from Aim 2 
+	and HMP \\
+	\hline
+	Obesity-associated & Targeted literature search \& machine 
+	learning on Aim 2 datasets \\
+	\hline
+	Inflammation-associated & Targeted literature search \& machine 
+	learning on Aim 2 datasets \\
+	\hline
+	Miscellaneous functions (acid-tolerant, mucus-degrading, etc) & 
+	Targeted literature search, unsupervised PiCRUST clustering, 
+	genome mining \\
+	\hline 
+\end{tabular}
+\caption{Possible approaches to define microbe sets of interest}\label{tab:microbe_set_categories}
+%\end{wraptable}
+\end{table}
+
+
+
+This work will be the beginning of what will hopefully become a new 
+approach to interpreting 16S datasets - moving the field from asking 
+simply ``what's different?'' toward a more critical interpretation of 
+``why are things different?''

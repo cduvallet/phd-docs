@@ -9,6 +9,7 @@
 \usepackage{caption}    % to change caption font size
 \captionsetup[figure]{font=footnotesize,labelfont=footnotesize}
 \captionsetup[table]{font=footnotesize,labelfont=footnotesize}
+\usepackage[above]{placeins} % for FloatBarrier
 
 \usepackage{array}    % for table vertical align
 
@@ -123,7 +124,6 @@ from their exisiting and future analyses.
 \newpage
 
 \section{Background and significance}
-\textit{Three to five pages}
 
 The topics addressed in this thesis are broad, and are all connected by
 the motivation to better understand
@@ -445,7 +445,6 @@ these tools are dataset-specific and have not been generalized to
 define biologically related groups of organisms in a study-independent way.
 
 \section{Research design and methods}
-\textit{Six to eight pages}
 
 The research presented in this thesis is united by a common purpose: 
 advancing our understanding of the clinical human microbiome.
@@ -560,7 +559,7 @@ if they have functions that would allow them to survive in their specific niches
 %	\centering
 \begin{figure}
 \begin{center}
-    \includegraphics[scale=0.6]{sharedness_definition}
+    \includegraphics[scale=0.65]{sharedness_definition}
     \caption{If the abundance of a microbe when it is 
     present in both sites is correlated, then we consider it exchanged 
     across those sites (blue points, right panel). $p_s$ is then calculated as the 
@@ -944,14 +943,13 @@ is easily accessible and modifiable by other researchers.
 
 
 \section{Preliminary studies}
-\textit{Three to four pages}
 
-\subsection{Aim 1}
-\subsubsection{Microbiome community exchange}
+\subsection{Aim 1: Aerodigestive microbiota associated with GERD and aspiration}
+\subsubsection{Aerodigestive microbiome community exchange}
 
 \begin{figure}
 \begin{center}
-	\includegraphics[scale=0.6]{shared_phyla}
+	\includegraphics[scale=0.56]{shared_phyla}
 	\caption{Number of exchanged OTUs, separated by phyla.}
 	\label{fig:shared_phyla}
 \end{center}
@@ -987,25 +985,7 @@ between lungs and stomach than between the throat and stomach. Proteobacteria ar
 known aerobes, and so may be preferentially selected for colonization in 
 the lungs after microaspiration from the stomach.
 
-\subsubsection{Modulators of community exchange}
-\begin{figure}
-\begin{center}
-	\includegraphics[scale=0.7]{aspiration}
-	\caption{Community similarities and exchange across sites, stratitified by aspiration status.
-	(A) and (B) as in Figure \ref{fig:similarities}.}
-	\label{fig:aspirators}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-	\includegraphics[scale=0.7]{reflux}
-	\caption{Community similarities and exchange across sites, stratitified by reflux severity.
-	(A) and (B) as in Figure \ref{fig:similarities}.}
-	\label{fig:reflux}
-\end{center}
-\end{figure}
-
+\subsubsection{Clinical modulators of aerodigestive community exchange}
 
 We observed a distinct increase in the amount of exchange between the 
 throat and lungs of aspirators relative to non-aspirators (Figure \ref{fig:aspirators}B).
@@ -1026,6 +1006,15 @@ These findings show that fundoplication surgery may not be the best course of ac
 the bacterial exchange between stomach and lungs is not
 significantly different from the exchange in normal patients \cite{debenedictis-asp_dis-2009, kawahara-fundo-2004}.
 
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[scale=0.65]{aspiration}
+	\caption{Community similarities and exchange across sites, stratitified by aspiration status.
+	(A) and (B) as in Figure \ref{fig:similarities}.}
+	\label{fig:aspirators}
+\end{center}
+\end{figure}
+
 As expected, stomach and lung communities of patients with severe reflux were
 more similar to each other than in patients without
 severe reflux (Figure \ref{fig:reflux}A). 
@@ -1038,9 +1027,18 @@ threshold on the amount of exchange, with the aim
 of identifying the severity threshold at which bacterial exchange
 between the stomach and lungs becomes significantly higher than in non-severe reflux patients.
 
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[scale=0.65]{reflux}
+	\caption{Community similarities and exchange across sites, stratitified by reflux severity.
+	(A) and (B) as in Figure \ref{fig:similarities}.}
+	\label{fig:reflux}
+\end{center}
+\end{figure}
 
-\subsection{Aim 2}
-\subsubsection{Collecting and reprocessing 16S case-control datasets}
+
+\subsection{Aim 2: Meta-analysis of gut microbiome studies}
+\subsubsection{Collect and process 16S case-control datasets}
 Our extensive literature review has identified over 50 suitable case-control 16S datasets.
 28 datasets and their associated metadata have been downloaded and processed through our in-house pipeline.
 Characteristics of these datasets, including sample size, disease states,
@@ -1059,8 +1057,14 @@ in alpha diversity. For example, one IBD study \cite{ibd-papa} recruited control
 with non-inflammatory conditions of the gastrointestinal tract while others \cite{ibd-gevers, ibd-engstrand, ibd_hut}
 used healthy patients as controls. Additionally, some obesity studies \cite{ob-escobar, ob-goodrich, ob-gordon} labeled patients as ``overweight'' in addition
 to ``obese'' while others \cite{ob-ross, ob-zupancic} included only ``healthy'' and ``obese'' patient 
-category labels. In these cases, the differences in alpha diversity are 
-likely being driven by batch effects rather than biology.
+category labels. These cases were the only other significant
+differences in alpha diversity, and are 
+hypothesized to be driven by batch effects rather than biology.
+Further work to investigate this hypothesis will involve applying 
+different standardization techniques and performing a more complex 
+statistical test, which includes the individual studies as factors
+in the comparisons.
+
 
 \begin{figure}
 \begin{center}
@@ -1069,24 +1073,35 @@ likely being driven by batch effects rather than biology.
 \end{center}
 \end{figure}
 
-We next performed univariate comparisons at the genus level for abundance in cases 
-vs. controls for each study. This analysis revealed a similar result: diarrheal 
-diseases showed striking shifts in many microbes, while other
-diseases had less obvious patterns of dysbiosis. We observed that many bacteria
-seemed to have relatively consistent shifts between cases and controls across many
-different diseases \ref{fig:pval_heatmap}. This supports the hypothesis that
+We next performed within-study univariate comparisons of genus level-abundances in cases vs. controls. Diarrheal 
+diseases had striking shifts in many microbes, while other
+diseases had less obviously apparent microbial indicators of disease (Figure \ref{fig:pval_heatmap}). We also observed that some bacteria
+seemed to have relatively consistent shifts across many
+different diseases. We confirmed the significance of these associations by combining the p-values of each genus across all studies using the weighted Z-test method \cite{zavkin-ztest-2011}.
+We found many genera in the family \textit{Enterobacteriaceae} to be associated
+with disease in general, while many genera in the families \textit{Lachnospiraceae}, \textit{Ruminococcaceae}, and \textit{Erysipelotrichaceae} were associated with healthy controls.
+These results support the hypothesis that
 there is a general signature for disease, in other words, that sick people have 
-altered microbiomes. In light of this finding, identifying microbial shifts that 
-are unique to individual diseases will be crucial to finding specific biomarkers
-for diagnostic purposes and to motivate mechanistic investigations.
+altered microbiomes. In light of this finding, focusing on microbial shifts that 
+are unique to individual diseases will be crucial to identify disease-specific biomarkers
+that could be used for diagnostic purposes and to motivate future mechanistic investigations of microbial interactions with disease.
+
+\begin{figure}[h]
+	\begin{center}
+  	\includegraphics[scale=0.95]{pval_heatmap}
+	\caption{Heatmap of significant associations.}
+	\label{fig:pval_heatmap}
+	\end{center}
+\end{figure}
+
 
 \newpage
 \section{Appendix}
-\subsection{Tables}\label{sec:appendix_tables}
+\subsection{Supplementary Tables}\label{sec:appendix_tables}
 
 {
 \renewcommand{\arraystretch}{1.1}
-\begin{table}
+\begin{table}[h]
 \resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 	\hline
 	\textbf{Dataset ID} & \textbf{Year} & \textbf{Disease(s)} &	\textbf{N control} & \textbf{N case} & \parbox[c]{2cm}{\centering\textbf{Median}\\\textbf{reads per}\\\textbf{sample}} &	\textbf{Sequencer} & \textbf{16S Region} & \textbf{Ref.} \\
@@ -1125,133 +1140,39 @@ for diagnostic purposes and to motivate mechanistic investigations.
 \end{table}
 }
 
-\subsection{Figures}\label{sec:appendix_figures}
+\newpage
+\subsection{Supplementary Figures}\label{sec:appendix_figures}
 
-\begin{figure}
+\begin{figure}[h]
+	\begin{center}
+  	\includegraphics[scale=1.1]{rosen_tree}
+	\caption{Tree of exchange microbes. TODO: ITOL citation, brah.}
+	\label{fig:rosen_tree}
+	\end{center}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
 \begin{center}
-	\includegraphics[scale=0.3]{alpha_diversity_by_study}
+	\includegraphics[scale=0.45]{alpha_diversity_by_study}
 	\caption{Shannon alpha diversity index (SDI), stratified by individual studies. Note how the range of SDI varies across studies.}
 	\label{fig:alpha_all}
 \end{center}
 \end{figure}
 
-\subsection{Ignore}
-We hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain disease states. 
+\newpage
+\begin{figure}[h]
+	\begin{center}
+  	\includegraphics[scale=1.2]{pval_heatmap}
+	\caption{Heatmap of significant associations.}
+	\label{fig:larger_pval_heatmap}
+	\end{center}
+\end{figure}
 
+\FloatBarrier
 
-Another important consideration in this work may be if study-associated effects are larger than biological effects. For example, when we compare 'microbial signatures' across datasets, it's possible that the largest signal driving dataset clustering is sequencer or 16S region sequenced, rather than disease state. There are many approaches we could take to correct for such batch effects:
-\begin{enumerate}
-	\item Subtracting the principal components corresponding to the technical artifacts.
-	\item Build a model that accounts for these technical artifacts by including them as factors in the model.
-	\item Non-parametric correction, like sample- or OTU-wise quantile normalization, using controls in each study as the reference distribution.
-\end{enumerate}
+\newpage
 
-This work will improve our 
-understanding of the clinical relevance of the human microbiome and 
-will also provide new approaches and tools for analyzing future 
-studies.
-
-We will summarize each dataset's microbial communities
-methods commonly used in the 
-literature: univariate non-parameteric statistical tests on relative 
-abundances, alpha and beta diversity in different types of patients, 
-and ratios of Firmicutes to Bacteroides in healthy vs. disease 
-patients. It is generally thought that low alpha diversity is a marker 
-of dysbiosis (REF), and that while most people have a Firmicutes/
-Bacteroides ratio of (XXX), in certain diseases this ratio may be 
-different (REF). (MAYBE BACKGROUND?) By analyzing each study in the 
-same way from raw data, we can reduce the study-wise batch effects and 
-increase our ability to identify general trends in the gut microbiome 
-in health and disease. We will identify consistent markers of disease 
-by using standard meta-analysis methods, comparing the effect sizes 
-and directionality of bacteria across studies, and using Fisher's 
-method to determine overall significant of a microbe (REFS). 
-
-"Thus, humans are super organisms: http://science.sciencemag.org/content/312/5778/1355"
-
-The microbiota of 
-the aerodigestive tract is poorly studied, and we have little understanding 
-of how the microbial communities in different aeordigest sites are related or 
-affected by disease. In contrast, the gut microbiome has 
-been extensively studied through many case-control studies. 
-However, these studies have frequently yielded inconsistent or incomparable 
-results. Existing meta-analyses have not extended to more than one or two 
-diseases, and thus can not determine whether significant microbes are 
-associated with specific diseases or with disease in general. 
-Finally, there are no existing tools that can be used to extract general 
-biological insights from groups of disease-associated microbes.
-
-Fecal microbiota transplants have demonstrated the incredible
-causal ability of the microbiome to affect health in 
-human patients. Germ-free mouse models have shown that microbes are
-necessary for healthy functioning, and specific animal models have  
-allowed for probing mechanistic understanding of host-microbial 
-interactions (autism 440 ref, gordon mouse experiment ref). 
-
-Additionally, many of the most successful existing meta-analyses 
-combine vastly different types of microbial communities and non-case-
-control experimental designs. The positive results from these studies 
-are not particularly biologically insightful: it is a much easier task 
-to differentiate vastly different communities (like the skin vs. the 
-gut) than it is to differentiate subtleties contributing to health and 
-disease (like the inflamed gut vs. the healthy gut) \cite{knights-supervised-2010}.
-
-Every meta-analysis performed on 16S data has observed 
-strong batch effects between studies and noted the need for large 
-sample sizes to extract any meaningful signal \cite{sze-signal-2016},
-\cite{walters-ob_meta-2014},\cite{knights-supervised-2010},
-\cite{lozupone-meta-2013}. 
-
-This definition depends on correlated abundances and not simply co-occurence, and is 
-superior to simple co-occurence because of the significant overlap in the
-members of the three aeordigestive communities\cite{bassis-source-2015}, \cite{charslon-topographical-2011}.
-
-To determine how lung, gastric, and throat microbial communities are related,
-we will calculate $p_s$ for each of the site combinations. We will 
-then see if there are apparent phylogenetic relationships between
-the exchanged microbes. We expect to find significantly more exchange
-between the throat and stomach, and very little exchange between the throat and lungs. 
-
-
-
-
-\begin{table}
-\begin{tabular}{|p{6cm}|p{10cm}|}
-	\hline
-	\textbf{Category} & \textbf{Approach} \\
-	\hline
-	Pathogens & Targeted literature search, literature mining, \& 
-	databases \\
-	\hline
-	Body sites & Literature mining, machine learning on HMP data \\
-	\hline
-	Environmental associations & Literature mining, machine learning 
-	on EMP data \\
-	\hline
-	Growth rate & Inference from 16S sequences in datasets from Aim 2 
-	and HMP \\
-	\hline
-	Obesity-associated & Targeted literature search \& machine 
-	learning on Aim 2 datasets \\
-	\hline
-	Inflammation-associated & Targeted literature search \& machine 
-	learning on Aim 2 datasets \\
-	\hline
-	Miscellaneous functions (acid-tolerant, mucus-degrading, etc) & 
-	Targeted literature search, unsupervised PiCRUST clustering, 
-	genome mining \\
-	\hline 
-\end{tabular}
-\caption{Possible approaches to define microbe sets of interest}\label{tab:microbe_set_categories}
-%\end{wraptable}
-\end{table}
-
-
-
-This work will be the beginning of what will hopefully become a new 
-approach to interpreting 16S datasets - moving the field from asking 
-simply ``what's different?'' toward a more critical interpretation of 
-``why are things different?''
 
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
