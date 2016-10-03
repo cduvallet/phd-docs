@@ -160,8 +160,8 @@ stomach, but sometimes allows gastric contents into the lungs \cite{beck-lung-20
 homeostatic mechanisms clear the lungs of foreign bodies and create a 
 selective environment for microbes in the lungs \cite{martinharris-mbs-2008, dickson-lung_microbiome-2014}. 
 Understanding these complex physiological relationships is further complicated
-by the experimental and ethical considerations involved in
-sampling and studying the human aerodigestive tract \cite{beck-lung-2012}.
+by the experimental and ethical considerations related to the 
+invasive sampling necessary to study the human aerodigestive tract \cite{beck-lung-2012}.
 
 Gastro-esophogeal reflux disease (GERD) is a set of syndromes in which 
 the reflux of stomach contents leads to troublesome symptoms or 
@@ -250,7 +250,7 @@ However, many of these studies are limited by small sample sizes and sampling co
 relatively sterile due to its low pH \cite{lawson-gastric-2010}.
 Many studies of the gastric microbiota have focused on \textit{Helicobacter pylori}, 
 which colonizes many healthy patients and is also implicated in the development of gastric cancer and other stomach diseases \cite{bik-stomach-2006}.
-These consistently find that \textit{H. pylori} dominates the mucosal 
+These consistently find that \textit{Helicobacter pylori} dominates the mucosal 
 community when it is present \cite{lawson-gastric-2010, bik-stomach-2006}.
 Other culture-independent studies have found diverse gastric communities in 
 both the mucosa and lumen healthy patients' stomachs \cite{bassis-source-2015, rosen-ppi-2015, lawson-gastric-2010}.
@@ -287,20 +287,20 @@ Related disorders like metabolic
 syndrome and diabetes have also been examined, with similarly little consensus on
 specific microbial markers of these conditions \cite{mets-stad, ob-ross}. 
 Inflammatory bowel disease (IBD) is a chronic disease characterized by 
-mucosal inflammation of the GI tract. Animal studies relating gut 
+mucosal inflammation of the gastrointestinal tract. Animal studies relating gut 
 microbes, immune function, and IBD have pointed to an important role for 
 bacteria in affecting the progression of IBD \cite{tamboli-ibd-2004}. 
-Recent 16S studies have focused on classifying IBD patients based on 
+Recent studies have focused on classifying IBD patients based on 
 their fecal microbiota and on identifying discriminatory taxa in stool 
 \cite{ibd-papa, ibd-gevers}. IBD patients have distinct microbial profiles 
 that distinguish them from controls, but the specific microbes which
 drive this distinction have not been identified, and it is likely that
 larger community structure patterns play an important role in shaping
-the IBD microbiota. \cite{walters-ob_meta-2014, ibd-papa, ibd-gevers}.
+the IBD microbiota \cite{walters-ob_meta-2014, ibd-papa, ibd-gevers}.
 Colorectal cancer (CRC) has long been associated with the intestinal 
 microbiome, with bacterial metabolites thought to contribute to the 
 development of CRC and specific bacteria having been isolated from CRC 
-tumors \cite{crc_zeller, crc_xiang}. 16S studies have analyzed disease associations with 
+tumors \cite{crc_zeller, crc_xiang}. Studies have analyzed disease associations with 
 tumor- and lumen-associated microbiota, and have consistently found 
 enrichment of the \textit{Fusobacterium} genus in CRC patients
 \cite{crc_zeller, crc_zhao, crc_zhu, crc_zackular}. 
@@ -431,7 +431,8 @@ In GSEA, genes were grouped into gene sets based on their common
 pathways, functions, locations in the chromosome, and associations 
 with disease \cite{subramanian-gsea-2005}. Similar annotations exist in some microbial databases, 
 but none of these databases or tools have been used to define groups 
-of related microbes. ImG contains approximately 10,000 annotated 
+of related microbes. The Integrated Microbial Genomes \& Microbiomes (ImG) 
+database contains approximately 10,000 annotated 
 bacterial genomes, but the annotations are not fully complete and do 
 not span all categories of possible interest \cite{markowitz-img-2013}. SourceTracker 
 can be used to label microbial communities according to their 
@@ -522,7 +523,7 @@ Many patients in this cohort were monitored for GERD with 24-hour
 impedance monitoring \cite{vakil-gerd_defn-2006}, which identifies the total number of reflux episodes,
 the percent of time each patient was refluxing, and the acidic or non-acidic
 nature of the reflux event. A subset were also tested for aspiration with
-an MBS test, and most patients have metadata for being on or off PPI medication.
+a Modified Barium Swallow (MBS) test, and most patients have metadata for being on or off PPI medication.
 
 \subsubsection{Quantify exchange of microbes between lung, gastric, and throat communities} \label{sec:exchange}
 
@@ -537,6 +538,8 @@ To calculate this correlation, we consider only patients who have the microbe pr
 We quantify the extent of exchange, $p_s$ by asking how many of the total patients
 have the microbe present in both sites. In other words, $p_s$ is the 
 percentage of patients who are exchanging that microbe across their two sites.
+We will calculate this metric for each OTU across all site-combinations, 
+i.e. throat and lung, stomach and lung, and stomach and throat.
 
 One factor to consider when drawing conclusions from the $p_s$ metric 
 is that because of the low bacterial biomass in the gastric and lung 
@@ -550,7 +553,7 @@ would indicate either non-random seeding of the aerodigestive communities
 or non-random selection of randomly-seeded microbes. In either case, the
 identified microbes would be a relevant part of the microbial communities.
 Also, we can compare the exchanged OTUs we identify with previous work
-to determine whether these microbes could be considered commensals, or
+to determine whether these microbes could be considered commensals or
 if they have functions that would allow them to survive in their specific niches.
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
@@ -597,8 +600,9 @@ The dataset has 48 patients with abnormal MBS test results (aspirators) and 63 p
 Our next hypothesis is that patients with more severe GERD will have 
 more exchange between the stomach and lung communities. Because we are 
 interested in GERD that may modulate the stomach-lung connection by
-actually reaching the top of the esophogaus, we will focus our analyses
-on proximal, i.e. full-column, reflux. Our GERD data quantifies the
+actually reaching the top of the esophagus, we will focus our analyses
+on full-column reflux, i.e. reflux that reaches the proximal part of the esophagus.
+Our GERD data quantifies the
 percent of reflux which is full-column, and does not provide a hard
 cutoff above which reflux is considered ``severe''. Thus, another goal
 of this work is to identify if such a threshold exists. We will examine
@@ -672,8 +676,8 @@ apply for special permissions to use IRB-protected data.
 We will process these datasets using a standardized in-house pipeline 
 developed by Thomas Gurry, a post-doc in the Alm lab. We will 
 start with the rawest available data - in most cases, these will be 
-fastq files but for some studies we will begin from quality-filtered 
-fasta files. Sequences will be quality and length trimmed, clustered 
+FASTQ files but for some studies we will begin from quality-filtered 
+FASTA files. Sequences will be quality and length trimmed, clustered 
 at 100\% similarity, and assigned Latin taxonomic names using the RDP 
 classifier. Samples with fewer than 100 reads will be removed from 
 consideration. OTUs with fewer than 10 reads or which are present in 
@@ -727,17 +731,13 @@ had clear results from experimental or mechanistic studies \cite{turnbaugh-energ
 Developing robust methods to overcome technical batch effects in 16S 
 studies is not within the scope of this work, but there are many
 simpler options available to help mitigate severe batch effects. 
-We will first try applying simple linear correction methods 
-like subtracting the components which correlate closely with technical 
-artifacts like read depth to our datasets. 
-If standard meta-analysis methods still fail after this correction, we will also 
-change the way we compare OTUs across studies:
-rather than depending on taxonomically-assigned closed-reference OTUs, 
-we could identify associations between open-referenced OTUs and 
-diseases within individual studies, and then compare 
-the phylogenetic relationship of significant OTUs across all studies. Finally, 
-if taxonomic approaches still do not yield results, we will consider
-approaching our meta-analysis from a functional point of view by
+First, we can apply simple linear correction methods 
+like subtracting the principal components of variation which correlate closely with technical 
+artifacts like read depth or sample size. 
+Another option is to change from closed- to open-reference OTUs, changing the way we compare and combine OTUs across studies.
+We could identify disease associations with open-referenced OTUs within individual studies, and then compare 
+the phylogenetic relationships of significant OTUs across all studies. 
+Finally, we could also approach our meta-analysis from a functional point of view by
 using tools like PiCRUST or HUMANN to assign functionality to our
 observed taxonomies \cite{langille-picrust-2013, abubucker-humann-2012}.
 
@@ -830,8 +830,8 @@ find in the human gut. If certain key clades are missing from these
 bacteria, we will manually include them from literature searches and 
 NCBI queries.
 
-In collaboration with Ilana Brito at Cornell, we will apply a 
-combination of literature mining and bioinformatics approaches to fill 
+In collaboration with Ilana Brito, Assistant Professor of Biomedical Engineering at Cornell University, 
+we will apply a combination of literature mining and bioinformatics approaches to fill 
 out the missing annotations in the databases and to add our own fields 
 of interest (Figure \ref{fig:microbe_sets}). We may also 
 pursue unsupervised text mining of literature results to infer trait 
@@ -1041,27 +1041,33 @@ between the stomach and lungs becomes significantly higher than in non-severe re
 
 \subsection{Aim 2}
 \subsubsection{Collecting and reprocessing 16S case-control datasets}
-Our extensive literature review has so far identified 54 suitable case-control 16S datasets.
-29 datasets and their associated metadata have been downloaded and processed through our in-house pipeline.
-Characteristics of these datasets are shown in Table \ref{tab:datasets}
-
-\begin{table}
-\begin{tabular}{|c|c|c|c|c|c|}
-	\hline
-	\textbf{Dataset ID} & \textbf{Diseases} & \textbf{Median reads/sample} & \textbf{Year} & \textbf{Platform} & \textbf{Region} \\
-	\hline 
-\end{tabular}
-\caption{Datasets}\label{tab:datasets}
-\end{table}
+Our extensive literature review has identified over 50 suitable case-control 16S datasets.
+28 datasets and their associated metadata have been downloaded and processed through our in-house pipeline.
+Characteristics of these datasets, including sample size, disease states,
+and median sequencing depth, are shown in Appendix \ref{sec:appendix_tables}, Table \ref{tab:datasets}.
 
 \subsubsection{Identify general patterns of health and diseases}
 We first summarized overall community structure using Shannon's alpha diversity
 index (SDI). We observed significant batch effects across studies, likely due to
-the differences in sequencing depth. After standardizing SDI within studies
+the differences in sequencing depth (Appendix \ref{sec:appendix_figures}, Figure \ref{fig:alpha_all}). After standardizing SDI within studies
 and combining similar disease states, we observed little difference in overall
 community structure between cases and controls. An exception to this was seen
 in diarrheal diseases (\textit{Clostridium difficile} infection and enteric 
-diarrheal disease), in which alpha diversity was significantly lower in the cases. 
+diarrheal disease), in which alpha diversity was significantly lower in the cases (Figure \ref{fig:alpha}). Interestingly, disease states which had studies that defined
+their cases or controls differently also had signficant differences
+in alpha diversity. For example, one IBD study \cite{ibd-papa} recruited controls
+with non-inflammatory conditions of the gastrointestinal tract while others \cite{ibd-gevers, ibd-engstrand, ibd_hut}
+used healthy patients as controls. Additionally, some obesity studies \cite{ob-escobar, ob-goodrich, ob-gordon} labeled patients as ``overweight'' in addition
+to ``obese'' while others \cite{ob-ross, ob-zupancic} included only ``healthy'' and ``obese'' patient 
+category labels. In these cases, the differences in alpha diversity are 
+likely being driven by batch effects rather than biology.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.55]{alpha_diversity_by_study_type}
+	\caption{Alpha diversity by study type. Q-values calculated by independent t-tests and corrected for Benjamini-Hochberg false discovery rate. $q \approx 0$ (***), $q \textless 0.0001$ (**), $q \textless 0.01$ (*)}	\label{fig:alpha}
+\end{center}
+\end{figure}
 
 We next performed univariate comparisons at the genus level for abundance in cases 
 vs. controls for each study. This analysis revealed a similar result: diarrheal 
@@ -1074,7 +1080,62 @@ altered microbiomes. In light of this finding, identifying microbial shifts that
 are unique to individual diseases will be crucial to finding specific biomarkers
 for diagnostic purposes and to motivate mechanistic investigations.
 
-\section{Gud werds}
+\newpage
+\section{Appendix}
+\subsection{Tables}\label{sec:appendix_tables}
+
+{
+\renewcommand{\arraystretch}{1.1}
+\begin{table}
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+	\hline
+	\textbf{Dataset ID} & \textbf{Year} & \textbf{Disease(s)} &	\textbf{N control} & \textbf{N case} & \parbox[c]{2cm}{\centering\textbf{Median}\\\textbf{reads per}\\\textbf{sample}} &	\textbf{Sequencer} & \textbf{16S Region} & \textbf{Ref.} \\
+	\hline
+	asd\_kb & 2013 & ASD & 20 & 19 & 1345 & 454 & V2-V3 & \cite{asd-kb}\\ 
+	asd\_son & 2015 & ASD & 44 & 59 & 4777 & Miseq & V1-V2  & \cite{asd-son}\\ 
+	cdi\_schu & 2014 & CDI & 243 & 93 & 3557 & 454 & V3-V5 & \cite{cdi_schubert}\\ 
+	cdi\_vincent & 2013 & CDI & 18 & 17 & 5518 & 454 & V1-V3 & \cite{cdi_vincent}\\ 
+	cdi\_young & 2014 & CDI & 18 & 27 & 16516 & Miseq & V4 & \cite{cdi_youngster}\\ 
+	crc\_baxter & 2016 & CRC & 122 & 120 & 9476 & Miseq & V4 & \cite{crc_baxter}\\ 
+	crc\_xiang & 2012 & CRC & 22 & 21 & 1152 & 454 & V1-V3 & \cite{crc_xiang}\\ 
+	crc\_zackular & 2014 & CRC & 58 & 30 & 54269 & MiSeq & V4 & \cite{crc_zackular}\\ 
+	crc\_zeller & 2014 & CRC & 75 & 41 & 120612 & MiSeq & V4 & \cite{crc_zeller}\\ 
+	crc\_zhao & 2012 & CRC & 54 & 44 & 161 & 454 & V3 & \cite{crc_zhao}\\ 
+	crc\_zhu & 2013 & CRC & 18 & 12 & 1835 & 454 & V3 & \cite{crc_zhu}\\ 
+	edd\_singh & 2015 & EDD & 82 & 222 & 2573 & 454 & V3-V5 & \cite{edd-singh}\\ 
+	hiv\_dinh & 2015 & HIV & 15 & 21 & 3248 & 454 & V3-V5 & \cite{hiv-dinh}\\ 
+	ibd\_alm & 2012 & UC, CD & 24 & 66 & 1303 & 454 & V3-V5 & \cite{ibd-papa}\\ 
+	ibd\_eng & 2009 & UC, CD & 32 & 32 & 2658 & 454 & V5-V6 & \cite{ibd-engstrand}\\ 
+	ibd\_gevers & 2014 & CD & 16 & 146 & 9773 & Miseq & V4 & \cite{ibd-gevers}\\ 
+	ibd\_hut & 2012 & UC, CD & 27 & 186 & 995 & 454 & V3-V5 & \cite{ibd_hut}\\ 
+	mhe\_zhang & 2013 & CIRR, MHE & 25 & 46 & 487 & 454 & V1-V2 & \cite{mhe_zhang}\\ 
+	nash\_baker & 2013 & NASH, OB & 16 & 47 & 9904 & 454 & unk & \cite{nash-baker}\\ 
+	nash\_chan & 2013 & NASH & 22 & 32 & 1743 & 454 & V1-V2 & \cite{nash-chan}\\ 
+	ob\_escobar & 2014 & OW, OB & 10 & 20 & 1126 & 454 & V1-V3 & \cite{ob-escobar}\\ 
+	ob\_goodrich & 2014 & OW, OB & 451 & 528 & 27364 & Miseq & V4 & \cite{ob-goodrich}\\ 
+	ob\_gord & 2009 & OW, OB & 61 & 219 & 1569 & 454 & V2 & \cite{ob-gordon}\\ 
+	ob\_ross & 2015 & OB & 26 & 37 & 1583 & 454 & V1-V3 & \cite{ob-ross}\\ 
+	ob\_zup & 2012 & OB & 167 & 117 & 1392 & 454 & V1-V3 & \cite{ob-zupancic}\\ 
+	par\_schep & 2015 & PAR & 74 & 74 & 2351 & 454 & V1-V3 & \cite{par-schep}\\ 
+	t1d\_alkanani & 2015 & T1D & 23 & 89 & 9117 & MiSeq & V4 & \cite{t1d_alkanani}\\ 
+	t1d\_mejia & 2014 & T1D & 8 & 21 & 4702 & 454 & V3-V5 & \cite{t1d_mejia}\\ 	
+	\hline
+\end{tabular}}
+\caption{Datasets currently collected and processed through standardized pipeline. Disease labels: ASD = Austism spectrum disorder, CDI = \textit{Clostridium difficile} infection, CRC = colorectal cancer, EDD = enteric diarrheal disease, UC = Ulcerative colitis, CD = Crohn's disease, CIRR = Liver cirrhosis, MHE =  minimal hepatic encephalopathy, NASH = non-alcoholic steatohepatitis, OW = overweight, OB = obese, PAR = Parkinson's disease, T1D = Type I Diabetes. }\label{tab:datasets}
+\end{table}
+}
+
+\subsection{Figures}\label{sec:appendix_figures}
+
+\begin{figure}
+\begin{center}
+	\includegraphics[scale=0.3]{alpha_diversity_by_study}
+	\caption{Shannon alpha diversity index (SDI), stratified by individual studies. Note how the range of SDI varies across studies.}
+	\label{fig:alpha_all}
+\end{center}
+\end{figure}
+
+\subsection{Ignore}
 We hypothesize that there is a clinically-relevant exchange of bacteria within the aerodigestive tract that may be altered in certain disease states. 
 
 
