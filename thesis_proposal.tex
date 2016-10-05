@@ -75,7 +75,7 @@ advancing our understanding of the clinical human microbiome.
 First, I will quantify the exchange across microbial communities
 in the aerodigestive tract and examine their associations with clinical factors
 such as aspiration and gastro-esophogeal reflux disease.
-Second, I will re-analyze published case-control gut microbiome studies in a 
+Second, I will re-analyze published gut microbiome studies in a 
 broad comparative analysis. 
 I will look for microbes which are frequently enriched or depleted
 across many disease states as well as ones which are specifically 
@@ -313,22 +313,22 @@ relatively unexplored \cite{asd-kb, par-schep, ra-littman, hiv-dinh}.
 \subsubsection{Existing understanding of the gut microbiome}
 
 Although specific microbiome-disease associations remain unclear, general characteristics
-of the gut microbiome are relatively well-understood. People have unique gut microbial 
+of the gut microbiome are relatively well-understood. People have their own unique gut microbial 
 communities, very few microbes can be consistently found across the majority of people,
 and many gut communities are dominated by one or two phyla (Bacteroidetes and Firmicutes) \cite{hmp-2012}.
 Our gut microbiome is stable over time and can also change rapidly in response to 
 disease, antibiotics, travel, and diet \cite{david-huge-2012}. These perturbations can be fully reversible
-and can also have long-term effects \cite{david-huge-2012}.
+or can also have long-term effects \cite{david-huge-2012}.
 Dysbiosis is often discussed as an ``imbalance'' of gut microbes, though
 is generally applied to mean any community disruption related to disease \cite{costello-ecology-2012}.
 Generally, less diverse communities are thought to be associated with disease,
-though many recent studies find no significant association with diversity and disease \cite{walters-ob_meta-2014}.
+though studies often find no significant association with diversity and disease \cite{walters-ob_meta-2014}.
 Early mouse studies associated the ratio of Bacteroidetes to Firmicutes with
 altered phenotypes, but few subsequent studies have found similar associations
 in human patients \cite{turnbaugh-energy_harvest-2006, sze-signal-2016}. 
 
 Combining existing studies to increase our ability to find consistent
-disease associations is a promising approach, but the most recent of these meta-analyses
+disease associations is a promising approach, but existing meta-analyses
 have had mixed results \cite{walters-ob_meta-2014, sze-signal-2016}. 
 In some cases like IBD, strong and consistent 
 signals can be found across studies but no specific microbes have 
@@ -339,14 +339,14 @@ Other meta-analysis studies are not relevant to extracting
 clinically-relevant microbial associations: many of these test the 
 ability of various statistical and machine learning methods
 to extract biomarkers or classify disease states, without much
-interpretion of what the statistical results mean clinically
+interpretion of what the statistical results mean biologically
 \cite{knights-supervised-2010, lozupone-meta-2013, knights-biomarkers-2011, pasolli-meta_analysis-2016}.
 
 \subsection{Analytical background and significance}
 
 \subsubsection{Data generation, standard analysis methods and associated challenges} 
 A common way that researchers study the human microbiome is to do 
-amplicon-based next generation sequencing of the complex microbial 
+amplicon-based next generation sequencing of complex microbial 
 communities. This culture-independent method begins with extracting
 DNA from a sample of interest, amplifying the universally conserved
 bacterial 16S rRNA gene, and sequencing by one of the available technologies such as 454 
@@ -363,14 +363,14 @@ are no accepted standardized methods followed by all studies.
 The data that results from these surveys can be very challenging to analyze.
 The datasets are often very high-dimensional, with hundreds 
 of OTUs present in a given cohort which may only have tens of samples \cite{sze-signal-2016}. 
-The data is also incredibly sparse: only very few OTUs tend to be 
+The data is also incredibly sparse: only few OTUs tend to be 
 present in many of the samples, and most entries in the data matrix 
 are zeros \cite{knights-biomarkers-2011}. 
 Furthermore, strong batch effects between studies result from 
 differences in experimental and computational processing steps.
 For example, different taxonomy databases contain different 
 microbes or conflicting names for the same bacteria, making it 
-difficult to compare even published, annotated results across studies.  
+difficult to compare even published results across studies.  
 These issues may be large contributors to the lack of consensus on the 
 role of the microbiome in disease, in spite of the broad availability of data and studies.
 
@@ -518,7 +518,7 @@ In other words, if a microbe is consistently exchanged between sites,
 we expect that if we see little of it in one site in one patient, then we will also see little of it in the other site. 
 If we see more of it in the first site in a different patient,
 then we also expect to see more of it in the other site.
-To calculate this correlation, we consider only patients who have the microbe present in both sites (blue dots in Figure \ref{fig:sharedness_defn}).
+To calculate this correlation, we consider only patients who have the microbe present in both sites (blue points in Figure \ref{fig:sharedness_defn}).
 \textbf{We quantify the extent of exchange, $p_s$ by determining what percentage of
 patients are exchanging that microbe across their two sites.}
 In other words, $p_s$  is the number of patients who have the microbe present in both 
@@ -623,7 +623,7 @@ performed a comprehensive comparison of the results from gut microbiome
 studies across all disease states with standardized processing
 and analysis methods.
 \textbf{We hypothesize that re-analyzing existing gut microbiome datasets 
-across all studied diseases will identify bacteria
+across all diseases will identify bacteria
 associated with a general response to disease
 and others associated with specific disease states.}
 To address our hypotheses, we will first acquire and re-process a comprehensive
@@ -655,7 +655,7 @@ publicly-available data, either from data repositories like SRA or
 from personal email communication with authors. We will not 
 apply for special permissions to use IRB-protected data. 
 
-We will process these datasets using a standardized in-house pipeline 
+\textbf{We will process these datasets using a standardized in-house pipeline} 
 developed by Thomas Gurry, a post-doc in the Alm lab. We will 
 start with the least processed data available - in most cases, these will be 
 raw FASTQ files but for some studies we will begin from quality-filtered 
@@ -682,9 +682,9 @@ occurs at various taxonomic thresholds \cite{knights-biomarkers-2011}, so we wil
 also consider higher-level taxonomic classifications in our meta-analyses.
 
 \subsubsection{Identify generic microbial responses to disease shared across all studied disease states}\label{sec:indep_studies}
-\textbf{Once we re-process existing
-gut microbiome datasets in a standardized way, we hypothesize that we
-will identify broad community shifts related to general disease.}
+Once we re-process existing
+gut microbiome datasets in a standardized way, \textbf{we hypothesize that we
+will identify broad community shifts related to generic disease.}
 We will begin by comparing summaries of the microbial communities in 
 each disease state. For example, we will compare the differences in alpha diversity 
 for all cases and controls of the same disease across multiple datasets. 
@@ -696,9 +696,9 @@ the alpha diversity across all samples in the case or control groups.
  Alternatively, we can
 do individual statistical comparisons within each study and combine these p-values
 together with the weighted Z-test, a method used in meta-analyses for combining p-values \cite{zavkin-ztest-2011}. We will begin with alpha diversity
-because it is the most frequently reported metric in the microbiome literature. We will also simlarly consider
+because it is the most frequently reported metric in the microbiome literature. We will also similarly consider
 other community summaries like the Bacteroides/Firmicutes ratio, beta diversity between and within cases and controls, 
-and phylam abundances.
+and phyla abundances.
 
 \textbf{We also hypothesize that certain microbes are part of a shared response to disease.} We will use univariate non-parametric statistics to compare the
 abundance of individual microbes between cases and controls. 
@@ -740,7 +740,7 @@ where we expect to find a clear signal (i.e. in diseases which have
 had clear results from experimental or mechanistic studies \cite{turnbaugh-energy_harvest-2006, ridaura-mouse_fmt-2013, crc_zeller}). 
 Developing robust methods to overcome technical batch effects in 16S 
 studies is not within the scope of this work, but there are many
-simpler options available to help mitigate severe batch effects. 
+simpler options available to help mitigate batch effects. 
 First, we can apply simple linear correction methods 
 like subtracting the principal components of variation which correlate closely with technical 
 artifacts like read depth or sample size. 
@@ -874,11 +874,11 @@ As another example, annotating traits like body site habitat will
 depend mostly on literature search since there are likely no clear genes
 conferring this trait. We will also extract habitat associations
 from large datasets like the Human Microbiome Project which sequenced multiple body sites \cite{hmp-2012}.
-Finally, throughout our annotation process, we will need to balance
+Throughout our annotation process, we will need to balance
 the confidence we have in the annotations with
 the breadth of microbes we are able to annotate.
 For example, some bacteria which are known spore-formers do not contain any
-known sporulation genes. We will try to fill these out to the best of our
+known sporulation genes. We will fill these out to the best of the field's
 existing knowledge, but our database will certainly 
 still contain a vast number of false negatives.
 On the other hand, microbes which have certain sporulation genes
@@ -905,7 +905,7 @@ inference, or taxonomy-based functional inferences.
 \textbf{In parallel with our literature-based annotations, 
 we will use the datasets collected in Aim 2 to identify
 additional disease-associated groups of microbes.} We will annotate microbes 
-based on whether they were enriched or depleted in the shared microbial response to disease or if they were associated with specific diseases (Section \ref{sec:aim2}). 
+based on whether they were enriched or depleted in the shared microbial response to disease or if they were associated with specific diseases. 
 We will also extract additional disease- and phenotype-associated microbes by 
 applying machine learning methods to the datasets in Aim 2 for
 various classification tasks (Table \ref{tab:classifications}). 
@@ -985,8 +985,8 @@ inherent difficulty of this task, and do not expect to produce a fully
 comprehensive database. However, because our annotations are intended 
 to serve as a tool for biological interpretations and hypothesis 
 generation, even a partially-complete database will be extremely 
-valuable in reducing the number of false-negative results in case-control 
-studies. It will also be immensely
+valuable in reducing the number of false-negative results in microbiome 
+studies. It will also be immensely useful
 to researchers by providing coherent biological interpretations 
 of existing results. We also recognize that our work will contribute to the 
 beginning of a systematic grouping of phenotypically-associated 
@@ -1009,11 +1009,12 @@ each other as the throat and stomach communities were,
 but had less frequent exchange of specific microbes (Figure \ref{fig:similarities}). 
 These findings support the hypothesis that frequent non-specific microaspiration
 of gastric contents into the lungs is occurring,
-where the exchange of microbes is more stochastic and
+in which the exchange of microbes is more stochastic and
 not necessarily consistently selecting for specific community members across many patients.
 Finally, we observed a decreasing trend in number of exchanged microbes 
 across throat and stomach, lung and stomach, and throat and lung sites, respectively, 
-for all phyla except Proteobacteria (Appendix \ref{sec:appendix_figures}, Figure \ref{fig:shared_phyla}). The same number of Proteobacteria OTUs were exchanged 
+for all phyla except Proteobacteria (Appendix \ref{sec:appendix_figures}, Figure \ref{fig:shared_phyla}). 
+More Proteobacteria OTUs were exchanged 
 between lungs and stomach than between the throat and stomach. Proteobacteria are 
 known aerobes, and so may be preferentially selected for colonization in 
 the lungs after microaspiration from the stomach.
@@ -1039,8 +1040,8 @@ thought.
 
 We observed a distinct increase in the amount of exchange between the 
 throat and lungs of aspirators relative to non-aspirators (Figure \ref{fig:aspirators}B).
-25\% of aspirators shared
-the previously-defined throat-lung microbes between their throats and lungs, while only 13\% of 
+40\% of aspirators shared
+the previously-defined throat-lung microbes between their throats and lungs, while only 15\% of 
 non-aspirators did. Additionally, the throat and lung communities
 were significantly more similar in aspirating patients than non-aspirators (Figure \ref{fig:aspirators}A). These results indicate that a consequence of abnormal swallowing
 dysfunction is likely a seeding of the lungs with oral bacteria.
