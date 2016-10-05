@@ -72,8 +72,8 @@ from their existing and future analyses.
 
 The research presented in this thesis is united by a common purpose: 
 advancing our understanding of the clinical human microbiome.
-First, I will quantify the exchange between the microbial communities
-of the aerodigestive tract and examine their associations with clinical factors
+First, I will quantify the exchange across microbial communities
+in the aerodigestive tract and examine their associations with clinical factors
 such as aspiration and gastro-esophogeal reflux disease.
 Second, I will re-analyze published case-control gut microbiome studies in a 
 broad comparative analysis. 
@@ -102,10 +102,8 @@ related to the human microbiome.
 	\begin{enumerate}
 		\item Compile and re-process publicly available case-control gut 
 		microbiome studies with a standardized method.
-		\item Determine whether certain microbes are associated with specific 
-		diseases and whether others are part of a shared microbial response to disease.
-		\item Identify relationships between physiologically-related 
-		diseases by comparing their microbial characteristics.
+		\item Identify generic microbial responses to disease shared across all studied disease states.
+		\item Identify microbes consistently associated with specific diseases.
 	\end{enumerate}
 	\item[Aim 3] Curate a database of 16S sequences annotated with 
 	associated general biological traits.
@@ -346,7 +344,7 @@ interpretion of what the statistical results mean clinically
 
 \subsection{Analytical background and significance}
 
-\subsubsection{Data generation, analysis and associated challenges} 
+\subsubsection{Data generation, standard analysis methods and associated challenges} 
 A common way that researchers study the human microbiome is to do 
 amplicon-based next generation sequencing of the complex microbial 
 communities. This culture-independent method begins with extracting
@@ -426,17 +424,17 @@ many phenotype associations are likely to result from groups of
 bacteria working together, and high-dimensional datasets
 frequently produce few significant OTU-level phenotype associations.
 
-Interpreting the biological significance of enriched microbes,
-relies upon the \textit{a priori} existence of annotated groups of 
-related microbes.
+Interpreting the biological significance of a list of significant OTUs 
+through enrichment analysis relies upon the existence of trait annotations
+for the OTUs in that list.
 There currently does not exist a database which maps a microbe's
-taxonomy (via its 16S sequence) to a biological trait.
+taxonomy (via its 16S sequence) to its biological traits.
 In GSEA, genes were grouped into gene sets based on their common 
 pathways, functions, locations in the chromosome, and associations 
 with disease \cite{subramanian-gsea-2005}. 
 Similar information exists for bacteria in some microbial databases, 
-but none of these databases or tools have been integrated and used to define groups 
-of microbes based on general traits. 
+but none of these databases or tools have been combined to define groups 
+of microbes based on their general traits. 
 The Integrated Microbial Genomes \& Microbiomes (IMG) 
 database contains approximately 10,000 annotated 
 bacterial genomes, but the annotations are not fully complete and do 
@@ -445,37 +443,36 @@ can be used to label microbial communities according to their
 environmental source, but requires input training sets with each use 
 in order to learn the environmental associations and classify the input dataset \cite{knights-sourcetracker-2011}. 
 Finally, bioinformatic tools like PiCRUSt have been developed that can infer functional 
-content from 16S data \cite{langille-picrust-2013}. 
+content from 16S data \cite{langille-picrust-2013}, but these annotate
+microbial communities with genes and KEGG pathways present in the communities
+and do not necessarily translate these to generalizable biological traits.
+Existing tools and databases for microbial annotations are often based either 
+on inferences from genetic content or on experimentally validated phenotypes,
+but rarely combine these two methods to create a comprehensive resource
+that maps microbes to their varied biological traits.
 
-Again, 
-these tools are dataset-specific and have not been generalized to 
-define biologically related groups of organisms in an \textit{a priori}, study-independent manner.
 
 \section{Research design and methods}
 
 \subsection{Aim 1: Apply standard methods to identify microbial community characteristics associated with gastro-esophogeal reflux disease and aspiration}
 
-GERD, aspiration, and respiratory infections are three related
-conditions with complex and unclear interactions.
-We know that aspirating patients are at a higher risk for respiratory
-infections, and that many patients who present with idiopathic
-respiratory problems have a high prevalence of GERD. 
-We also know that the microbial communities of the aerodigestive tract
-are connected and likely exchange bacterial members, but the microbiota's
-associations with GERD and aspiration is unclear.
-
-We hypothesize that there is extensive microbial exchange occurring
-throughout the aerodigestive tract, and that certain clinical conditions like aspiration
-or GERD may modulate the amount of exchange happening across various sites. 
+The microbial communities of the lungs, stomach, and throat
+are connected and likely exchange members, but the effects of GERD and aspiration 
+on these microbial communities and their exchange are unclear \cite{bassis-source-2015}.
+\textbf{We hypothesize that there is extensive microbial exchange occurring
+across all sites of the aerodigestive tract, and that certain clinical conditions like aspiration
+or GERD modulate the amount of exchange happening across various sites.}
 To address this hypothesis, we will first identify which microbes
 are exchanged across sites and define a metric to quantify this exchange. 
-Next, we will investigate how aspiration and GERD affect aerodigestive microbial communities. 
-We hypothesize that aspiration will increase the microbial exchange between the lungs and the throat,
+Next, we will investigate how aspiration and GERD affect aerodigestive microbial communities.
+Aspirating patients are at a higher risk for respiratory
+infections, and many patients who present with idiopathic
+respiratory problems have a high prevalence of GERD \cite{houghton-microaspiration-2016,  debenedictis-asp_dis-2009}. 
+Therefore, we hypothesize that aspiration will increase the microbial exchange between the lungs and the throat,
 and that reflux will increase the exchange between the lungs and the stomach.
 Quantitatively describing the amount of microbial exchange happening in the
 aerodigestive tract and determining clinical modulators of this exchange
-will contribute new knowledge to our current understanding of the
-aerodigestive microbiome, and could inform future investigations and treatments.
+could inform treatments targeted toward reducing the exchange across specific sites.
 
 \subsubsection{Aerodigestive patient cohort}
 
@@ -508,21 +505,24 @@ Many patients in this cohort were monitored for GERD with 24-hour
 impedance monitoring \cite{vakil-gerd_defn-2006}, which identifies the total number of reflux episodes,
 the percent of time each patient was refluxing, and the acidic or non-acidic
 nature of the reflux event. A subset were also tested for aspiration with
-a Modified Barium Swallow (MBS) test, and most patients have metadata for being on or off PPI medication.
+a Modified Barium Swallow (MBS) test.
 
 \subsubsection{Quantify microbial exchange across sites in the aerodigestive tract} \label{sec:exchange}
 
 To understand the microbial exchange between sites in the 
 aerodigestive tract, we must first identify which microbes are being exchanged
 and then quantify the extent of this exchange across the sites. 
-We define a microbe as exchanged between two sites if the Spearman 
-correlation of its abundance in both sites is greater than 0.5.
-In other words, if a microbe is being exchanged between sites, we expect that if we see 
-more of it in one site, then we will also see more of it in the other. 
+\textbf{We define a microbe as exchanged between two sites if it has a significant, positive Spearman 
+correlation of its abundance in both sites.}
+In other words, if a microbe is consistently exchanged between sites, 
+we expect that if we see little of it in one site in one patient, then we will also see little of it in the other site. 
+If we see more of it in the first site in a different patient,
+then we also expect to see more of it in the other site.
 To calculate this correlation, we consider only patients who have the microbe present in both sites (blue dots in Figure \ref{fig:sharedness_defn}).
-We quantify the extent of exchange, $p_s$ by asking how many of the total patients
-have the microbe present in both sites. In other words, $p_s$ is the 
-percentage of patients who are exchanging that microbe across their two sites.
+\textbf{We quantify the extent of exchange, $p_s$ by determining what percentage of
+patients are exchanging that microbe across their two sites.}
+In other words, $p_s$  is the number of patients who have the microbe present in both 
+sites divided by the total number of patients.
 We will calculate this metric for each OTU across all site-combinations, 
 i.e. throat and lung, stomach and lung, and stomach and throat.
 
@@ -533,7 +533,7 @@ these sites are simply both being seeded by the environment. However,
 if these microbes are phylogenetically related or if they are known 
 members of the gastric or lung communities, this would indicate that 
 the OTUs are being selected for by the environment and are relevant 
-community members. Small phylogenetic distance between exchanged microbes
+community members. If exchanged microbes are closely related, this
 would indicate either non-random seeding of the aerodigestive communities 
 or non-random selection of randomly-seeded microbes. In either case, the
 identified microbes would be a relevant part of the microbial communities.
@@ -545,110 +545,108 @@ if they have functions that would allow them to survive in their specific niches
 %	\centering
 \begin{figure}
 \begin{center}
-    \includegraphics[scale=0.65]{sharedness_definition}
+    \includegraphics[scale=0.75]{sharedness_definition}
     \caption{If the abundance of a microbe when it is 
-    present in both sites is correlated, then we consider it exchanged 
+    present in both sites is significantly positively correlated, then we consider it exchanged 
     across those sites (blue points, right panel). $p_s$ is then calculated as the 
     percentage of patients who have the microbe present in both sites (blue 
     points divided by total points, where each point represents one patient). 
-    Example of microbes which are (A) not exchanged and (B) exchanged between stomach and lungs.}\label{fig:sharedness_defn}
+    Example of microbes which are (A) not exchanged and (B) exchanged between the 
+    stomach and lungs.}\label{fig:sharedness_defn}
 \end{center}
 \end{figure}
 %\end{wrapfigure}
 
-\subsubsection{Evaluate the effect of aspiration and gastro-esophogeal reflux disease on aerodigestive microbial communities.}
+\subsubsection{Evaluate the effect of aspiration and gastro-esophogeal reflux disease on aerodigestive microbial communities}
 
 Once we quantify microbial exchange within the aerodigestive tract, we 
-can begin to ask how conditions like aspiration and GERD modulate the
-microbial communities of the aerodigestive sites and the exchange 
-that occurs between them. We hypothesize that aspiration will modulate the 
-amount of throat-lung exchange and that reflux will modulate 
-the amount of gastric-lung exchange.
-For each of these clinical factors, we will calculate a new $p_s$ within each patient 
-subgroup for each of the previously-defined exchanged microbes.
-In other words, $p_s'$ is the percent of the patients in one subgroup
-that have each exchanged microbe present in both of the sites.
-We will also investigate the overall community similarity (i.e. beta diversity) 
-between the two sites for each patient subgroup. Finally, we may pursue
-more exploratory analyses like univariate comparisons of OTU abundances
-in patients with and without each condition.
-
-Our first hypothesis is that aspirators will have more exchange between their throat and lungs and between their stomachs and their lungs.
+can begin to ask how conditions like aspiration and GERD modulate the exchange 
+that occurs between them. \textbf{Our first hypothesis is that aspirators will have more exchange between their throat 
+and lungs than non-aspirators.} Because aspirators cannot reliably protect
+their airways from foreign materials in general, they may also have more exchange between their stomachs and lungs.
 Aspirating patients are at higher risk for respiratory infections, which
 may be a result of stomach or oral microbes successfully seeding the lungs
 because the airway is no longer adequately protected.
 Reflux surgery is often prescribed to aspirators with chronic infections,
 as it is thought that the refluxate of these patients carries microbes which seed the lungs. 
+Identifying how the throat-lung and stomach-lung connections are affected by aspiration 
+would shed light on the involvement of the microbiota in these two clinical hypotheses.
 The dataset has 48 patients with abnormal MBS test results (aspirators) and 63 patients with normal results.
 
-Our next hypothesis is that patients with more severe GERD will have 
-more exchange between the stomach and lung communities. Because we are 
-interested in GERD that may modulate the stomach-lung connection by
-actually reaching the top of the esophagus, we will focus our analyses
-on full-column reflux, i.e. reflux that reaches the proximal part of the esophagus.
+\textbf{Our next hypothesis is that patients with more severe GERD will have 
+more exchange between their stomach and lung communities.} Because we are 
+interested in GERD that may modulate the stomach-lung connection, 
+we will focus our analyses on full-column reflux, i.e. reflux that reaches the 
+proximal (top) part of the esophagus, since it is more likely to enter the lungs.
 Our GERD data quantifies the
-percent of reflux which is full-column, and does not provide a hard
-cutoff above which reflux is considered ``severe''. Thus, another goal
+percent of reflux which is full-column, but does not provide a hard
+cutoff above which reflux is considered ``severe''. Thus, a secondary goal
 of this work is to identify if such a threshold exists. We will examine
-how exchange between and similarity of the lung ang gastric communities
-changes as a function of this ``severity'' cutoff. If we find a cutoff
+how exchange between and similarity of the lung and gastric communities
+changes as a function of the ``severity'' cutoff. If we find a cutoff
 in which the amount of exchange in patients who are above the cutoff is 
 significantly higher than in patients who are below the cutoff, then perhaps
 this threshold could define the clinically-relevant amount of reflux that is
 problematic. The dataset has 125 patients with reflux testing.
 
+For each of these clinical factors, \textbf{we will compare the amount of microbial
+exchange occurring between the sites of interest in the two groups of patients},
+i.e. non-aspirators vs. aspirators or less severe reflux vs. severe reflux. 
+We will calculate a new $p_s$ within each patient 
+subgroup for each of the previously-defined exchanged microbes.
+In other words, $p_s'$ will be the percentage of the patients in one subgroup
+that have the exchanged microbe present in both of their sites.
+\textbf{We will also investigate how community similarities across aerodigestive
+sites are affected by the conditions.} We will calculate the beta diversity
+between the two sites for each patient who has sequencing data for both of
+the sites. If a clinical factor increase the amount of exchange between
+two sites, we expect to see either more exchange of specific microbes 
+and/or more similar overall communities across the two sites.
+
 An important consideration when interpreting these results is that
 this work does not address the direction of microbial exchange between 
 aerodigestive sites, nor does it directly link increased microbial 
 exchange with adverse outcomes like respiratory infections.
-We assume that most of the community is being seeded from the throat, 
+We assume that most of the downstream communities are being seeded from the throat, 
 but do not explicitly know the balance between immigration, elimination, and 
 growth of microbes in each site \cite{bassis-source-2015}.
 Follow up studies focusing on patients who develop respiratory 
 infections or who frequently have GERD- or aspiration-associated 
 respiratory infections should be undertaken to directly link the exchange
-between communities with adverse clinical outcomes. 
+between communities with subsequent adverse clinical outcomes. 
 
-\subsection{Aim 2: Re-analyze published gut	microbiome studies to identify disease-associated microbes and shared microbial responses to disease.}\label{sec:aim2}
-Many case-control studies have found associations between gut microbial 
-communities and disease (Appendix \ref{sec:appendix_tables}). These studies 
-span many different types of diseases, ranging
-from metabolic to auto-immune to neurologic disorders. However, no studies have analyzed 
-the gut microbiome across all disease states. A few meta-analyses have
-been undertaken, but these focused on obesity and IBD only and
-did not find consistent microbes associated with either disease \cite{sze-signal-2016, walters-ob_meta-2014}.
-
-We hypothesize that certain bacteria are associated with a general response
-to disease, while others are specific markers of individual disease states.
-Additionally, we hypothesize that the microbial community shifts between
-health and disease will be more similar in similar diseases (i.e. the
-gut microbiomes of diabetic patients will be more similar to those of obese patients
-than to those of autistic patients).
-
-To address our hypotheses, we will first acquire a comprehensive
-collection of case-control gut microbiome datasets and process them
-in a standardized way. We will perform univariate tests for 
+\subsection{Aim 2: Re-analyze published gut	microbiome studies to identify disease-associated microbes}\label{sec:aim2}
+Many researchers have found associations between gut microbial 
+communities and individual diseases, but combining results from 
+different studies about the same disease often yields conflicting results. To date, no one has
+performed a comprehensive comparison of the results from gut microbiome 
+studies across all disease states with standardized processing
+and analysis methods.
+\textbf{We hypothesize that re-analyzing existing gut microbiome datasets 
+across all studied diseases will identify bacteria
+associated with a general response to disease
+and others associated with specific disease states.}
+To address our hypotheses, we will first acquire and re-process a comprehensive
+collection of case-control gut microbiome datasets. 
+We will perform univariate tests for 
 microbial associations with disease in each individual dataset. 
 We will then combine the results from these univariate analyses across all datasets and,
 separately, across all datasets of the same disease \cite{zavkin-ztest-2011}.
 Microbes which are significantly enriched or depleted across 
 all datasets will be considered part of a shared microbial response to
-disease in general, whereas those which are only associated with one or two
+disease, whereas those which are only associated with one or two
 individual diseases will be considered putative microbial markers of those diseases.
-Finally, we will summarize the associations of gut microbes with disease
-for all datasets, and compare these across all studies to determine whether certain diseases have 
-more similar gut microbial signatures than others.
-This comprehensive pan-disease meta-analysis will
-consolidate the findings from many existing gut 16S microbiome studies,
-synthesizing our existing knowledge and generating new hypotheses to
-inform future mechanistic experiments and case-control analyses.
+These findings will increase our understanding of
+the role that microbial communities play in maintaining health or promoting disease,
+point to potential biomarkers for specific diseases,
+and motivate future mechanistic studies on the relationship between microbes and their human hosts.
 
 \subsubsection{Compile and re-process publicly available case-control gut microbiome studies}
-To perform a meta-analysis, we need to collect a 
-comprehensive selection of 16S gut microbiome case-control studies. We 
+\textbf{To perform a meta-analysis, we will first collect a 
+comprehensive selection of 16S gut microbiome case-control studies}. We 
 will identify these studies through a targeted literature search.  
-Inclusion criteria for datasets is those that sequenced
-any region of the 16S rRNA gene of human stool samples, with at least 15 patients in the
+Inclusion criteria for datasets is ones which contain 
+16S rRNA sequences from human stool samples with at least 15 patients in the
 case (i.e. disease) group. Studies which focus exclusively on 
 children under 5 will be excluded from these analyses, as the infant
 gut microbiome does not resemble that of adults \cite{lozupone-meta-2013}.
@@ -659,11 +657,11 @@ apply for special permissions to use IRB-protected data.
 
 We will process these datasets using a standardized in-house pipeline 
 developed by Thomas Gurry, a post-doc in the Alm lab. We will 
-start with the rawest available data - in most cases, these will be 
-FASTQ files but for some studies we will begin from quality-filtered 
+start with the least processed data available - in most cases, these will be 
+raw FASTQ files but for some studies we will begin from quality-filtered 
 FASTA files. Sequences will be quality and length trimmed, clustered 
 at 100\% similarity, and assigned Latin taxonomic names using the RDP 
-classifier. Samples with fewer than 100 reads will be removed from 
+classifier \cite{wang-rdp-2007}. Samples with fewer than 100 reads will be removed from 
 consideration. OTUs with fewer than 10 reads or which are present in 
 less than 1\% of samples will be removed. More stringent quality 
 filtering may be considered in order to reduce noise in the dataset.
@@ -676,39 +674,67 @@ Analyzing OTUs at the species or strain level would be ideal,
 but 16S data is limited in that most OTUs cannot be classified
 down to such taxonomic resolution. On the other hand, the majority of gut microbiome
 OTUs tend to be classifiable to genus level. Thus, collapsing to the genus level 
-provides an optimal balance between the amount of taxonomic information and the 
+provides a good balance between the taxonomic resolution we can get with the 
 amount of data we have to discard (i.e. unannotated OTUs).
-Furthermore, previous work has found that the maximal predictive power of the microbiota
+Additionally, previous work has found that the maximal predictive power of the microbiota
 to distinguish between different phenotypes
 occurs at various taxonomic thresholds \cite{knights-biomarkers-2011}, so we will
-also consider higher-level taxonomic classifications in our in-depth meta-analyses.
+also consider higher-level taxonomic classifications in our meta-analyses.
 
-\subsubsection{Identify microbes associated with specific diseases and with shared microbial responses to disease}\label{sec:indep_studies}
-Once we have processed all datasets in a standardized way, our first 
-goal is to identify microbial markers of general health and disease. 
-For each study, we will compare macro-summaries of the microbial communities
-(i.e. alpha diversity, Bacteroides/Firmicutes ratio) between cases and controls.
-Then, we will look for specific microbes associated with health or disease using
-univariate non-parametric statistics to compare abundances of microbes in cases
-and controls. To identify microbes which are \textit{consistently} associated with
-health or disease, we will combine the results from all studies using 
-the weighted Z-test, a weighted method used in meta-analyses for combining p-values \cite{zavkin-ztest-2011}. 
-This will yield an overall significance for each microbe,
-incorporating the results from all case-control studies.
+\subsubsection{Identify generic microbial responses to disease shared across all studied disease states}\label{sec:indep_studies}
+\textbf{Once we re-process existing
+gut microbiome datasets in a standardized way, we hypothesize that we
+will identify broad community shifts related to general disease.}
+We will begin by comparing summaries of the microbial communities in 
+each disease state. For example, we will compare the differences in alpha diversity 
+for all cases and controls of the same disease across multiple datasets. 
+We can combine alpha diversities from different studies in two ways.
+First, we can standardize the alpha diversities within each study
+(i.e. by subtracting the mean and dividing by the standard deviation), combine samples from
+studies focused on the same disease, and perform a statistical comparison of
+the alpha diversity across all samples in the case or control groups.
+ Alternatively, we can
+do individual statistical comparisons within each study and combine these p-values
+together with the weighted Z-test, a method used in meta-analyses for combining p-values \cite{zavkin-ztest-2011}. We will begin with alpha diversity
+because it is the most frequently reported metric in the microbiome literature. We will also simlarly consider
+other community summaries like the Bacteroides/Firmicutes ratio, beta diversity between and within cases and controls, 
+and phylam abundances.
 
-Next, we aim to identify microbes which are consistently associated with \textit{specific}
-diseases. For diseases which have more than 3 studies, we will
-perform the same meta-analysis as above with only the studies
-of that disease. There are many interesting possible outcomes from this analysis.
-First, we could find bacteria which are not associated with disease in general 
-but which \textit{are} associated with that specific disease. 
-We could also find bacteria which are significant markers of disease in general and 
-that specific disease, but whose direction of change may differ in the two cases.
-For example, a bacteria could be significantly higher in Parkinson's patients but
-significantly lower in all other disease states. The microbes we identify with this
+\textbf{We also hypothesize that certain microbes are part of a shared response to disease.} We will use univariate non-parametric statistics to compare the
+abundance of individual microbes between cases and controls. 
+To compare microbes across disparate studies, we will analyze OTUs
+that have been collapsed to the genus level.
+We will combine the univariate results across all studies using 
+the weighted Z-test \cite{zavkin-ztest-2011} to determine the overall significance
+of each microbe across all diseases. 
+Genera which are significant after multiple hypothesis corrections
+and meta-analysis combination are those which can be considered
+to contribute to general phenotypes of health (if they are
+consistently more abundant in controls) or disease (if they are
+consistently more abundant in cases). We will also look for
+similar consistent associations with higher-order taxa, in order
+to identify whole clades of related organisms which are 
+associated with health or disease.
+
+\subsubsection{Identify microbes consistently associated with specific diseases}
+\textbf{Next, we aim to identify microbes which are consistently associated with \textit{specific}
+diseases.} We will
+combine univariate results for individual diseases by 
+using the same meta-analysis method described above, but now only
+combining datasets which analyze the same individual disease state \cite{zavkin-ztest-2011}. 
+We expect to find two types of disease-specific microbes from this analysis.
+The first is bacteria which are not part of the generic response to 
+disease but which are significantly enriched or depleted in 
+an individual disease state.
+The second is bacteria which \textit{are} enriched or depleted in the generic
+response to disease, but which have a different directionality
+in a specific disease. For example,
+a microbe could be significantly depleted overall across all studies,
+but significantly enriched when looking just within the obesity studies.
+The microbes we identify with this
 analysis may be very interesting candidates for biomarkers or mechanistic follow-up studies.
 
-It is possible that we struggle to find bacteria consistently 
+In this aim, we may struggle to find bacteria consistently 
 associated with diseases because of technical batch effects, even 
 where we expect to find a clear signal (i.e. in diseases which have 
 had clear results from experimental or mechanistic studies \cite{turnbaugh-energy_harvest-2006, ridaura-mouse_fmt-2013, crc_zeller}). 
@@ -718,91 +744,94 @@ simpler options available to help mitigate severe batch effects.
 First, we can apply simple linear correction methods 
 like subtracting the principal components of variation which correlate closely with technical 
 artifacts like read depth or sample size. 
-Another option is to change from closed- to open-reference OTUs, changing the way we compare and combine OTUs across studies.
-We could identify disease associations with open-referenced OTUs within individual studies, and then compare 
-the phylogenetic relationships of significant OTUs across all studies. 
+Another option is to use open-reference OTUs rather than collapsing to genus
+and compare the phylogenetic relationships of the significant OTUs across different studies. 
 Finally, we could also approach our meta-analysis from a functional point of view by
-using tools like PiCRUST to assign functionality to our
+using tools like PiCRUSt to assign functionality to our
 observed taxonomies \cite{langille-picrust-2013}.
 
-\subsubsection{Identify relationships between physiologically-related diseases by comparing their microbial characteristics}\label{sec:signatures}
-Our next hypothesis is that similar diseases will have similar 
-microbial community disruptions. For example, we expect that metabolic 
-diseases like obesity and diabetes will have more similar microbiota 
-changes than they will to diarrheal diseases like \textit{Clostridium 
-difficile} infection or enteric diarrhea. We will summarize each 
-dataset with one vector indicating its ``microbial signature''. This 
-signature will include the number and identities of microbes 
-significantly associated with the cases and the direction of change 
-of these microbes relative to the controls. Depending on the results from Section 
-\ref{sec:indep_studies}, we may also include factors like differences 
-in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will 
-investigate which datasets cluster together in this ``signature space'' 
-(Figure \ref{fig:microbe_signatures}).
+%\subsubsection{Identify relationships between physiologically-related diseases by comparing their microbial characteristics}\label{sec:signatures}
+%We also hypothesize that similar diseases will have similar 
+%microbial community disruptions. For example, we expect that metabolic 
+%diseases like obesity and diabetes will have more similar microbiota 
+%changes to each other than they will to diarrheal diseases like \textit{Clostridium 
+%difficile} infection or enteric diarrhea. We will summarize each 
+%dataset with one vector indicating its ``microbial signature''. This 
+%signature will include the number and identities of microbes 
+%significantly associated with the disease and the direction of change 
+%of these microbes relative to the controls. Depending on the results from Section 
+%\ref{sec:indep_studies}, we may also include factors like differences 
+%in alpha diversity or Bacteroides/Firmicutes ratios. Then, we will 
+%investigate which datasets cluster together in this ``signature space'' 
+%to identify those which have similar microbial characteristics (Figure \ref{fig:microbe_signatures}).
+%
+%%\begin{wrapfigure}{R}{0.5\textwidth}
+%%	\centering
+%\begin{figure}
+%\begin{center}
+%\includegraphics[scale=0.4]{microbial_signatures}
+%\caption{We will define a microbial signature for each dataset by summarizing
+%the association of each of its OTUs with the disease of interest. We will
+%also include other relevant features like alpha and beta diversities. These 
+%signature vectors will be used to cluster datasets and analyze resulting patterns.}\label{fig:microbe_signatures}
+%\end{center}
+%\end{figure}
+%%    \caption{Defining microbial signatures}
+%%\label{fig:microbe_signatures}
+%%\end{wrapfigure}
+%
+%If a disease has a strong impact on or association with the gut 
+%microbiome, then we would expect the signatures from multiple studies of that disease
+%to cluster very tightly together. If this is the case, we can extract 
+%the bacterial features which contribute the most to this tight 
+%clustering - these will then be most likely to be associated with that 
+%specific disease, and would be good candidates for further mechanistic 
+%explorations. On the other hand, if datasets of the same disease or 
+%similar conditions do not have similar microbial signatures, this may 
+%indicate that the microbiome is not inherently implicated in or significantly affected 
+%by that condition. In this case, the signal that we see in the gut 
+%microbiome is likely driven by other non-disease effects, which are 
+%not necessarily the same across studies. Alternatively, these diseases
+%may have small biological signals which are dwarfed by batch effects
+%between studies. Finally, if we find different 
+%diseases with similar underlying causes (i.e. inflammation) clustering 
+%near each other, then perhaps this would indicate that the microbiome 
+%is affected or involved with the underlying cause rather than the 
+%specific diseases. Such insights could help us design better 
+%experiments to follow up on mechanism or causal relationships between microbes
+%and disease.
 
-%\begin{wrapfigure}{R}{0.5\textwidth}
-%	\centering
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{microbial_signatures}
-\caption{We will define a microbial signature for each dataset by summarizing
-the association of each of its OTUs with the disease of interest. We will
-also include other relevant features like alpha and beta diversities. These 
-signature vectors will be used to cluster datasets and analyze resulting patterns.}\label{fig:microbe_signatures}
-\end{center}
-\end{figure}
-%    \caption{Defining microbial signatures}
-%\label{fig:microbe_signatures}
-%\end{wrapfigure}
-
-If a disease has a strong impact on or association with the gut 
-microbiome, then we would expect the signatures from multiple studies of that disease
-to cluster very tightly together. If this is the case, we can extract 
-the bacterial features which contribute the most to this tight 
-clustering - these will then be most likely to be associated with that 
-specific disease, and would be good candidates for further mechanistic 
-explorations. On the other hand, if datasets of the same disease or 
-similar conditions do not have similar microbial signatures, this may 
-indicate that the microbiome is not inherently implicated in or significantly affected 
-by the disease. In this case, the signal that we see in the gut 
-microbiome is likely driven by other non-disease effects, which are 
-not necessarily the same across studies. Alternatively, these diseases
-may have biological signals but which are dwarfed by batch effects
-between studies. Finally, if we find different 
-diseases with similar underlying causes (i.e. inflammation) clustering 
-near each other, then perhaps this would indicate that the microbiome 
-is affected or involved with the underlying cause rather than the 
-specific diseases. Such insights could help us design better 
-experiments to follow up on mechanism or causal relationships.
-
-\subsection{Aim 3: Curate a database of 16S sequences annotated with general biological traits.}
-Case-control studies often yield many significant
-associations between microbes and the disease state of interest. Interpreting these lists of
-microbes into biological hypotheses currently relies mostly on searching
-the literature for previously reported similar associations.
-However, the vast diversity of microbes and the lack of standard
-processing or analysis methods makes it difficult to extract overall
-biological patterns from many case-control results.
-Most 16S sequences in our databases do not have functional 
-annotations, and some do not even map to taxonomic assignments.
-Furthermore, existing tools which connect taxonomy to function do
-so usually through gene-based methods. They do not connect taxonomy 
-to broader biological traits, like sporulation or body habitat.
-
-In this aim, we will develop a database of 16S sequences annotated with 
-their associated biological traits. We will begin
-by searching the literature for existing databases, identifying
-what metadata and organisms they contain. We will curate
-our database by combining existing resources and supplementing
-with literature search and genome-mining as needed and depending on
-the biological trait of interest. We will begin with traits like
-sporulation and biogeography (i.e. specific habitat within the 
-gastrointestinal tract and in the human body). We will also
+\subsection{Aim 3: Curate a database of 16S sequences annotated with general biological traits}
+Microbiome studies yield associations between
+16S sequences and disease, but many of these sequences
+do not have functional annotations in existing databases. Tools that connect
+unannotated sequences to functions do not include
+general biological traits, making it difficult to interpret
+results from microbiome studies into biological hypotheses.
+\textbf{In this aim, we will develop a centralized database of 16S sequences annotated with 
+their associated biological traits.}
+We will begin
+by searching the literature for existing databases, combining their annotations and supplementing them
+with literature search and genome-mining as needed. 
+We will begin with traits like
+sporulation and body site habitat. We will also
 include disease associations that we identified in Aim 2 and search
-for other putative phenotype-associations using the datasets in Aim 2.
+for other putative phenotype-associations in these datasets.
 Finally, we will package our database into a tool that researchers can use
-to interpret their case-control microbiome studies and other exploratory
-analyses.
+to interpret their case-control microbiome studies into biological hypotheses and possible mechanistic associations. 
+
+%lists of many microbes significantly
+%associated with the disease states or conditions of interest. 
+%Generating biological or mechanistic hypotheses based on these lists of 
+%microbes currently relies mostly on searching existing literature for similar
+%previously reported associations. 
+%However, the vast diversity of microbes and the lack of standard
+%processing or analysis methods makes it difficult to extract overall
+%biological patterns from the published literature.
+%Furthermore, the majority of 16S sequences in our databases do not have functional 
+%or trait-based annotations, leaving researchers with few tools to 
+%assign general biological interpretations to the results of their microbiome analyses.
+
 
 %	\item[Aim 3] Curate a database of 16S sequences annotated with 
 %	associated general biological traits.
@@ -818,9 +847,9 @@ analyses.
 \subsubsection{Combine existing databases and perform targeted literature searches to annotate microbes based on known biological traits}\label{sec:set_curation}
 
 In order to begin curating our database of microbes and their traits, 
-we will perform an extensive literature search
+\textbf{we will perform an extensive literature search
 to identify existing databases and comprehensive review papers with experimentally 
-validated microbial phenotypes. We will combine the databases we find
+validated microbial phenotypes}. We will combine these databases
 and identify where they are missing annotations.
 We will begin with IMG, a database with approximately 10,000 annotated microbial genomes. 
 About half of these genomes are human-associated bacteria, 
@@ -833,23 +862,24 @@ we will manually include them and their associated metadata from NCBI queries
 and targeted literature searches.
 
 In collaboration with Ilana Brito, Assistant Professor of Biomedical Engineering at Cornell University, 
-we will apply a combination of literature mining and bioinformatics approaches to fill 
+\textbf{we will apply a combination of literature mining and bioinformatics approaches to fill 
 out the missing annotations in the databases and to add our own traits
-of interest (Figure \ref{fig:microbe_sets}). 
+of interest} (Figure \ref{fig:microbe_sets}). 
 For example, in order to annotate spore-forming microbes, we will first perform a literature
 search to identify known sporulation genes. We will then search for these genes in 
 the whole genomes of representative organisms or in the 16S-based functional
 profiles inferred by PiCRUSt \cite{langille-picrust-2013}.
 Organisms which have these genes will be annotated as spore-formers. 
-As another example, annotating traits like body habitat will 
-depend mostly on literature search since there are likely no clear genetic
-associations with this trait. We will also extract habitat-associations
+As another example, annotating traits like body site habitat will 
+depend mostly on literature search since there are likely no clear genes
+conferring this trait. We will also extract habitat associations
 from large datasets like the Human Microbiome Project which sequenced multiple body sites \cite{hmp-2012}.
-Finally, throughout our annotation process, we will need to find a balance between
-the number of microbes we are able to annotate with our confidence in their respective annotations.
+Finally, throughout our annotation process, we will need to balance
+the confidence we have in the annotations with
+the breadth of microbes we are able to annotate.
 For example, some bacteria which are known spore-formers do not contain any
 known sporulation genes. We will try to fill these out to the best of our
-knowledge, but despite our best efforts, our database will certainly 
+existing knowledge, but our database will certainly 
 still contain a vast number of false negatives.
 On the other hand, microbes which have certain sporulation genes
 may not express them in a biologically meaningful way in the human-associated
@@ -872,12 +902,10 @@ inference, or taxonomy-based functional inferences.
 \end{figure}
 
 \subsubsection{Extract disease-associated groups of bacteria from datasets in Aim 2}
-In parallel with our literature-based annotations, 
+\textbf{In parallel with our literature-based annotations, 
 we will use the datasets collected in Aim 2 to identify
-disease-associated groups of microbes. We will annotate microbes 
-based on whether they were enriched in healthy patients
-across many disease states, depleted in healthy patients across
-many disease states, or associated with specific diseases (Section \ref{sec:signatures}). 
+additional disease-associated groups of microbes.} We will annotate microbes 
+based on whether they were enriched or depleted in the shared microbial response to disease or if they were associated with specific diseases (Section \ref{sec:aim2}). 
 We will also extract additional disease- and phenotype-associated microbes by 
 applying machine learning methods to the datasets in Aim 2 for
 various classification tasks (Table \ref{tab:classifications}). 
@@ -900,7 +928,7 @@ that we are confident enough in to include in our database.
 Considering the diversity of the gut microbiome across people and the
 sparsity and high-dimensionality of 16S data, 
 this result would not be surprising and underscores the importance of the
-manual curation work in Section \ref{sec:set_curation} \cite{knights-biomarkers-2011, wang-pval_method-2016}.
+manually supervised curation work described in Section \ref{sec:set_curation} \cite{knights-biomarkers-2011, wang-pval_method-2016}.
 If this happens, we will investigate higher-order taxa as possible features,
 as this will reduce the dimensionality, sparsity, and inter-personal 
 variability in the datasets.
@@ -937,8 +965,9 @@ the discriminating function(s) in the datasets of interest, or by identifying al
 \end{table}
 }
 \subsubsection{Develop collaborative tool for interpreting microbiome studies}
-We will make our microbial trait annotations available to researchers for 
-further research and development. Through our literature searches, 
+\textbf{We will make our microbial trait annotations available to researchers as both
+a flat database and as a packaged tool to interpret
+16S studies.} Through our literature searches, 
 we will identify the format of databases that researchers have found most 
 useful and strive to package our annotations in a user friendly, useful format. 
 We will likely begin with one very large text file containing all of 
@@ -956,8 +985,9 @@ inherent difficulty of this task, and do not expect to produce a fully
 comprehensive database. However, because our annotations are intended 
 to serve as a tool for biological interpretations and hypothesis 
 generation, even a partially-complete database will be extremely 
-valuable in reducing the number of false-negative results in case-
-control studies and also providing coherent biological interpretations 
+valuable in reducing the number of false-negative results in case-control 
+studies. It will also be immensely
+to researchers by providing coherent biological interpretations 
 of existing results. We also recognize that our work will contribute to the 
 beginning of a systematic grouping of phenotypically-associated 
 microbes, and so we will ensure that the architecture of our database and annotation tool 
@@ -967,24 +997,30 @@ is easily accessible and modifiable by other researchers.
 \section{Preliminary studies}
 
 \subsection{Aim 1: Aerodigestive microbiota associated with GERD and aspiration}
-\subsubsection{Aerodigestive microbiome community exchange}
 
-With our definition of $p_s$ (Section \ref{sec:exchange}), we identified over 100
-OTUs exchanged across sites in the aerodigestive tract (Appendix \ref{sec:appendix_figures}, Figure \ref{fig:shared_phyla}).
+\subsubsection{Aerodigestive communities exchange microbes across all sites}
+
+We identified over 150 OTUs exchanged across sites in the aerodigestive tract 
+(Appendix \ref{sec:appendix_figures}, Figure \ref{fig:shared_phyla})
+using our definition of $p_s$ (Section \ref{sec:exchange}).
 As expected, the majority of exchange occurred between the throat and stomach \cite{bassis-source-2015}.
 Interestingly, the stomach and lung communities were almost as similar to
 each other as the throat and stomach communities were,
-but had less exchange of specific microbes (Figure \ref{fig:similarities}). 
+but had less frequent exchange of specific microbes (Figure \ref{fig:similarities}). 
 These findings support the hypothesis that frequent non-specific microaspiration
 of gastric contents into the lungs is occurring,
 where the exchange of microbes is more stochastic and
 not necessarily consistently selecting for specific community members across many patients.
 Finally, we observed a decreasing trend in number of exchanged microbes 
 across throat and stomach, lung and stomach, and throat and lung sites, respectively, 
-for all phyla except Proteobacteria (Figure \ref{fig:shared_phyla}). More Proteobacteria were exchanged 
+for all phyla except Proteobacteria (Appendix \ref{sec:appendix_figures}, Figure \ref{fig:shared_phyla}). The same number of Proteobacteria OTUs were exchanged 
 between lungs and stomach than between the throat and stomach. Proteobacteria are 
 known aerobes, and so may be preferentially selected for colonization in 
 the lungs after microaspiration from the stomach.
+These results support the existing hypothesis that the majority of
+exchange across aerodigestive sites occurs between the throat and stomach, and
+also shows that stomach and lung communities may be more related than previously
+thought.
 
 \begin{figure}[h]
 \begin{center}
@@ -999,7 +1035,7 @@ the lungs after microaspiration from the stomach.
 \end{center}
 \end{figure}
 
-\subsubsection{Clinical modulators of aerodigestive community exchange}
+\subsubsection{Aspiration increases throat-lung exchange and gastro-esophogeal reflux affects stomach-lung relationship}
 
 We observed a distinct increase in the amount of exchange between the 
 throat and lungs of aspirators relative to non-aspirators (Figure \ref{fig:aspirators}B).
@@ -1032,13 +1068,13 @@ significantly different from the exchange in normal patients \cite{debenedictis-
 As expected, stomach and lung communities of patients with severe reflux were
 more similar to each other than in patients without
 severe reflux (Figure \ref{fig:reflux}A). 
-Patients with severe reflux were also more likely
+Interestingly, patients with severe reflux were not more likely
 to exchange the previously-defined stomach-lung microbes between their stomachs and lungs (Figure \ref{fig:reflux}B).
 In this work, `severe reflux' was defined as reflux in 
 which more than half of events were full-column events.
 Future work will determine the effect of this `severity' 
 threshold on the amount of exchange, with the aim
-of identifying the severity threshold at which bacterial exchange
+of identifying whether a severity threshold exists above which bacterial exchange
 between the stomach and lungs becomes significantly higher than in non-severe reflux patients.
 
 \begin{figure}[h]
@@ -1052,32 +1088,33 @@ between the stomach and lungs becomes significantly higher than in non-severe re
 
 
 \subsection{Aim 2: Meta-analysis of gut microbiome studies}
+
 \subsubsection{Collect and process 16S case-control datasets}
-Our extensive literature review has identified over 50 suitable case-control 16S datasets.
-28 datasets and their associated metadata have been downloaded and processed through our in-house pipeline.
+Our literature review has identified over 50 suitable case-control 16S datasets,
+28 of which have been downloaded with associated metadata and processed through our in-house pipeline.
 Characteristics of these datasets, including sample size, disease states,
 and median sequencing depth, are shown in Appendix \ref{sec:appendix_tables}, Table \ref{tab:datasets}.
 
-\subsubsection{Identify general patterns of health and diseases}
+\subsubsection{General microbial signature of diseases is especially apparent in diarrheal diseases}
 We first summarized overall community structure using Shannon's alpha diversity
-index (SDI). We observed significant batch effects across studies, likely due to
+index (SDI). As expected, we observed significant batch effects across studies, likely due to
 the differences in sequencing depth (Appendix \ref{sec:appendix_figures}, Figure \ref{fig:alpha_all}). After standardizing SDI within studies
 and combining similar disease states, we observed little difference in overall
 community structure between cases and controls. An exception to this was seen
 in diarrheal diseases (\textit{Clostridium difficile} infection and enteric 
-diarrheal disease), in which alpha diversity was significantly lower in the cases (Figure \ref{fig:alpha}). Interestingly, disease states which had studies that defined
-their cases or controls differently also had signficant differences
+diarrheal disease), in which alpha diversity was significantly lower in the cases (Figure \ref{fig:alpha}). Interestingly, disease states which had multiple studies that defined
+their cases or controls differently also showed significant differences
 in alpha diversity. For example, one IBD study \cite{ibd-papa} recruited controls
 with non-inflammatory conditions of the gastrointestinal tract while others \cite{ibd-gevers, ibd-engstrand, ibd_hut}
 used healthy patients as controls. Additionally, some obesity studies \cite{ob-escobar, ob-goodrich, ob-gordon} labeled patients as ``overweight'' in addition
 to ``obese'' while others \cite{ob-ross, ob-zupancic} included only ``healthy'' and ``obese'' patient 
-category labels. These cases were the only other significant
-differences in alpha diversity, and are 
+category labels. These cases were the only non-diarrheal significant
+differences in alpha diversity and were less striking than the differences in
+diarrheal disease, and are 
 hypothesized to be driven by batch effects rather than biology.
 Further work to investigate this hypothesis will involve applying 
-different standardization techniques and performing a more complex 
-statistical test, which includes the individual studies as factors
-in the comparisons.
+different standardization techniques and including the 
+individual studies as factors in the statistical comparisons across cohorts.
 
 \begin{figure}
 \begin{center}
@@ -1168,16 +1205,16 @@ that could be used for diagnostic purposes and to motivate future mechanistic in
 
 \newpage
 
-\begin{figure}[h]
-	\begin{center}
-  	\includegraphics[scale=1.1]{rosen_tree}
-	\caption{Phylogenetic tree built on 99\% OTUs and labeled based on their
-	exchange across aerodigestive tract sites
-	(red = throat and gastric, green = gastric and lungs, blue = 
-	throat and lungs). Tree visualized with iTOL \cite{letunic-itol-2016}.}
-	\label{fig:rosen_tree}
-	\end{center}
-\end{figure}
+%\begin{figure}[h]
+%	\begin{center}
+%  	\includegraphics[scale=1.1]{rosen_tree}
+%	\caption{Phylogenetic tree built on 99\% OTUs and labeled based on their
+%	exchange across aerodigestive tract sites
+%	(red = throat and gastric, green = gastric and lungs, blue = 
+%	throat and lungs). Tree visualized with iTOL \cite{letunic-itol-2016}.}
+%	\label{fig:rosen_tree}
+%	\end{center}
+%\end{figure}
 
 \newpage
 \begin{figure}[h]
